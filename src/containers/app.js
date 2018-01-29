@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux' ;
 import { bindActionCreators } from 'redux';
 
-import Score from 'meld-client/src/containers/score';
+//import { Score } from 'meld-client/src/containers/score';
 import { fetchGraph } from 'meld-client/src/actions/index';
 
 const MEIManifestation = "meldterm:MEIManifestation";
