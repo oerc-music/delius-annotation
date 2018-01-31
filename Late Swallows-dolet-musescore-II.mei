@@ -363,7 +363,7 @@
                             <slur xml:id="slur-0000000591619168" startid="#note-0000002041215627" endid="#note-0000000961795166" />
                             <slur xml:id="slur-0000000357897555" startid="#chord-0000000282606661" endid="#chord-0000001657069301" />
                             <slur xml:id="slur-0000001502312192" startid="#note-0000001954978257" endid="#note-0000001763616874" />
-                            <slur xml:id="slur-0000000780751595" startid="#note-0000001092215599" endid="#note-0000000635241047" />
+                            <slur xml:id="slur-0000000780751595" curvedir="above" startid="#note-0000001092215599" endid="#note-0000001466379021" />
                         </measure>
                         <measure xml:id="measure-0000000402655196" n="8">
                             <staff xml:id="staff-0000000633156666" n="1">
@@ -427,11 +427,10 @@
                                     <note xml:id="note-0000000347409417" dots="1" dur="1" oct="3" pname="f" />
                                 </layer>
                             </staff>
-                            <hairpin xml:id="hairpin-0000001468017607" staff="1" startid="#note-0000000651476636" endid="#note-0000001597586475" form="cres" place="below" />
+                            <hairpin xml:id="hairpin-0000001468017607" staff="1" startid="#note-0000000651476636" endid="#note-0000000288009882" form="cres" place="below" />
                             <slur xml:id="slur-0000000331892112" startid="#note-0000000651476636" endid="#note-0000001882139366" />
                             <slur xml:id="slur-0000001682851469" startid="#note-0000001716151687" endid="#note-0000000618959811" />
-                            <dir xml:id="dir-0000000562472438" place="below" staff="4" startid="#note-0000000347409417">[</dir>
-                            <hairpin xml:id="hairpin-0000000033459292" staff="4" startid="#note-0000000347409417" endid="#note-0000000347409417" form="dim" place="below" />
+                            <reg><hairpin xml:id="hairpin-0000000033459292" staff="4" tstamp="1" tstamp2="3.9" form="dim" place="below" /></reg>
                             <slur xml:id="slur-0000001202548376" startid="#note-0000000347409417" endid="#note-0000001086303073" />
                         </measure>
                         <measure xml:id="measure-0000000947161571" n="10">
@@ -472,7 +471,7 @@
                                 </layer>
                             </staff>
                             <hairpin xml:id="hairpin-0000001151041970" staff="1" startid="#note-0000000246347963" endid="#note-0000001882139366" form="dim" place="below" />
-                            <slur xml:id="slur-0000000112928254" startid="#note-0000001717293518" endid="#note-0000001209453974" />
+                            <slur xml:id="slur-0000000112928254" curvedir="below" startid="#note-0000001717293518" endid="#note-0000001209453974" />
                         </measure>
                         <sb xml:id="sb-0000000440980495" />
                         <measure xml:id="measure-0000001037556782" n="11">
@@ -486,11 +485,13 @@
                             <staff xml:id="staff-0000000931564681" n="2">
                                 <layer xml:id="layer-0000000051780441" n="1">
                                     <chord xml:id="chord-0000000980860867" dots="1" dur="1">
-                                        <note xml:id="note-0000001775140349" oct="4" pname="c" />
                                         <note xml:id="note-0000000874340011" oct="4" pname="a">
                                             <accid xml:id="accid-0000000807266438" accid="f" accid.ges="f" />
                                         </note>
                                     </chord>
+                                </layer>
+                                <layer n="2">
+                                    <note xml:id="note-0000001775140349" oct="4" pname="c" dots="1" dur="1"/>
                                 </layer>
                             </staff>
                             <staff xml:id="staff-0000001297275774" n="3">
@@ -508,13 +509,11 @@
                                     </note>
                                 </layer>
                             </staff>
-                            <hairpin xml:id="hairpin-0000001126104613" staff="1" startid="#note-0000000889551972" endid="#note-0000000880042296" form="cres" place="below" />
+                            <hairpin xml:id="hairpin-0000001126104613" staff="1 2 3" tstamp="1" tstamp2="3.9" form="cres" place="below" />
                             <slur xml:id="slur-0000001942424572" startid="#note-0000000889551972" endid="#chord-0000000916580056" />
-                            <hairpin xml:id="hairpin-0000001806456109" staff="2" startid="#chord-0000000980860867" endid="#note-0000000874340011" form="cres" place="below" />
-                            <slur xml:id="slur-0000001797412246" startid="#chord-0000000980860867" endid="#note-0000001554697147" />
-                            <hairpin xml:id="hairpin-0000000229079667" staff="3" startid="#note-0000002046044792" endid="#note-0000002046044792" form="cres" place="below" />
+                            <slur xml:id="slur-0000001797412246" curvedir="above" startid="#chord-0000000980860867" endid="#note-0000001554697147" />
                             <slur xml:id="slur-0000001812275450" startid="#note-0000002046044792" endid="#chord-0000000245449094" />
-                            <hairpin xml:id="hairpin-0000000675363210" staff="4" startid="#note-0000000115104719" endid="#note-0000000115104719" form="cres" place="below" />
+                            <hairpin xml:id="hairpin-0000000675363210" staff="4" tstamp="1" tstamp2="2.9" form="cres" place="below" />
                             <slur xml:id="slur-0000000796172901" startid="#note-0000000115104719" endid="#chord-0000002026347535" />
                         </measure>
                         <measure xml:id="measure-0000000107218375" n="12">
@@ -552,10 +551,7 @@
                                     </chord>
                                 </layer>
                             </staff>
-                            <hairpin xml:id="hairpin-0000000161534102" staff="1" startid="#chord-0000000916580056" endid="#note-0000001967864483" form="dim" place="below" />
-                            <hairpin xml:id="hairpin-0000000880124984" staff="2" startid="#note-0000000831090055" endid="#note-0000001554697147" form="dim" place="below" />
-                            <hairpin xml:id="hairpin-0000000834810438" staff="3" startid="#chord-0000000245449094" endid="#note-0000001729179148" form="dim" place="below" />
-                            <hairpin xml:id="hairpin-0000000364551771" staff="4" startid="#chord-0000002026347535" endid="#note-0000001921295083" form="dim" place="below" />
+                            <hairpin xml:id="hairpin-0000000161534102" staff="1 2 3 4" tstamp="1" tstamp2="3.9" form="dim" place="below" />
                         </measure>
                         <measure xml:id="measure-0000001838436220" n="13">
                             <staff xml:id="staff-0000002124621775" n="1">
@@ -571,12 +567,15 @@
                             </staff>
                             <staff xml:id="staff-0000001686542177" n="2">
                                 <layer xml:id="layer-0000000362567157" n="1">
+                                    <note xml:id="note-0000001272902795"  dots="1" dur="1" oct="4" pname="a" accid="f">
+                                        <accid xml:id="accid-0000001497051024" accid="f" accid.ges="f" />
+                                    </note>
+                                </layer>
+                                <layer>
                                     <chord xml:id="chord-0000000765753394" dots="1" dur="1">
                                         <note xml:id="note-0000001995724280" oct="4" pname="c" />
-                                        <note xml:id="note-0000001272902795" oct="4" pname="a">
-                                            <accid xml:id="accid-0000001497051024" accid="f" accid.ges="f" />
-                                        </note>
                                     </chord>
+                                    
                                 </layer>
                             </staff>
                             <staff xml:id="staff-0000001485640567" n="3">
@@ -589,17 +588,10 @@
                                     <note xml:id="note-0000001689520789" dots="1" dur="1" oct="3" pname="f" />
                                 </layer>
                             </staff>
-                            <dir xml:id="dir-0000001404153965" place="below" staff="1" startid="#note-0000000814537276">[</dir>
-                            <hairpin xml:id="hairpin-0000000714347838" staff="1" startid="#note-0000000814537276" endid="#note-0000001530373303" form="cres" place="below" />
+                            <reg><hairpin xml:id="hairpin-0000000714347838" staff="1 2 3 4" tstamp="1" tstamp2="3.9" form="cres" place="below" /></reg>
                             <slur xml:id="slur-0000001587957429" startid="#note-0000000814537276" endid="#note-0000001258652564" />
-                            <dir xml:id="dir-0000000119011900" place="below" staff="2" startid="#chord-0000000765753394">[</dir>
-                            <hairpin xml:id="hairpin-0000000922600624" staff="2" startid="#chord-0000000765753394" endid="#note-0000001272902795" form="cres" place="below" />
-                            <slur xml:id="slur-0000000987621882" startid="#chord-0000000765753394" endid="#note-0000000516230302" />
-                            <dir xml:id="dir-0000000403156065" place="below" staff="3" startid="#note-0000001193269611">[</dir>
-                            <hairpin xml:id="hairpin-0000001011682004" staff="3" startid="#note-0000001193269611" endid="#note-0000001193269611" form="cres" place="below" />
+                            <slur xml:id="slur-0000000987621882" curvedir="above" startid="#note-0000001272902795" endid="#note-0000000516230302"/>
                             <slur xml:id="slur-0000001504999304" startid="#note-0000001193269611" endid="#note-0000001924035556" />
-                            <dir xml:id="dir-0000000944189579" place="below" staff="4" startid="#note-0000001689520789">[</dir>
-                            <hairpin xml:id="hairpin-0000002089613726" staff="4" startid="#note-0000001689520789" endid="#note-0000001689520789" form="cres" place="below" />
                             <slur xml:id="slur-0000000466848875" startid="#note-0000001689520789" endid="#note-0000000309290174" />
                         </measure>
                         <measure xml:id="measure-0000001889876268" n="14">
@@ -635,10 +627,7 @@
                                     </note>
                                 </layer>
                             </staff>
-                            <hairpin xml:id="hairpin-0000000043284618" staff="1" startid="#note-0000001258652564" endid="#note-0000001258652564" form="dim" place="below" />
-                            <hairpin xml:id="hairpin-0000000831718587" staff="2" startid="#note-0000002138901554" endid="#note-0000000516230302" form="dim" place="below" />
-                            <hairpin xml:id="hairpin-0000001714385962" staff="3" startid="#note-0000000056621097" endid="#note-0000001924035556" form="dim" place="below" />
-                            <hairpin xml:id="hairpin-0000001299793394" staff="4" startid="#note-0000000309290174" endid="#note-0000000309290174" form="dim" place="below" />
+                            <reg><hairpin xml:id="hairpin-0000000043284618" staff="1 2 3 4" tstamp="1.1" tstamp2="3.9" form="dim" place="below" /></reg>
                         </measure>
                         <measure xml:id="measure-0000001945380714" n="15">
                             <staff xml:id="staff-0000001114477316" n="1">
@@ -683,13 +672,10 @@
                             <dynam xml:id="dynam-0000001777247711" place="below" staff="1" startid="#note-0000001179876322">p</dynam>
                             <slur xml:id="slur-0000000136251078" startid="#note-0000001179876322" endid="#note-0000002007434223" />
                             <slur xml:id="slur-0000000814983593" startid="#note-0000001963276257" endid="#note-0000000756146344" />
-                            <dynam xml:id="dynam-0000001959592498" place="below" staff="3" startid="#chord-0000001718472792">pp</dynam>
-                            <dynam xml:id="dynam-0000000994437230" place="above" staff="3" startid="#chord-0000001718472792">pp</dynam>
+                            <dynam xml:id="dynam-0000001959592498" place="below" staff="2" startid="note-0000001963276257">pp</dynam>
+                            <dynam xml:id="dynam-0000000994437230" place="below" staff="3" startid="#chord-0000001718472792">pp</dynam>
                             <slur xml:id="slur-0000000130218024" startid="#chord-0000001718472792" endid="#chord-0000001861431582" />
-                            <dir xml:id="dir-0000000854162080" place="above" staff="4" startid="#note-0000001813548978">
-                                <rend xml:id="rend-0000001518035067" fontfam="Opus Text Std" fontstyle="italic">[pp</rend>
-                                <rend xml:id="rend-0000001727994331" fontstyle="normal">]</rend>
-                            </dir>
+                            <reg><dynam xml:id="dynam-extra-15" place="below" staff="4" startid="#note-0000001813548978">pp</dynam></reg>
                         </measure>
                         <measure xml:id="measure-0000001703470944" n="16">
                             <staff xml:id="staff-0000001111607367" n="1">
@@ -753,13 +739,16 @@
                                         <note xml:id="note-0000000917682680" oct="4" pname="a">
                                             <accid xml:id="accid-0000001522508674" accid="f" accid.ges="f" />
                                         </note>
-                                        <note xml:id="note-0000001015689124" oct="5" pname="c" />
                                     </chord>
                                     <rest xml:id="rest-0000000478301554" dur="2" />
                                     <chord xml:id="chord-0000001882981432" dur="2" stem.dir="up">
-                                        <note xml:id="note-0000000611598168" oct="4" pname="c" />
                                         <note xml:id="note-0000000803389160" oct="4" pname="a" accid.ges="f" />
                                     </chord>
+                                </layer>
+                                <layer n="2">
+                                    <note xml:id="note-0000001015689124" oct="5" pname="c" dur="2" stem.dir="down"/>
+                                    <space dur="2"/>
+                                    <note xml:id="note-0000000611598168" oct="4" pname="c" dur="2" stem.dir="up"/>
                                 </layer>
                             </staff>
                             <staff xml:id="staff-0000001517322928" n="3">
@@ -784,11 +773,9 @@
                             </staff>
                             <slur xml:id="slur-0000001221603437" startid="#note-0000000940853683" endid="#note-0000000435144637" />
                             <slur xml:id="slur-0000000280002421" startid="#note-0000000760255338" endid="#note-0000000632382604" />
-                            <hairpin xml:id="hairpin-0000001348703371" staff="2" startid="#chord-0000001882981432" endid="#note-0000000803389160" form="dim" place="below" />
+                            <hairpin xml:id="hairpin-0000001348703371" staff="2 3 4" tstamp="3.1" tstamp2="3.9" form="dim" place="below" />
                             <slur xml:id="slur-0000000115880682" startid="#chord-0000001882981432" endid="#chord-0000000689345204" />
-                            <hairpin xml:id="hairpin-0000002079265911" staff="3" startid="#note-0000000945525873" endid="#note-0000000945525873" form="dim" place="below" />
                             <slur xml:id="slur-0000001539777578" startid="#note-0000000945525873" endid="#chord-0000000263231045" />
-                            <hairpin xml:id="hairpin-0000000323220291" staff="4" startid="#note-0000000307941433" endid="#note-0000000307941433" form="dim" place="below" />
                         </measure>
                         <measure xml:id="measure-0000001063984498" n="18">
                             <staff xml:id="staff-0000000067612897" n="1">
@@ -801,19 +788,23 @@
                             <staff xml:id="staff-0000000760418059" n="2">
                                 <layer xml:id="layer-0000000820318981" n="1">
                                     <chord xml:id="chord-0000000689345204" dots="1" dur="1">
-                                        <note xml:id="note-0000000680517308" oct="4" pname="c" />
                                         <note xml:id="note-0000000299828720" oct="4" pname="a">
                                             <accid xml:id="accid-0000000052305126" accid="n" />
                                         </note>
                                     </chord>
                                 </layer>
+                                <layer n="2">
+                                    <note xml:id="note-0000000680517308" oct="4" pname="c" dur="1" dots="1"/>
+                                </layer>
                             </staff>
                             <staff xml:id="staff-0000001481422251" n="3">
                                 <layer xml:id="layer-0000000591074830" n="1">
                                     <chord xml:id="chord-0000000263231045" dots="1" dur="1">
-                                        <note xml:id="note-0000000085982053" oct="3" pname="g" />
                                         <note xml:id="note-0000001878501144" oct="4" pname="e" />
                                     </chord>
+                                </layer>
+                                <layer>
+                                    <note xml:id="note-0000000085982053" oct="3" pname="g" dur="1" dots="1"/>                                    
                                 </layer>
                             </staff>
                             <staff xml:id="staff-0000000801059869" n="4">
@@ -892,7 +883,7 @@
                             <dynam xml:id="dynam-0000001675401893" place="below" staff="1" startid="#note-0000000107473528">mf</dynam>
                             <slur xml:id="slur-0000001464092921" startid="#note-0000000107473528" endid="#note-0000001472467390" />
                             <dynam xml:id="dynam-0000002048613387" place="below" staff="2" startid="#chord-0000000083669836">mf</dynam>
-                            <hairpin xml:id="hairpin-0000000547140002" staff="2" startid="#chord-0000000083669836" endid="#note-0000000817638911" form="dim" place="below" />
+                            <hairpin xml:id="hairpin-0000000547140002" staff="2 3" tstamp="1.2" tstamp2="1.9" form="dim" place="below" />
                             <slur xml:id="slur-0000001345831611" startid="#note-0000000340869536" endid="#note-0000000469430362" />
                             <dynam xml:id="dynam-0000001003346405" place="below" staff="3" startid="#chord-0000000838812654">mf</dynam>
                             <hairpin xml:id="hairpin-0000000157230264" staff="3" startid="#chord-0000000838812654" endid="#note-0000001030261031" form="dim" place="below" />
@@ -911,15 +902,18 @@
                             <staff xml:id="staff-0000001183745763" n="2">
                                 <layer xml:id="layer-0000001403700907" n="1">
                                     <chord xml:id="chord-0000001262974732" dur="1">
-                                        <note xml:id="note-0000000493511927" oct="3" pname="a" />
                                         <note xml:id="note-0000001375546956" oct="4" pname="g" />
                                     </chord>
                                     <chord xml:id="chord-0000000740113540" dur="2" stem.dir="up">
-                                        <note xml:id="note-0000001195041080" oct="3" pname="g" />
                                         <note xml:id="note-0000000153693310" oct="4" pname="f">
                                             <accid xml:id="accid-0000001633694518" accid="s" accid.ges="s" />
                                         </note>
                                     </chord>
+                                </layer>
+                                <layer n="2">
+                                    <note xml:id="note-0000000493511927" oct="3" pname="a" dur="1"/>
+                                    
+                                    <note xml:id="note-0000001195041080" oct="3" pname="g"  dur="2" stem.dir="up"/>
                                 </layer>
                             </staff>
                             <staff xml:id="staff-0000002068846535" n="3">
@@ -942,9 +936,9 @@
                                     <note xml:id="note-0000000159935683" dur="2" oct="2" pname="e" stem.dir="up" />
                                 </layer>
                             </staff>
-                            <slur xml:id="slur-0000001465373719" startid="#chord-0000001262974732" endid="#chord-0000000740113540" />
-                            <slur xml:id="slur-0000002017881106" startid="#note-0000000682858086" endid="#note-0000000961376641" />
-                            <slur xml:id="slur-0000001149673163" startid="#chord-0000001678869299" endid="#note-0000000159935683" />
+                            <slur xml:id="slur-0000001465373719" startid="#chord-0000001262974732" endid="#chord-0000000740113540" curvedir="above"/>
+                            <slur xml:id="slur-0000002017881106" startid="#note-0000000682858086" endid="#note-0000000961376641"  curvedir="above"/>
+                            <slur xml:id="slur-0000001149673163" startid="#chord-0000001678869299" endid="#note-0000000159935683" curvedir="above"/>
                         </measure>
                         <measure xml:id="measure-0000000736008176" n="21">
                             <staff xml:id="staff-0000001518022363" n="1">
@@ -1022,21 +1016,22 @@
                             <staff xml:id="staff-0000000002576351" n="2">
                                 <layer xml:id="layer-0000001882145201" n="1">
                                     <chord xml:id="chord-0000000734382266" dur="2" stem.dir="up">
-                                        <note xml:id="note-0000000478701146" oct="4" pname="f" />
                                         <note xml:id="note-0000001143976096" oct="4" pname="a" />
                                     </chord>
                                     <chord xml:id="chord-0000000379447374" dur="2" stem.dir="up">
-                                        <note xml:id="note-0000000406800329" oct="4" pname="f">
-                                            <accid xml:id="accid-0000000624953957" accid="s" accid.ges="s" />
-                                        </note>
                                         <note xml:id="note-0000002031308414" oct="4" pname="a">
                                             <accid xml:id="accid-0000000040021447" accid="s" accid.ges="s" />
                                         </note>
                                     </chord>
                                     <chord xml:id="chord-0000001357557590" dur="2" stem.dir="up">
-                                        <note xml:id="note-0000000289803249" oct="4" pname="e" />
                                         <note xml:id="note-0000000605631915" oct="4" pname="b" />
                                     </chord>
+                                </layer>
+                                <layer>
+                                    
+                                    <note xml:id="note-0000000478701146" oct="4" pname="f" dur="2" stem.dir="up"/>
+                                    <note xml:id="note-0000000406800329" oct="4" pname="f" accid="s" dur="2" stem.dir="up"/>
+                                    <note xml:id="note-0000000289803249" oct="4" pname="e" dur="2" stem.dir="up"/>
                                 </layer>
                             </staff>
                             <staff xml:id="staff-0000001687332899" n="3">
@@ -1062,13 +1057,10 @@
                                     </chord>
                                 </layer>
                             </staff>
-                            <hairpin xml:id="hairpin-0000000447839534" staff="1" startid="#note-0000001069639335" endid="#note-0000001310785578" form="cres" place="below" />
+                            <hairpin xml:id="hairpin-0000000447839534" staff="1 2 3 4" tstamp="2" tstamp2="3.9" form="cres" place="below" />
                             <tie xml:id="tie-0000000392407235" startid="#note-0000001069639335" endid="#note-0000001335714295" />
-                            <hairpin xml:id="hairpin-0000001494108231" staff="2" startid="#chord-0000000379447374" endid="#note-0000000605631915" form="cres" place="below" />
                             <slur xml:id="slur-0000001165834573" startid="#chord-0000000379447374" endid="#chord-0000001357557590" />
-                            <slur xml:id="slur-0000001402010340" startid="#chord-0000000379447374" endid="#chord-0000001357557590" />
-                            <hairpin xml:id="hairpin-0000000301514390" staff="3" startid="#chord-0000000367334900" endid="#note-0000001800032990" form="cres" place="below" />
-                            <hairpin xml:id="hairpin-0000001181602485" staff="4" startid="#chord-0000000326215053" endid="#note-0000001227425063" form="cres" place="below" />
+                            <slur xml:id="slur-0000001402010340" startid="#note-0000000406800329" endid="#note-0000000289803249" />
                         </measure>
                         <measure xml:id="measure-0000000807607119" n="23">
                             <staff xml:id="staff-0000001429093271" n="1">
@@ -1077,7 +1069,7 @@
                                         <accid xml:id="accid-0000001901473161" accid="s" accid.ges="s" />
                                     </note>
                                     <note xml:id="note-0000002045852260" dur="4" oct="5" pname="d" stem.dir="down" />
-                                    <note xml:id="note-0000001762317615" dur="4" oct="5" pname="f" stem.dir="down" accid.ges="s" />
+                                    <note xml:id="note-0000001762317615" dur="4" oct="5" pname="f" stem.dir="down" accid="s" accid.ges="s" />
                                     <note xml:id="note-0000001730779089" dur="4" oct="5" pname="g" stem.dir="down">
                                         <accid xml:id="accid-0000000949628726" accid="s" accid.ges="s" />
                                     </note>
@@ -1149,7 +1141,7 @@
                             <slur xml:id="slur-0000001204753052" startid="#note-0000000360053182" endid="#note-0000001945921207" />
                             <slur xml:id="slur-0000002116825603" startid="#note-0000001943447072" endid="#note-0000002081114669" />
                             <slur xml:id="slur-0000001784680964" startid="#note-0000000773403759" endid="#note-0000001818589928" />
-                            <slur xml:id="slur-0000001639068575" startid="#note-0000001204637388" endid="#note-0000001599547098" />
+                            <slur xml:id="slur-0000001639068575" startid="#note-0000001204637388" endid="#note-0000000635241047" />
                         </measure>
                         <measure xml:id="measure-0000001041772303" n="24">
                             <staff xml:id="staff-0000001920082897" n="1">
@@ -1375,11 +1367,8 @@
                                     </note>
                                 </layer>
                             </staff>
-                            <hairpin xml:id="hairpin-0000000526555129" staff="1" startid="#note-0000001961889445" endid="#note-0000001961889445" form="dim" place="below" />
-                            <hairpin xml:id="hairpin-0000002065312311" staff="2" startid="#chord-0000002095496140" endid="#note-0000000543031613" form="dim" place="below" />
+                            <hairpin xml:id="hairpin-0000000526555129" staff="1 2 3 4" tstamp="2" tstamp2="3.9" form="dim" place="below" />
                             <slur xml:id="slur-0000001642165097" startid="#note-0000001038232661" endid="#note-0000000875382342" />
-                            <hairpin xml:id="hairpin-0000001265323535" staff="3" startid="#chord-0000001722045951" endid="#note-0000001312147511" form="dim" place="below" />
-                            <hairpin xml:id="hairpin-0000001543085946" staff="4" startid="#note-0000001565704681" endid="#note-0000000312518452" form="dim" place="below" />
                         </measure>
                         <sb xml:id="sb-0000000391184581" />
                         <measure xml:id="measure-0000000985877542" n="27">
@@ -1456,11 +1445,9 @@
                             <staff xml:id="staff-0000001103884132" n="2">
                                 <layer xml:id="layer-0000000595522705" n="1">
                                     <chord xml:id="chord-0000001882594328" dur="2" stem.dir="up">
-                                        <note xml:id="note-0000000319003601" oct="4" pname="c" />
                                         <note xml:id="note-0000001432640228" oct="5" pname="c" />
                                     </chord>
                                     <chord xml:id="chord-0000000758341785" dur="2" stem.dir="up">
-                                        <note xml:id="note-0000001094928904" oct="3" pname="g" />
                                         <note xml:id="note-0000000920261330" oct="4" pname="g" />
                                     </chord>
                                     <chord xml:id="chord-0000000341081409" dur="2" stem.dir="up">
@@ -1470,11 +1457,14 @@
                                         <note xml:id="note-0000000655149948" oct="5" pname="c" />
                                     </chord>
                                 </layer>
+                                <layer>
+                                    <note xml:id="note-0000000319003601" oct="4" pname="c"  dur="2" stem.dir="up"/>
+                                    <note xml:id="note-0000001094928904" oct="3" pname="g"  dur="2" stem.dir="up"/>
+                                </layer>
                             </staff>
                             <staff xml:id="staff-0000002091106417" n="3">
                                 <layer xml:id="layer-0000001202183086" n="1">
                                     <chord xml:id="chord-0000001041450139" dur="2" stem.dir="up">
-                                        <note xml:id="note-0000000898839995" oct="3" pname="g" />
                                         <note xml:id="note-0000001056415327" oct="4" pname="e">
                                             <accid xml:id="accid-0000001615974611" accid="n" />
                                         </note>
@@ -1484,6 +1474,9 @@
                                     </note>
                                     <note xml:id="note-0000001307436529" dur="4" oct="4" pname="d" stem.dir="down" />
                                     <note xml:id="note-0000001059196336" dur="4" oct="4" pname="c" stem.dir="down" />
+                                </layer>
+                                <layer n="2">
+                                    <note xml:id="note-0000000898839995" oct="3" pname="g" dur="2" stem.dir="up"/>
                                 </layer>
                             </staff>
                             <staff xml:id="staff-0000001815661796" n="4">
@@ -1504,7 +1497,10 @@
                                 </layer>
                             </staff>
                             <dir xml:id="dir-0000000914937242" place="above" staff="1" startid="#note-0000002137637459">
-                                <rend xml:id="rend-0000000527129613" fontweight="bold">ralldo</rend>
+                                <rend xml:id="rend-0000000527129613" fontstyle="normal" fontweight="bold">rall</rend><rend fontstyle="normal" fontweight="bold" fontsize="300">do</rend>
+                            </dir>
+                            <dir xml:id="dir-0000000914937242b" place="below" staff="4" startid="#note-0000001008368235">
+                                <rend xml:id="rend-0000000527129613b" fontstyle="normal" fontweight="bold">rall</rend><rend fontstyle="normal" fontweight="bold" fontsize="300" valign="top">do</rend>
                             </dir>
                             <slur xml:id="slur-0000000042012870" startid="#chord-0000001882594328" endid="#chord-0000000758341785" />
                             <slur xml:id="slur-0000000556677902" startid="#chord-0000001041450139" endid="#note-0000001318304145" />
@@ -1644,11 +1640,8 @@
                                     <note xml:id="note-0000000963279594" dur="2" oct="2" pname="a" stem.dir="up" />
                                 </layer>
                             </staff>
-                            <hairpin xml:id="hairpin-0000000832007686" staff="1" startid="#note-0000001304742087" endid="#note-0000000453478433" form="cres" place="below" />
+                            <hairpin xml:id="hairpin-0000000832007686" staff="1 2 3 4" tstamp="2.04" tstamp2="3.5" form="cres" place="below" />
                             <slur xml:id="slur-0000001055095904" startid="#note-0000000074214662" endid="#note-0000001027667790" />
-                            <hairpin xml:id="hairpin-0000002024325761" staff="2" startid="#note-0000000997993245" endid="#note-0000000600410461" form="cres" place="below" />
-                            <hairpin xml:id="hairpin-0000000699303466" staff="3" startid="#note-0000000936294329" endid="#note-0000000449669283" form="cres" place="below" />
-                            <hairpin xml:id="hairpin-0000001144709349" staff="4" startid="#note-0000001052764525" endid="#note-0000000963279594" form="cres" place="below" />
                         </measure>
                         <measure xml:id="measure-0000001079406380" n="31">
                             <staff xml:id="staff-0000001696521190" n="1">
@@ -1668,9 +1661,7 @@
                                     <note xml:id="note-0000001121248431" dur="2" oct="4" pname="a" stem.dir="up" />
                                 </layer>
                                 <layer xml:id="layer-0000000412607643" n="2">
-                                    <note xml:id="note-0000001751820112" dur="2" oct="4" pname="d" stem.dir="down">
-                                        <accid xml:id="accid-0000001819782913" accid="s" accid.ges="s" />
-                                    </note>
+                                    <note xml:id="note-0000001751820112" dur="2" oct="4" pname="d" stem.dir="down" accid="s"/>
                                     <note xml:id="note-0000000503381693" dur="1" oct="4" pname="e">
                                         <accid xml:id="accid-0000000447415325" accid="n" />
                                     </note>
@@ -1690,12 +1681,9 @@
                                 </layer>
                             </staff>
                             <slur xml:id="slur-0000001630497205" startid="#note-0000001052316496" endid="#note-0000001059609338" />
-                            <hairpin xml:id="hairpin-0000000876559858" staff="1" startid="#note-0000001608489976" endid="#note-0000001059609338" form="dim" place="below" />
+                            <hairpin xml:id="hairpin-0000000876559858" staff="1 2 3 4" tstamp="2.05" tstamp2="3.5" form="dim" place="below" />
                             <slur xml:id="slur-0000000809438275" startid="#note-0000001777369547" endid="#note-0000001121248431" />
-                            <slur xml:id="slur-0000000268812637" startid="#note-0000001751820112" endid="#note-0000000503381693" />
-                            <hairpin xml:id="hairpin-0000001469696598" staff="2" startid="#note-0000000503381693" endid="#note-0000001971438819" form="dim" place="below" />
-                            <hairpin xml:id="hairpin-0000001949650951" staff="3" startid="#chord-0000000583636082" endid="#note-0000001124422594" form="dim" place="below" />
-                            <hairpin xml:id="hairpin-0000000414343632" staff="4" startid="#note-0000001228248350" endid="#note-0000001228248350" form="dim" place="below" />
+                            <slur xml:id="slur-0000000268812637" curvedir="below" startid="#note-0000001751820112" endid="#note-0000000503381693" />
                         </measure>
                         <sb xml:id="sb-0000000343984051" />
                         <measure xml:id="measure-0000001468894324" n="32">
@@ -1754,7 +1742,7 @@
                             <dir xml:id="dir-0000001030593315" place="below" staff="1" startid="#note-0000000005560676">cresc.-   -   -   -   -   -</dir>
                             <slur xml:id="slur-0000001614034143" startid="#note-0000000005560676" endid="#note-0000000069552537" />
                             <dir xml:id="dir-0000000239429182" place="below" staff="2" startid="#note-0000001077211479">cresc.-   -   -   -   -   -</dir>
-                            <slur xml:id="slur-0000001468251314" startid="#note-0000001077211479" endid="#note-0000001584862619" />
+                            <slur xml:id="slur-0000001468251314" startid="#note-0000001077211479" endid="#note-0000001226586072" />
                             <dir xml:id="dir-0000001744334782" place="below" staff="3" startid="#note-0000001496152453">cresc.-   -   -   -   -   -</dir>
                             <slur xml:id="slur-0000001414581504" startid="#note-0000001496152453" endid="#note-0000001156233849" />
                             <dir xml:id="dir-0000001369495539" place="below" staff="4" startid="#chord-0000000924233601">cresc.-   -   -   -   -   - </dir>
@@ -1804,7 +1792,7 @@
                             <dynam xml:id="dynam-0000001424653038" place="below" staff="1" startid="#note-0000002123855676">mf</dynam>
                             <slur xml:id="slur-0000001210120161" startid="#note-0000002123855676" endid="#note-0000001504223583" />
                             <dynam xml:id="dynam-0000000075545132" place="below" staff="2" startid="#note-0000000136085285">mf</dynam>
-                            <slur xml:id="slur-0000001855333048" startid="#note-0000000136085285" endid="#chord-0000001467288205" />
+                            <slur xml:id="slur-0000001855333048" startid="#note-0000000136085285" endid="#note-0000001584862619" />
                             <dynam xml:id="dynam-0000001403840434" place="below" staff="3" startid="#note-0000000619345363">mf</dynam>
                             <dynam xml:id="dynam-0000001182375754" place="below" staff="4" startid="#note-0000000387785265">mf</dynam>
                             <slur xml:id="slur-0000000825145415" startid="#note-0000000387785265" endid="#note-0000000117285253" />
@@ -1830,21 +1818,18 @@
                                         <accid xml:id="accid-0000000865942319" accid="f" accid.ges="f" />
                                     </note>
                                     <chord xml:id="chord-0000001467288205" dur="2" stem.dir="up">
-                                        <note xml:id="note-0000000869995768" oct="4" pname="c">
-                                            <accid xml:id="accid-0000000686782181" accid="s" accid.ges="s" />
-                                        </note>
                                         <note xml:id="note-0000001971438819" oct="4" pname="g" />
                                     </chord>
                                 </layer>
                                 <layer xml:id="layer-0000000455229738" n="2">
                                     <note xml:id="note-0000000133321984" dur="1" oct="4" pname="d" />
+                                    <note xml:id="note-0000000869995768" oct="4" pname="c" accid="s" dur="2" stem.dir="up"/>
                                 </layer>
                             </staff>
                             <staff xml:id="staff-0000000061039411" n="3">
                                 <layer xml:id="layer-0000001821117618" n="1">
                                     <note xml:id="note-0000001088103501" dur="1" oct="4" pname="f" />
                                     <chord xml:id="chord-0000000589414679" dur="2" stem.dir="up">
-                                        <note xml:id="note-0000002125932385" oct="3" pname="g" />
                                         <note xml:id="note-0000000586960946" oct="4" pname="c">
                                             <accid xml:id="accid-0000000285815353" accid="s" accid.ges="s" />
                                         </note>
@@ -1856,6 +1841,7 @@
                                     <note xml:id="note-0000001264508668" dur="4" oct="3" pname="b" stem.dir="down">
                                         <accid xml:id="accid-0000000367964650" accid="f" accid.ges="f" />
                                     </note>
+                                    <note xml:id="note-0000002125932385" oct="3" pname="g" dur="2" stem.dir="up"/>
                                 </layer>
                             </staff>
                             <staff xml:id="staff-0000001994765049" n="4">
@@ -1883,9 +1869,11 @@
                             </staff>
                             <hairpin xml:id="hairpin-0000001101151031" staff="1" startid="#note-0000000785782480" endid="#note-0000002081673274" form="dim" place="below" />
                             <slur xml:id="slur-0000001742227939" startid="#note-0000001469411449" endid="#note-0000001657550908" />
-                            <slur xml:id="slur-0000001407621793" startid="#note-0000001137283357" endid="#chord-0000001359113965" />
+                            <slur xml:id="slur-0000001407621793" startid="#note-0000001137283357" endid="#note-0000001971438819" />
+                            <slur xml:id="slur-vln-II-2" startid="#note-0000000133321984" endid="#note-0000000869995768"/>
                             <hairpin xml:id="hairpin-0000000655866584" staff="3" startid="#note-0000001088103501" endid="#note-0000000586960946" form="dim" place="below" />
                             <slur xml:id="slur-0000000562563468" startid="#note-0000001088103501" endid="#chord-0000000589414679" />
+                            <slur xml:id="slur-vla-2" curvedir="below" startid="#note-0000000421858397" endid="#note-0000002125932385"/>
                             <hairpin xml:id="hairpin-0000001749451358" staff="4" startid="#chord-0000000198194421" endid="#note-0000000338186931" form="dim" place="below" />
                             <slur xml:id="slur-0000001944351805" startid="#chord-0000000198194421" endid="#chord-0000000389990843" />
                             <slur xml:id="slur-0000001894946547" startid="#note-0000000402356782" endid="#note-0000000338186931" />
@@ -2187,16 +2175,19 @@
                                     </chord>
                                 </layer>
                             </staff>
+                            <tempo place="above" staff="1" tstamp="1">(rather slower)</tempo>
                             <slur xml:id="slur-0000000443558811" startid="#chord-0000001567970463" endid="#chord-0000001325387005" />
-                            <slur xml:id="slur-0000001766199688" startid="#note-0000000862778542" endid="#chord-0000001917310203" />
+                            <slur xml:id="slur-0000001766199688" startid="#note-0000000862778542" endid="#chord-0000001359113965" />
                         </measure>
                         <measure xml:id="measure-0000001402806032" n="39">
                             <staff xml:id="staff-0000001585185141" n="1">
                                 <layer xml:id="layer-0000000268681033" n="1">
                                     <chord xml:id="chord-0000001325387005" dots="1" dur="1">
-                                        <note xml:id="note-0000001997352025" oct="5" pname="e" />
                                         <note xml:id="note-0000001954214938" oct="6" pname="e" />
                                     </chord>
+                                </layer>
+                                <layer>
+                                    <note xml:id="note-0000001997352025" oct="5" pname="e" dots="1" dur="1" />
                                 </layer>
                             </staff>
                             <staff xml:id="staff-0000002052375145" n="2">
@@ -2285,11 +2276,8 @@
                                     <note xml:id="note-0000002101721123" dots="1" dur="1" oct="2" pname="g" />
                                 </layer>
                             </staff>
-                            <hairpin xml:id="hairpin-0000001041748344" staff="1" startid="#note-0000000806044301" endid="#note-0000000581077454" form="dim" place="below" />
+                            <hairpin xml:id="hairpin-0000001041748344" staff="1 2 3 4" tstamp="1.05" tstamp2="3.9" form="dim" place="below" />
                             <slur xml:id="slur-0000001010738960" startid="#note-0000000806044301" endid="#note-0000000581077454" />
-                            <hairpin xml:id="hairpin-0000001580589648" staff="2" startid="#chord-0000000017338406" endid="#note-0000000628585401" form="dim" place="below" />
-                            <hairpin xml:id="hairpin-0000001232699387" staff="3" startid="#note-0000001877447889" endid="#note-0000001877447889" form="dim" place="below" />
-                            <hairpin xml:id="hairpin-0000001271604032" staff="4" startid="#note-0000002101721123" endid="#note-0000002101721123" form="dim" place="below" />
                         </measure>
                         <measure xml:id="measure-0000001998006484" right="dbl" n="42">
                             <staff xml:id="staff-0000001638026444" n="1">
@@ -2327,66 +2315,8 @@
                             <fermata xml:id="fermata-0000001550176193" staff="3" startid="#note-0000001469722620" form="norm" place="above" />
                             <fermata xml:id="fermata-0000001158021065" staff="4" startid="#note-0000000671874915" form="norm" place="above" />
                         </measure>
-                        <pb xml:id="pb-0000000636002951" />
-                        <measure xml:id="measure-0000001885835183" n="43">
-                            <staff xml:id="staff-0000001169811209" n="1">
-                                <layer xml:id="layer-0000000202473567" n="1">
-                                    <beam xml:id="beam-0000001124069375">
-                                        <note xml:id="note-0000000074947829" dur="8" oct="5" pname="c" stem.dir="down">
-                                            <accid xml:id="accid-0000000807576927" accid="s" accid.ges="s" />
-                                        </note>
-                                        <note xml:id="note-0000000661190964" dur="8" oct="5" pname="d" stem.dir="down" />
-                                        <note xml:id="note-0000000719755925" dur="8" oct="5" pname="b" stem.dir="down" />
-                                        <note xml:id="note-0000000369896983" dur="8" oct="5" pname="g" stem.dir="down" />
-                                    </beam>
-                                    <beam xml:id="beam-0000000702100035">
-                                        <note xml:id="note-0000000712792736" dur="8" oct="5" pname="c" stem.dir="down">
-                                            <accid xml:id="accid-0000001848984844" accid="n" />
-                                        </note>
-                                        <note xml:id="note-0000000034108132" dur="8" oct="5" pname="e" stem.dir="down">
-                                            <accid xml:id="accid-0000001267538415" accid="f" accid.ges="f" />
-                                        </note>
-                                        <note xml:id="note-0000001351873065" dur="8" oct="5" pname="b" stem.dir="down" />
-                                        <note xml:id="note-0000000846009815" dur="8" oct="5" pname="f" stem.dir="down">
-                                            <accid xml:id="accid-0000001066174200" accid="s" accid.ges="s" />
-                                        </note>
-                                    </beam>
-                                    <beam xml:id="beam-0000000778398105">
-                                        <note xml:id="note-0000002143551917" dur="8" oct="4" pname="b" stem.dir="down" />
-                                        <note xml:id="note-0000000584933640" dur="8" oct="5" pname="d" stem.dir="down" />
-                                        <note xml:id="note-0000001415947944" dur="8" oct="5" pname="b" stem.dir="down" />
-                                        <note xml:id="note-0000001078574578" dur="8" oct="5" pname="g" stem.dir="down" />
-                                    </beam>
-                                </layer>
-                            </staff>
-                            <staff xml:id="staff-0000000521379692" n="2">
-                                <layer xml:id="layer-0000001434064726" n="1">
-                                    <mRest xml:id="mrest-0000001649082444" />
-                                </layer>
-                            </staff>
-                            <staff xml:id="staff-0000001431647642" n="3">
-                                <layer xml:id="layer-0000000097371484" n="1">
-                                    <mRest xml:id="mrest-0000000206882772" />
-                                </layer>
-                            </staff>
-                            <staff xml:id="staff-0000000159069898" n="4">
-                                <layer xml:id="layer-0000000964291884" n="1">
-                                    <mRest xml:id="mrest-0000001044837166" />
-                                </layer>
-                            </staff>
-                            <dir xml:id="dir-0000000385625098" place="above" staff="1" startid="#note-0000000074947829">
-                                <rend xml:id="rend-0000000916910628" fontweight="bold">not too slow</rend>
-                            </dir>
-                            <dynam xml:id="dynam-0000000486860758" place="below" staff="1" startid="#note-0000000074947829">pp</dynam>
-                            <dir xml:id="dir-0000000307574887" place="above" staff="1" startid="#note-0000000074947829">muted</dir>
-                            <slur xml:id="slur-0000001867029564" startid="#note-0000000074947829" endid="#note-0000001078574578" />
-                            <dir xml:id="dir-0000001072852530" place="below" staff="2" startid="#mrest-0000001649082444">[</dir>
-                            <dir xml:id="dir-0000001747390970" place="below" staff="2" startid="#mrest-0000001649082444">]</dir>
-                            <dir xml:id="dir-0000000770379054" place="below" staff="3" startid="#mrest-0000000206882772">[</dir>
-                            <dir xml:id="dir-0000000947860868" place="below" staff="3" startid="#mrest-0000000206882772">]</dir>
-                            <dir xml:id="dir-0000000985516031" place="below" staff="4" startid="#mrest-0000001044837166">[</dir>
-                            <dir xml:id="dir-0000001662102517" place="below" staff="4" startid="#mrest-0000001044837166">]</dir>
-                        </measure>
+                        
+                        
                     </section>
                 </score>
             </mdiv>
