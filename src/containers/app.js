@@ -23,16 +23,8 @@ class App extends Component {
 			const graphUri = this.props.graphUri;
 			this.props.fetchGraph(graphUri);
 		}
-		//console.log("I've found this score element: ", ReactDOM.findDOMNode(this.scoreElement));
 		
 		this.props.decorateNotes(this.scoreElement)
-
-//		// give each note in the score SVG a clickhandler:
-//		const notes = ReactDOM.findDOMNode(this.scoreElement).querySelectorAll(".note");
-//		console.log("Found notes: ", notes);
-//		console.log("Found score element: ", ReactDOM.findDOMNode(this.scoreElement).innerHTML)
-//		Array.prototype.map.call(notes, function(n) { console.log(n); n.style.fill = "red"; })
-
 	}
 	componentWillReceiveProps(nextProps) { 
 		// this is where we do app-specific logic for the modal UI
@@ -44,18 +36,14 @@ class App extends Component {
 	}
 
 	render() { 
+		console.log("My props: ", this.props);
 		return (
 			<div> 
 					<link rel="stylesheet" href="style/modalUI.css" type="text/css" />
 					<Modal modes={this.state.modes} orientation="wide"/> 
-					<Score uri="http://meld.linkedmusic.org/mei/Late_Swallows-dolet-musescore-II.mei" 
-						onClick={(e) =>  this.handleScoreClick(e) } ref={(score) => {this.scoreElement = score}} />
+					<Score uri="http://meld.linkedmusic.org/mei/Late_Swallows-dolet-musescore-II.mei" ref={(score) => {this.scoreElement = score}} />
 			</div>
 		)
-	}
-	
-	handleScoreClick(e) { 
-		console.log("score clicked: ", e);
 	}
 }
 

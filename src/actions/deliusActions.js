@@ -13,8 +13,12 @@ export function decorateNotes(component) {
 		setTimeout(() => {	
 			let notes = element.querySelectorAll(".note");
 			Array.prototype.map.call(notes, function(n) { 
-				console.log(n)
-				n.style.fill = "red";
+				n.onclick = function(e) { 
+					dispatch({ 
+						type: "ELEMENT_CLICKED", 
+						payload: n.getAttribute("id")
+					})
+			 	}
 			});
 			return { type: "NOTES_DECORATED" }
 		}, 1000)
