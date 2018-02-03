@@ -38,3 +38,7 @@
 	max-width: 4em;
 }
 
+.note.active { 
+	fill: red;
+	color:red;
+}
