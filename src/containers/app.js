@@ -27,24 +27,45 @@ class App extends Component {
 	}
 	componentWillReceiveProps(nextProps) { 
 		// this is where we do app-specific logic for the modal UI
-		// RULES
-		// 1. If more than 2 note elements selected, throw out the oldest element
+		
+		// If more than 2 note elements selected, throw out the oldest element
 		// 		(only makes sense to have up to 2 selected for Delius annotation)
 		if(nextProps.modalUI.elements.length > 2) { 
 			this.props.popElements();
 		}
-		// 2. If dynamics is clicked in baseMode, switch to dynamicsMode
-		if (this.props.modalUI.mode == "baseMode" && nextProps.modalUI.constituents.has("dynamics")) {
-			// user has selected dynamics - clear selections, and switch modes
-			this.props.clearConstituents();
-			this.props.setMode("dynamicsMode");
-		}
 
+		// Mode-specific rules go here
+		switch(this.props.modalUI.mode) { 
+			case "baseMode": 
+				// in base mode, only one constituent selection valid at a time, used to switch to that constituent's mode
+				if(nextProps.modalUI.constituents.has("dynamics")) { 
+					// user wants to annotate dynamics 
+					this.props.clearConstituents();
+					this.props.setMode("dynamicsMode");
+				}
+				break;
+			case "dynamicsMode":
+				// in dynamics mode, we should only allow ONE selection at a time, and ONLY if at least one note is selected
+				if(nextProps.modalUI.constituents.size !== 0) {
+					if(this.props.modalUI.elements.length > 0) {
+						// dynamics are point annotations
+						// so annotate the latest-selected element (if more than 1)
+						console.log("ANNOTATE WITH DYNAMICS: " +  Array.from(nextProps.modalUI.constituents)[0], this.props.modalUI.elements[0]);
+						// and, having actioned this, clear element selections
+						this.props.clearElements();
+					} else { 
+						console.log("Constituent selection without note element selection -- IGNORING");
+					}
+					// having taken any appropriate actions, clear constituents
+					this.props.clearConstituents();
+				}
+		}
 	}
 
 	componentDidUpdate(nextProps) { 
 		// update note classes (ensure only selected ones are highlighted)
 		this.props.decorateNotes(this.scoreComponent, this.props.modalUI.elements);
+		console.log("modalUI constituents", Array.from(this.props.modalUI.constituents)); 
 		console.log("modalUI elements", this.props.modalUI.elements); 
 	}
 
