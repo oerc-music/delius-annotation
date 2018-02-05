@@ -29,15 +29,32 @@ class App extends Component {
 			// user has selected dynamics - clear selections, and switch modes
 			this.props.clearConstituents();
 			this.props.setMode("dynamicsMode");
+		} else if (this.props.modalUI.mode == "baseMode" && nextProps.modalUI.constituents.has("bowing")) {
+			// user has selected bowings - clear selections, and switch modes
+			this.props.clearConstituents();
+			this.props.setMode("bowingMode");
+		} else if (this.props.modalUI.mode == "baseMode" && nextProps.modalUI.constituents.has("phrasing")) {
+			// user has selected bowings - clear selections, and switch modes
+			this.props.clearConstituents();
+			this.props.setMode("phrasingMode");
+		} else if (this.props.modalUI.mode == "baseMode" && nextProps.modalUI.constituents.has("hairpins")) {
+			// user has selected bowings - clear selections, and switch modes
+			this.props.clearConstituents();
+			this.props.setMode("hairpinMode");
+		} else if (this.props.modalUI.mode == "baseMode" && nextProps.modalUI.constituents.has("fingerings")) {
+			// user has selected bowings - clear selections, and switch modes
+			this.props.clearConstituents();
+			this.props.setMode("fingeringsMode");
 		}
 	}
 
-	render() { 
+	render() {
+		//uri="http://meld.linkedmusic.org/mei/Late_Swallows-dolet-musescore-II.mei" 
 		return (
 			<div> 
 					<link rel="stylesheet" href="style/modalUI.css" type="text/css" />
 					<Modal modes={this.state.modes} orientation="wide"/> 
-					<Score uri="http://meld.linkedmusic.org/mei/Late_Swallows-dolet-musescore-II.mei" 
+				<Score uri="/Late Swallows-dolet-musescore-II.mei" 
 						onClick={(e) =>  this.handleScoreClick(e) } ref="score" />
 			</div>
 		)

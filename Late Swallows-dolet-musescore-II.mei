@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="http://music-encoding.org/schema/3.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="http://music-encoding.org/schema/3.0.0/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="3.0.0">
@@ -37,6 +37,7 @@
                         </staffGrp>
                     </scoreDef>
                     <section xml:id="section-0000001850025350">
+											<pb/>
                         <measure xml:id="measure-0000001318905768" n="1">
                             <staff xml:id="staff-0000000989497759" n="1">
                                 <layer xml:id="layer-0000001970318949" n="1">
@@ -87,7 +88,7 @@
                                 <rend xml:id="rend-0000001212247320" fontweight="bold">With slow waving movement</rend>
                             </dir>
                             <dynam xml:id="dynam-0000001260831789" place="below" staff="1" startid="#note-0000001745662903">p</dynam>
-                            <slur xml:id="slur-0000000513200250" startid="#note-0000001745662903" endid="#note-0000000077358638" />
+                            <slur xml:id="slur-0000000513200250" curvedir="above" startid="#note-0000001745662903" endid="#note-0000000077358638" />
                             <dynam xml:id="dynam-0000001226423617" place="below" staff="2" startid="#note-0000002076645521">pp</dynam>
                             <slur xml:id="slur-0000001898287234" curvedir="above" startid="#note-0000002076645521" endid="#note-0000001804205848" />
                             <dynam xml:id="dynam-0000001918493676" place="below" staff="3" startid="#note-0000001765319859">pp</dynam>
@@ -225,7 +226,6 @@
                             <slur xml:id="slur-0000001402169239" startid="#note-0000001914283646" endid="#note-0000001860237396" />
                             <slur xml:id="slur-0000000209876726" startid="#note-0000001618102353" endid="#note-0000000189000448" />
                         </measure>
-                        <sb xml:id="sb-0000001648665262" />
                         <measure xml:id="measure-0000001696719672" n="5">
                             <staff xml:id="staff-0000002040433759" n="1">
                                 <layer xml:id="layer-0000000518916637" n="1">
@@ -719,7 +719,6 @@
                             <tie xml:id="tie-0000000686061065" startid="#note-0000000991319238" endid="#note-0000000566054416" />
                             <tie xml:id="tie-0000001925255489" startid="#note-0000001928034282" endid="#note-0000000881041375" />
                         </measure>
-                        <pb xml:id="pb-0000000663402043" />
                         <measure xml:id="measure-0000002078705444" n="17">
                             <staff xml:id="staff-0000000598320797" n="1">
                                 <layer xml:id="layer-0000001316129168" n="1">
@@ -1370,7 +1369,6 @@
                             <hairpin xml:id="hairpin-0000000526555129" staff="1 2 3 4" tstamp="2" tstamp2="3.9" form="dim" place="below" />
                             <slur xml:id="slur-0000001642165097" startid="#note-0000001038232661" endid="#note-0000000875382342" />
                         </measure>
-                        <sb xml:id="sb-0000000391184581" />
                         <measure xml:id="measure-0000000985877542" n="27">
                             <staff xml:id="staff-0000001841952784" n="1">
                                 <layer xml:id="layer-0000001431578101" n="1">
@@ -1685,7 +1683,6 @@
                             <slur xml:id="slur-0000000809438275" startid="#note-0000001777369547" endid="#note-0000001121248431" />
                             <slur xml:id="slur-0000000268812637" curvedir="below" startid="#note-0000001751820112" endid="#note-0000000503381693" />
                         </measure>
-                        <sb xml:id="sb-0000000343984051" />
                         <measure xml:id="measure-0000001468894324" n="32">
                             <staff xml:id="staff-0000001539214774" n="1">
                                 <layer xml:id="layer-0000000725765602" n="1">
@@ -2028,7 +2025,6 @@
                             <slur xml:id="slur-0000000910225322" startid="#chord-0000002122834893" endid="#chord-0000000204743605" />
                             <slur xml:id="slur-0000000730183021" startid="#note-0000000234998735" endid="#note-0000000936533159" />
                         </measure>
-                        <sb xml:id="sb-0000001151981114" />
                         <measure xml:id="measure-0000001412325977" n="37">
                             <staff xml:id="staff-0000000559497544" n="1">
                                 <layer xml:id="layer-0000001356997887" n="1">
@@ -2316,8 +2312,8 @@
                             <fermata xml:id="fermata-0000001158021065" staff="4" startid="#note-0000000671874915" form="norm" place="above" />
                         </measure>
                         
-                        
-                    </section>
+                        <pb/>
+											</section>
                 </score>
             </mdiv>
         </body>
