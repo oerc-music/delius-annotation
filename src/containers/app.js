@@ -34,12 +34,6 @@ class App extends Component {
 			this.props.popElements();
 		}
 		
-		// If more than 2 note elements selected, throw out the oldest element
-		// 		(only makes sense to have up to 2 selected for Delius annotation)
-		if(nextProps.modalUI.elements.length > 2) { 
-			this.props.popElements();
-		}
-
 		// Mode-specific rules go here
 		switch(this.props.modalUI.mode) { 
 			case "baseMode": 
