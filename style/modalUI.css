@@ -44,3 +44,8 @@
 		padding-top: 1em;
 		height: calc(100vu-5em);
 }
+		
+.note.active { 
+	fill: red;
+	color:red;
+}
