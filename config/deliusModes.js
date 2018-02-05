@@ -31,6 +31,11 @@ export const modes = {
 			"label": "Downbow",
 			"id": "downbow",
 			"image": "/buttons/downbow.svg"
+		},
+		{
+			"label": "back",
+			"id": "back",
+			"image": "/buttons/back.svg"
 		}
 	],
 	"fingeringsMode": [
@@ -53,6 +58,11 @@ export const modes = {
 			"label": "3",
 			"id": "finger3",
 			"image": "/buttons/3.svg"
+		},
+		{
+			"label": "back",
+			"id": "back",
+			"image": "/buttons/back.svg"
 		}
 	],
 	"dynamicsMode": [
@@ -85,6 +95,11 @@ export const modes = {
 			"label": "ff",
 			"id": "ff",
 			"image": "/buttons/ff.svg"
+		},
+		{
+			"label": "back",
+			"id": "back",
+			"image": "/buttons/back.svg"
 		}
 	],
 	"phrasingMode": [
@@ -92,6 +107,11 @@ export const modes = {
 			"label": "Phrase",
 			"id": "phrase",
 			"image": "/buttons/slur.svg"
+		},
+		{
+			"label": "back",
+			"id": "back",
+			"image": "/buttons/back.svg"
 		}
 	],
 	"hairpinMode": [
@@ -104,6 +124,11 @@ export const modes = {
 			"label": "Dim.",
 			"id": "dim",
 			"image": "/buttons/dim.svg"
+		},
+		{
+			"label": "back",
+			"id": "back",
+			"image": "/buttons/back.svg"
 		}
 	],
 	"_default": "baseMode"

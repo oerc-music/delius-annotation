@@ -33,7 +33,12 @@ class App extends Component {
 		if(nextProps.modalUI.elements.length > 2) { 
 			this.props.popElements();
 		}
-		
+		console.log(nextProps.modalUI.constituents);
+		if(Array.from(nextProps.modalUI.constituents)[0]==="back"){
+			this.props.clearConstituents();
+			this.props.setMode("baseMode");
+			return;
+		}
 		// Mode-specific rules go here
 		switch(this.props.modalUI.mode) { 
 			case "baseMode": 
@@ -83,6 +88,7 @@ class App extends Component {
 					}
 					// having taken any appropriate actions, clear constituents
 					this.props.clearConstituents();
+					this.props.setMode("baseMode");
 				}
 				break;
 		}
