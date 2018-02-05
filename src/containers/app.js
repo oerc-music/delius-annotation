@@ -44,15 +44,32 @@ class App extends Component {
 		switch(this.props.modalUI.mode) { 
 			case "baseMode": 
 				// in base mode, only one constituent selection valid at a time, used to switch to that constituent's mode
-				if(nextProps.modalUI.constituents.has("dynamics")) { 
+				if(nextProps.modalUI.constituents.has("bowing")) { 
+					// user wants to annotate dynamics 
+					this.props.clearConstituents();
+					this.props.setMode("bowingMode");
+				} else if(nextProps.modalUI.constituents.has("fingerings")) { 
+					// user wants to annotate dynamics 
+					this.props.clearConstituents();
+					this.props.setMode("fingeringsMode");
+				} else if(nextProps.modalUI.constituents.has("dynamics")) { 
 					// user wants to annotate dynamics 
 					this.props.clearConstituents();
 					this.props.setMode("dynamicsMode");
+				} else if(nextProps.modalUI.constituents.has("phrasing")) { 
+					// user wants to annotate dynamics 
+					this.props.clearConstituents();
+					this.props.setMode("phrasingMode");
+				} else if(nextProps.modalUI.constituents.has("hairpins")) { 
+					// user wants to annotate dynamics 
+					this.props.clearConstituents();
+					this.props.setMode("hairpinMode");
 				}
 				break;
 			case "dynamicsMode":
 				// in dynamics mode, we should only allow ONE selection at a time, and ONLY if at least one note is selected
-				if(nextProps.modalUI.constituents.size !== 0) {
+				if(nextProps.modalUI.constituents.size !== 0){
+					
 					if(this.props.modalUI.elements.length > 0) {
 						// dynamics are point annotations
 						// so annotate the latest-selected element (if more than 1)
@@ -73,6 +90,7 @@ class App extends Component {
 					// having taken any appropriate actions, clear constituents
 					this.props.clearConstituents();
 				}
+				break;
 		}
 	}
 
