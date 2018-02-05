@@ -8,6 +8,7 @@ import Modal from 'meld-client/src/containers/modalUI';
 import { fetchGraph } from '../../../meld-client/src/actions/index';
 import { setMode, clearConstituents, clearElements, popElements } from '../../../meld-client/src/actions/modalUI';
 import { attachClickHandlerToNotes, decorateNotes } from '../actions/deliusActions';
+import { postAnnotation} from '../../../meld-client/src/actions/index'
 import { modes } from '../../config/deliusModes';
 
 class App extends Component { 
@@ -51,6 +52,14 @@ class App extends Component {
 						// dynamics are point annotations
 						// so annotate the latest-selected element (if more than 1)
 						console.log("ANNOTATE WITH DYNAMICS: " +  Array.from(nextProps.modalUI.constituents)[0], this.props.modalUI.elements[0]);
+						this.props.postAnnotation(
+							"http://127.0.0.1:5000/sessions/deliusAnnotation", 
+							"ARFARFARF", 
+							JSON.stringify({	
+								"oa:hasTarget": { "@id": this.props.modalUI.elements[0] },
+								"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] }
+							})
+						);
 						// and, having actioned this, clear element selections
 						this.props.clearElements();
 					} else { 
@@ -90,6 +99,7 @@ function mapDispatchToProps(dispatch) {
 		clearConstituents, 
 		clearElements,
 		decorateNotes,
+		postAnnotation,
 		popElements,
 		setMode 
 	}, dispatch);
