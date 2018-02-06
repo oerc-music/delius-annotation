@@ -49,3 +49,15 @@
 	fill: red;
 	color:red;
 }
+.annotation {
+	stroke: #006633;
+	fill:  #006633;
+}
+.reg, .reg * {
+	stroke: #5500AA;
+	fill: #5500AA;
+}
+.fingering {
+	font-size: 650px;
+	font-style: normal;
+}
