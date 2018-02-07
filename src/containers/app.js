@@ -28,9 +28,10 @@ class App extends Component {
 	}
 	componentWillReceiveProps(nextProps) { 
 		// this is where we do app-specific logic for the modal UI
-		// If more than 2 note elements selected, throw out the oldest element
-		// 		(only makes sense to have up to 2 selected for Delius annotation)
+		// If more than 2 note elements selected, throw out the two oldest elements
+		// leaving the most recent selection as a single selected element
 		if(nextProps.modalUI.elements.length > 2) { 
+			this.props.popElements();
 			this.props.popElements();
 		}
 		console.log(nextProps.modalUI.constituents);
