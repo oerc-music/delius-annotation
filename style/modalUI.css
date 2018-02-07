@@ -61,3 +61,9 @@
 	font-size: 650px;
 	font-style: normal;
 }
+
+#sync { 
+	position:fixed;
+	bottom:0em;
+	left: 0em;
+}

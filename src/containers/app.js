@@ -21,6 +21,7 @@ class App extends Component {
 		 };
 		// Following binding required to make 'this' work in the callback
     this.handleBaseModeLogic = this.handleBaseModeLogic.bind(this);
+    this.postSyncAnnotation = this.postSyncAnnotation.bind(this);
 	}
 	componentDidMount() { 
 		if(this.props.graphUri) { 
@@ -87,7 +88,16 @@ class App extends Component {
 					this.props.clearConstituents();
 					this.props.clearElements();
 					this.props.setMode("nothing");
-				} 
+				} else if(this.props.modalUI.elements.length !== nextProps.modalUI.elements.length) { 
+					// if the element selections have changed, reset to base mode (in lieu of back button)
+					if(nextProps.modalUI.elements.length === 1) { 
+						this.props.setMode("pointBase");
+					} else { 
+						this.props.setMode("rangeBase");
+					}
+					this.props.clearConstituents();
+				}
+						 
 				break;
 		}
 	}
@@ -163,12 +173,25 @@ class App extends Component {
 		this.props.decorateNotes(this.scoreComponent, this.props.modalUI.elements);
 	}
 
+	postSyncAnnotation() { 
+		this.props.postAnnotation(
+			"http://127.0.0.1:5000/sessions/deliusAnnotation", 
+			"UnknownEtag", 
+			JSON.stringify({	
+				"oa:hasTarget": { "@id": "http://127.0.0.1:5000/sessions/deliusAnnotation" },
+				"oa:motivatedBy": { "@id": "motivation:Sync" }
+			})
+		);
+	}
+
+
 	render() { 
 		return (
 			<div> 
 					<link rel="stylesheet" href="style/modalUI.css" type="text/css" />
 					<Modal modes={this.state.modes} orientation="wide"/> 
 					<Score uri="/Late Swallows-dolet-musescore-II.mei" ref={(score) => {this.scoreComponent = score}} />
+					<button id="sync" onClick={this.postSyncAnnotation}>Sync!</button>
 			</div>
 		)
 	}
