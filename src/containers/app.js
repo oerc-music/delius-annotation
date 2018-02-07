@@ -10,6 +10,7 @@ import { setMode, clearConstituents, clearElements, popElements } from '../../..
 import { attachClickHandlerToNotes, decorateNotes } from '../actions/deliusActions';
 import { postAnnotation} from '../../../meld-client/src/actions/index'
 import { modes } from '../../config/deliusModes';
+import { drawSingleThingOnScore } from '../scribble-on-score.js';
 
 class App extends Component { 
 	constructor(props) {
