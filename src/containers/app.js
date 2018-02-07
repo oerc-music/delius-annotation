@@ -39,15 +39,6 @@ class App extends Component {
 			this.props.popElements();
 		}
 
-		// re-enable the following if back button required
-		/*
-		console.log(nextProps.modalUI.constituents);
-		if(Array.from(nextProps.modalUI.constituents)[0]==="back"){
-			this.props.clearConstituents();
-			this.props.setMode("baseMode");
-			return;
-		}
-		*/
 
 		// Mode-specific rules go here
 		switch(this.props.modalUI.mode) { 
@@ -73,32 +64,41 @@ class App extends Component {
 			case "dynamicsMode":
 			case "fingeringsMode":
 				if(nextProps.modalUI.constituents.size !== 0){
-					// if a constituent has been selected,
-					// make a point annotation 
-					this.props.postAnnotation(
-						"http://127.0.0.1:5000/sessions/deliusAnnotation", 
-						"UnknownEtag", 
-						JSON.stringify({	
-							"oa:hasTarget": { "@id": this.props.modalUI.elements[0] },
-							"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] }
-						})
-					);
-					drawSingleThingOnScore(document.getElementById(this.props.modalUI.elements[0]), Array.from(nextProps.modalUI.constituents)[0], 0);
-					// now reset UI
-					this.props.clearConstituents();
-					this.props.clearElements();
-					this.props.setMode("nothing");
-				} else if(this.props.modalUI.elements.length !== nextProps.modalUI.elements.length) { 
-					// if the element selections have changed, reset to base mode (in lieu of back button)
-					if(nextProps.modalUI.elements.length === 1) { 
-						this.props.setMode("pointBase");
-					} else { 
-						this.props.setMode("rangeBase");
+						if(Array.from(nextProps.modalUI.constituents)[0]==="back"){
+							this.props.clearConstituents();
+							if(this.props.modalUI.elements.length === 1) { 
+								this.props.setMode("pointBase");
+							} else {
+								this.props.setMode("rangeBase"); 
+							} 
+						}else {
+							// if a constituent has been selected,
+							// make a point annotation 
+							this.props.postAnnotation(
+								"http://127.0.0.1:5000/sessions/deliusAnnotation", 
+								"UnknownEtag", 
+								JSON.stringify({	
+									"oa:hasTarget": { "@id": this.props.modalUI.elements[0] },
+									"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] }
+								})
+							);
+							drawSingleThingOnScore(document.getElementById(this.props.modalUI.elements[0]), Array.from(nextProps.modalUI.constituents)[0], 0);
+							// now reset UI
+							this.props.clearConstituents();
+							this.props.clearElements();
+							this.props.setMode("nothing");
+						}
+					} else if(this.props.modalUI.elements.length !== nextProps.modalUI.elements.length) { 
+						// if the element selections have changed, reset to base mode (in lieu of back button)
+						if(nextProps.modalUI.elements.length === 1) { 
+							this.props.setMode("pointBase");
+						} else { 
+							this.props.setMode("rangeBase");
+						}
+						this.props.clearConstituents();
 					}
-					this.props.clearConstituents();
-				}
-						 
-				break;
+							 
+					break;
 		}
 	}
 
