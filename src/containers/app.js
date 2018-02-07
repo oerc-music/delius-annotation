@@ -19,6 +19,8 @@ class App extends Component {
 			currentMotif: this.props.motif || false,
 			modes: modes
 		 };
+		// Following binding required to make 'this' work in the callback
+    this.handleBaseModeLogic = this.handleBaseModeLogic.bind(this);
 	}
 	componentDidMount() { 
 		if(this.props.graphUri) { 
@@ -35,75 +37,130 @@ class App extends Component {
 			this.props.popElements();
 			this.props.popElements();
 		}
+
+		// re-enable the following if back button required
+		/*
 		console.log(nextProps.modalUI.constituents);
 		if(Array.from(nextProps.modalUI.constituents)[0]==="back"){
 			this.props.clearConstituents();
 			this.props.setMode("baseMode");
 			return;
 		}
+		*/
+
 		// Mode-specific rules go here
 		switch(this.props.modalUI.mode) { 
-			case "baseMode": 
-				// in base mode, only one constituent selection valid at a time, used to switch to that constituent's mode
-				if(nextProps.modalUI.constituents.has("bowing")) { 
-					// user wants to annotate dynamics 
-					this.props.clearConstituents();
-					this.props.setMode("bowingMode");
-				} else if(nextProps.modalUI.constituents.has("fingerings")) { 
-					// user wants to annotate dynamics 
-					this.props.clearConstituents();
-					this.props.setMode("fingeringsMode");
-				} else if(nextProps.modalUI.constituents.has("dynamics")) { 
-					// user wants to annotate dynamics 
-					this.props.clearConstituents();
-					this.props.setMode("dynamicsMode");
-				} else if(nextProps.modalUI.constituents.has("phrasing")) { 
-					// user wants to annotate dynamics 
-					this.props.clearConstituents();
-					this.props.setMode("phrasingMode");
-				} else if(nextProps.modalUI.constituents.has("hairpins")) { 
-					// user wants to annotate dynamics 
-					this.props.clearConstituents();
-					this.props.setMode("hairpinMode");
+			case "nothing": 
+				if(nextProps.modalUI.elements.length) {
+					this.props.setMode("pointBase");
+				} 				
+				break;
+			case "pointBase":
+				if(nextProps.modalUI.elements.length === 2) { 
+					// need to switch to other base mode 
+					this.props.setMode("rangeBase");
 				}
+				this.handleBaseModeLogic(nextProps);
+				break;
+			case "rangeBase": 
+				if(nextProps.modalUI.elements.length === 1) { 
+					// need to switch to other base mode 
+					this.props.setMode("pointBase");
+				}
+				this.handleBaseModeLogic(nextProps);
 				break;
 			case "dynamicsMode":
-			case "bowingMode":
 			case "fingeringsMode":
-				// in dynamics mode, we should only allow ONE selection at a time, and ONLY if at least one note is selected
 				if(nextProps.modalUI.constituents.size !== 0){
-					
-					if(this.props.modalUI.elements.length > 0) {
-						// dynamics are point annotations
-						// so annotate the latest-selected element (if more than 1)
-						console.log("ANNOTATE WITH DYNAMICS: " +  Array.from(nextProps.modalUI.constituents)[0], this.props.modalUI.elements[0]);
-						this.props.postAnnotation(
-							"http://127.0.0.1:5000/sessions/deliusAnnotation", 
-							"ARFARFARF", 
-							JSON.stringify({	
-								"oa:hasTarget": { "@id": this.props.modalUI.elements[0] },
-								"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] }
-							})
-						);
-						drawSingleThingOnScore(document.getElementById(this.props.modalUI.elements[0]), Array.from(nextProps.modalUI.constituents)[0], 0);
-						// and, having actioned this, clear element selections
-						this.props.clearElements();
-					} else { 
-						console.log("Constituent selection without note element selection -- IGNORING");
-					}
-					// having taken any appropriate actions, clear constituents
+					// if a constituent has been selected,
+					// make a point annotation 
+					this.props.postAnnotation(
+						"http://127.0.0.1:5000/sessions/deliusAnnotation", 
+						"UnknownEtag", 
+						JSON.stringify({	
+							"oa:hasTarget": { "@id": this.props.modalUI.elements[0] },
+							"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] }
+						})
+					);
+					drawSingleThingOnScore(document.getElementById(this.props.modalUI.elements[0]), Array.from(nextProps.modalUI.constituents)[0], 0);
+					// now reset UI
 					this.props.clearConstituents();
-					this.props.setMode("baseMode");
-				}
+					this.props.clearElements();
+					this.props.setMode("nothing");
+				} 
 				break;
 		}
+	}
+
+	handleBaseModeLogic(nextProps) {
+		if(nextProps.modalUI.constituents.has("upbow") ||
+			 nextProps.modalUI.constituents.has("downbow") 
+			) { 
+				// user wants to make a point annotation
+				this.props.postAnnotation(
+					"http://127.0.0.1:5000/sessions/deliusAnnotation", 
+					"UnknownEtag", 
+					JSON.stringify({	
+						"oa:hasTarget": { "@id": this.props.modalUI.elements[0] },
+						"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] }
+					})
+				);
+				drawSingleThingOnScore(document.getElementById(this.props.modalUI.elements[0]), Array.from(nextProps.modalUI.constituents)[0], 0);
+				// now reset UI
+				this.props.clearConstituents();
+				this.props.clearElements();
+				this.props.setMode("nothing");
+		} else if(nextProps.modalUI.constituents.has("finger2")) { 
+			// user wants to switch to fingerings mode
+			this.props.setMode("fingeringsMode");
+			this.props.clearConstituents();
+		} else if(nextProps.modalUI.constituents.has("mf")) {
+			// user wants to switch to dynamics mode
+			this.props.setMode("dynamicsMode");
+			this.props.clearConstituents();
+		} else if(nextProps.modalUI.constituents.has("phrase") ||
+							nextProps.modalUI.constituents.has("cresc") ||
+							nextProps.modalUI.constituents.has("dim")) { 
+				if(this.props.modalUI.elements.length === 1) {
+				// user wants to make a point annotation
+					this.props.postAnnotation(
+						"http://127.0.0.1:5000/sessions/deliusAnnotation", 
+						"UnknownEtag", 
+						JSON.stringify({	
+							"oa:hasTarget": { "@id": this.props.modalUI.elements[0] },
+							"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] }
+						})
+					);
+					drawSingleThingOnScore(document.getElementById(this.props.modalUI.elements[0]), Array.from(nextProps.modalUI.constituents)[0], 0);
+					// now reset UI
+					this.props.clearConstituents();
+					this.props.clearElements();
+					this.props.setMode("nothing");
+				} else if(this.props.modalUI.elements.length === 2) { 
+					// user wants to make a range annotation
+					this.props.postAnnotation(
+						"http://127.0.0.1:5000/sessions/deliusAnnotation", 
+						"UnknownEtag", 
+						JSON.stringify({	
+							"oa:hasTarget": [ 
+								{ "@id": this.props.modalUI.elements[0] },
+								{ "@id": this.props.modalUI.elements[1] }
+							],
+							"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] }
+						})
+					);
+					// now reset UI
+					this.props.clearConstituents();
+					this.props.clearElements();
+					this.props.setMode("nothing");
+				}
+		}
+
 	}
 
 	componentDidUpdate(nextProps) { 
 		// update note classes (ensure only selected ones are highlighted)
 		this.props.decorateNotes(this.scoreComponent, this.props.modalUI.elements);
-		console.log("modalUI constituents", Array.from(this.props.modalUI.constituents)); 
-		console.log("modalUI elements", this.props.modalUI.elements); 
 	}
 
 	render() { 

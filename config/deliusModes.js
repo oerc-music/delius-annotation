@@ -1,27 +1,6 @@
 export const modes = {
-	"baseMode": [
-		{
-			"label": "Bowing",
-			"id": "bowing"
-		},
-		{
-			"label": "Fingerings",
-			"id": "fingerings"
-		},
-		{
-			"label": "Dynamics",
-			"id": "dynamics"
-		},
-		{
-			"label": "Phrasing",
-			"id": "phrasing"
-		},
-		{
-			"label": "Hairpins",
-			"id": "hairpins"
-		}
-	],
-	"bowingMode": [
+	"nothing": [],
+	"pointBase": [
 		{
 			"label": "Upbow",
 			"id": "upbow",
@@ -33,9 +12,62 @@ export const modes = {
 			"image": "/buttons/downbow.svg"
 		},
 		{
-			"label": "back",
-			"id": "back",
-			"image": "/buttons/back.svg"
+			"label": "2",
+			"id": "finger2",
+			"image": "/buttons/2.svg"
+		},
+		{
+			"label": "mf",
+			"id": "mf",
+			"image": "/buttons/mf.svg"
+		},
+		{
+			"label": "Cresc.",
+			"id": "cresc",
+			"image": "/buttons/cresc.svg"
+		},
+		{
+			"label": "Dim.",
+			"id": "dim",
+			"image": "/buttons/dim.svg"
+		}
+	],
+	"rangeBase": [
+		{
+			"label": "Upbow",
+			"id": "upbow",
+			"image": "/buttons/upbow.svg"
+		},
+		{
+			"label": "Downbow",
+			"id": "downbow",
+			"image": "/buttons/downbow.svg"
+		},
+		{
+			"label": "2",
+			"id": "finger2",
+			"image": "/buttons/2.svg"
+		},
+
+		{
+			"label": "mf",
+			"id": "mf",
+			"image": "/buttons/mf.svg"
+		},
+		{
+			"label": "Cresc.",
+			"id": "cresc",
+			"image": "/buttons/cresc.svg"
+		},
+		{
+			"label": "Dim.",
+			"id": "dim",
+			"image": "/buttons/dim.svg"
+		},
+		{
+			"label": "Phrase",
+			"id": "phrase",
+			"image": "/buttons/slur.svg"
 		}
 	],
 	"fingeringsMode": [
@@ -58,11 +90,6 @@ export const modes = {
 			"label": "3",
 			"id": "finger3",
 			"image": "/buttons/3.svg"
-		},
-		{
-			"label": "back",
-			"id": "back",
-			"image": "/buttons/back.svg"
 		}
 	],
 	"dynamicsMode": [
@@ -95,41 +122,7 @@ export const modes = {
 			"label": "ff",
 			"id": "ff",
 			"image": "/buttons/ff.svg"
-		},
-		{
-			"label": "back",
-			"id": "back",
-			"image": "/buttons/back.svg"
 		}
 	],
-	"phrasingMode": [
-		{
-			"label": "Phrase",
-			"id": "phrase",
-			"image": "/buttons/slur.svg"
-		},
-		{
-			"label": "back",
-			"id": "back",
-			"image": "/buttons/back.svg"
-		}
-	],
-	"hairpinMode": [
-		{
-			"label": "Cresc.",
-			"id": "cresc",
-			"image": "/buttons/cresc.svg"
-		},
-		{
-			"label": "Dim.",
-			"id": "dim",
-			"image": "/buttons/dim.svg"
-		},
-		{
-			"label": "back",
-			"id": "back",
-			"image": "/buttons/back.svg"
-		}
-	],
-	"_default": "baseMode"
+	"_default": "nothing"
 }
