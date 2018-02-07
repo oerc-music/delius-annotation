@@ -67,6 +67,8 @@ class App extends Component {
 				}
 				break;
 			case "dynamicsMode":
+			case "bowingMode":
+			case "fingeringsMode":
 				// in dynamics mode, we should only allow ONE selection at a time, and ONLY if at least one note is selected
 				if(nextProps.modalUI.constituents.size !== 0){
 					
@@ -82,6 +84,7 @@ class App extends Component {
 								"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] }
 							})
 						);
+						drawSingleThingOnScore(document.getElementById(this.props.modalUI.elements[0]), Array.from(nextProps.modalUI.constituents)[0], 0);
 						// and, having actioned this, clear element selections
 						this.props.clearElements();
 					} else { 
