@@ -1,5 +1,6 @@
 var SVGNS = "http://www.w3.org/2000/svg";
-var annotationsSoFar = {};
+var annotationsSoFar = [{}];
+var allAnnotations = [[]];
 var staffGaps = [1500, 4700, 7200, 9700];
 var SVG;
 var SVGDefs;
@@ -140,9 +141,10 @@ function getSVGDefs(SVG){
 	return SVGDefs;
 }
 
-export function drawRangedThingOnScore(element1, nudge1, element2, nudge2, symbol) {
+export function drawRangedThingOnScore(element1, nudge1, element2, nudge2, symbol, annotationSet) {
 	if(!SVG) getSVG(element1);
 	if(!notes) notes = getAllNotePositions(SVG);
+	if(!annotationSet) annotationSet=0
 	if(element1===element2) {
 		if(symbol="") console.log("Nonsense ranged symbol", element1, element2);
 		nudge1=false;
@@ -164,16 +166,19 @@ export function drawRangedThingOnScore(element1, nudge1, element2, nudge2, symbo
 	var staffNo = note1.staff;
 	var y = staffGaps[staffNo];
 	var yNudge = 0;
+	if(allAnnotations.length<=annotationSet) allAnnotations.push([]);
+	if(annotationsSoFar.length<=annotationSet) annotationsSoFar.push({});
+	allAnnotations[annotationSet].push([element1, nudge1, element2, nudge2, symbol]);
 	for(var i=0; i<noteset.length; i++){
-		if(annotationsSoFar[noteset[i].id]){
-			yNudge = Math.min(yNudge, -annotationsSoFar[element.id].length * 550);
-			annotationsSoFar[noteset[i].id].push([symbol, i]);
+		if(annotationsSoFar[annotationSet][noteset[i].id]){
+			yNudge = Math.min(yNudge, -annotationsSoFar[annotationSet][element.id].length * 550);
+			annotationsSoFar[annotationSet][noteset[i].id].push([symbol, i]);
 		} else {
-			annotationsSoFar[noteset[i].id] = [[symbol, i, noteset.length-1]];
+			annotationsSoFar[annotationSet][noteset[i].id] = [[symbol, i, noteset.length-1]];
 		}
 	}
 	var group = document.createElementNS(SVGNS, "g");
-  group.setAttributeNS(null, "class", symbol + " annotation");
+  group.setAttributeNS(null, "class", symbol + " annotation set"+annotationSet);
 	var left = xFudge + note1.x + (nudge1 ? 100 : 0); // FIXME: need a next note pos
 	var right = xFudge + note2.x + (nudge2 ? 100 : 0);
 	var yBase = y+yNudge;
@@ -223,22 +228,26 @@ export function drawRangedThingOnScore(element1, nudge1, element2, nudge2, symbo
 	console.log(symbol);
 }
 
-export function drawSingleThingOnScore(element, symbol, xnudge) {
+export function drawSingleThingOnScore(element, symbol, xnudge, annotationSet) {
 	if(!SVG) getSVG(element);
 	if(!notes) {
 		notes = getAllNotePositions(SVG);
 	}
+	if(!annotationSet) annotationSet=0;
 	var staffNo = notes[element.id].staff;
 	var y = staffGaps[staffNo];
 	var yNudge = 0;
-	if(annotationsSoFar[element.id]){
-		yNudge -= annotationsSoFar[element.id].length * 550;
-		annotationsSoFar[element.id].push(symbol);
+	if(annotationsSoFar.length<=annotationSet) annotationsSoFar.push({});
+	if(annotationsSoFar[annotationSet][element.id]){
+		yNudge -= annotationsSoFar[annotationSet][element.id].length * 550;
+		annotationsSoFar[annotationSet][element.id].push(symbol);
 	} else {
-		annotationsSoFar[element.id] = [symbol];
+		annotationsSoFar[annotationSet][element.id] = [symbol];
 	}
+	if(allAnnotations.length<=annotationSet) allAnnotations.push([]);
+	allAnnotations[annotationSet].push([element, symbol, xnudge]);
   var group = document.createElementNS(SVGNS, "g");
-  group.setAttributeNS(null, "class", symbol + " annotation");
+  group.setAttributeNS(null, "class", symbol + " annotation set"+annotationSet);
 	if(paths[symbol]) {
 		// this is a symbol
 		var useEl = makeSymbol(symbol, "ID"+stupidID++);
@@ -249,7 +258,6 @@ export function drawSingleThingOnScore(element, symbol, xnudge) {
 		group.appendChild(useEl);
 	} else {
 		// this is fingering
-		console.log(symbol);
 		var textEl = document.createElementNS(SVGNS, "text"); 
 		textEl.setAttributeNS(null, "x", notes[element.id].x+xnudge+720);
 		textEl.setAttributeNS(null, "y", y+yNudge);
