@@ -145,11 +145,11 @@ export function drawRangedThingOnScore(element1, nudge1, element2, nudge2, symbo
 	if(!SVG) getSVG(element1);
 	if(!notes) notes = getAllNotePositions(SVG);
 	if(!annotationSet) annotationSet=0
-	if(element1===element2) {
-		if(symbol="") console.log("Nonsense ranged symbol", element1, element2);
-		nudge1=false;
-		nudge2=true;
-	}
+	// if(element1===element2) {
+	// 	if(symbol="") console.log("Nonsense ranged symbol", element1, element2);
+	// 	nudge1=false;
+	// 	nudge2=true;
+	// }
 	if(notes[element1.id].x > notes[element2.id].x){
 		// swap 'em
 		var temp = element1;
@@ -171,7 +171,7 @@ export function drawRangedThingOnScore(element1, nudge1, element2, nudge2, symbo
 	allAnnotations[annotationSet].push([element1, nudge1, element2, nudge2, symbol]);
 	for(var i=0; i<noteset.length; i++){
 		if(annotationsSoFar[annotationSet][noteset[i].id]){
-			yNudge = Math.min(yNudge, -annotationsSoFar[annotationSet][element.id].length * 550);
+			yNudge = Math.min(yNudge, -annotationsSoFar[annotationSet][noteset[i].id].length * 550);
 			annotationsSoFar[annotationSet][noteset[i].id].push([symbol, i]);
 		} else {
 			annotationsSoFar[annotationSet][noteset[i].id] = [[symbol, i, noteset.length-1]];
@@ -179,37 +179,38 @@ export function drawRangedThingOnScore(element1, nudge1, element2, nudge2, symbo
 	}
 	var group = document.createElementNS(SVGNS, "g");
   group.setAttributeNS(null, "class", symbol + " annotation set"+annotationSet);
-	var left = xFudge + note1.x + (nudge1 ? 100 : 0); // FIXME: need a next note pos
-	var right = xFudge + note2.x + (nudge2 ? 100 : 0);
+	var left = xFudge + note1.x + (nudge1 ? 180 : 0); // FIXME: need a next note pos
+	var right = xFudge + note2.x + (nudge2 ? 180 : 0);
 	var yBase = y+yNudge;
 	var yTop = yBase - 300;
-	var yMid = yBase - 150;
+	var yMid = yBase - 170;
+	if(left==right) right+=200;
 	switch(symbol) {
 		case "cresc":
 			var topBit = document.createElementNS(SVGNS, "polygon");
-			topBit.setAttributeNS(null, "points", left+","+yMid+" "+
+			topBit.setAttributeNS(null, "points", left+","+(yMid-20)+" "+
 																right+","+(yTop-40)+" "+
 																right+","+yTop+" "+
-																left+","+(yMid+40));
+																left+","+(yMid+20));
 			var bottomBit = document.createElementNS(SVGNS, "polygon");
-			bottomBit.setAttributeNS(null, "points", left+","+yMid+" "+
+			bottomBit.setAttributeNS(null, "points", left+","+(yMid-20)+" "+
 																right+","+(yBase-40)+" "+
 																right+","+yBase+" "+
-																left+","+(yMid+40));
+																left+","+(yMid+20));
 			group.appendChild(topBit);
 			group.appendChild(bottomBit);
 			break;
 		case "dim":
 			var topBit = document.createElementNS(SVGNS, "polygon");
-			topBit.setAttributeNS(null, "points", right+","+yMid+" "+
+			topBit.setAttributeNS(null, "points", right+","+(yMid-20)+" "+
 																left+","+(yTop-40)+" "+
 																left+","+yTop+" "+
-																right+","+(yMid+40));
+																right+","+(yMid+20));
 			var bottomBit = document.createElementNS(SVGNS, "polygon");
-			bottomBit.setAttributeNS(null, "points", right+","+yMid+" "+
+			bottomBit.setAttributeNS(null, "points", right+","+(yMid-20)+" "+
 																left+","+(yBase-40)+" "+
 																left+","+yBase+" "+
-																right+","+(yMid+40));
+																right+","+(yMid+20));
 			group.appendChild(topBit);
 			group.appendChild(bottomBit);
 			break;
@@ -229,6 +230,10 @@ export function drawRangedThingOnScore(element1, nudge1, element2, nudge2, symbo
 }
 
 export function drawSingleThingOnScore(element, symbol, xnudge, annotationSet) {
+	if(symbol==="cresc" || symbol==="dim"){
+		console.log("Single-note ranged thing");
+		return drawRangedThingOnScore(element, xnudge, element, true, symbol, annotationSet);
+	}
 	if(!SVG) getSVG(element);
 	if(!notes) {
 		notes = getAllNotePositions(SVG);
