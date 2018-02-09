@@ -10,7 +10,7 @@ import { setMode, clearConstituents, clearElements, popElements } from '../../..
 import { attachClickHandlerToNotes, decorateNotes } from '../actions/deliusActions';
 import { postAnnotation} from '../../../meld-client/src/actions/index'
 import { modes } from '../../config/deliusModes';
-import { drawSingleThingOnScore } from '../scribble-on-score.js';
+import { drawSingleThingOnScore, drawRangedThingOnScore } from '../scribble-on-score.js';
 
 class App extends Component { 
 	constructor(props) {
@@ -159,6 +159,11 @@ class App extends Component {
 							"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] }
 						})
 					);
+					drawRangedThingOnScore(document.getElementById(this.props.modalUI.elements[0]),
+																 false, 
+																 document.getElementById(this.props.modalUI.elements[1]),
+																 false, 
+																 Array.from(nextProps.modalUI.constituents)[0]);
 					// now reset UI
 					this.props.clearConstituents();
 					this.props.clearElements();

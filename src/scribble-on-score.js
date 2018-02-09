@@ -1,6 +1,6 @@
 var SVGNS = "http://www.w3.org/2000/svg";
 var annotationsSoFar = {};
-var staffGaps = [1600, 4700, 7200, 9700];
+var staffGaps = [1500, 4700, 7200, 9700];
 var SVG;
 var SVGDefs;
 var notes = false;
@@ -74,15 +74,15 @@ function notesBetween(note1, note2){
 	}
 	var system = SVG.getElementsByClassName('system')[0];
 	var measures = Array.from(system.children).filter(n => n.className.baseVal==="measure");
-	var notelist = [];
+	var noteList = [];
 	for(var i=noteDetails1.bar; i<=noteDetails2.bar; i++){
 		var staves = Array.from(measures[i].children).filter(n => n.className.baseVal==="staff");
 		var staff = staves[noteDetails1.staff];
-		notelist = getNotes(staff, notelist);
+		noteList = getNotes(staff, noteList);
 	}
-	noteList.filter(n => notes[n].x >= noteDetails1.x && notes[n].x<=noteDetails2.x);
-	return noteList;
+	return noteList.filter(n => notes[n.id].x >= noteDetails1.x && notes[n.id].x<=noteDetails2.x);
 }
+
 function makeSymbol(symbol, id){
 	// Has pretty gnarly side effects. Returns the 'use' element, but
 	// creates the symbol in the <defs> section of SVG. There probably
@@ -138,6 +138,89 @@ function getSVGDefs(SVG){
 	// but with Verovio, this is a near-impossible edge case anyway.
 	SVG.insertBefore(SVGDefs, topLevel[0]);
 	return SVGDefs;
+}
+
+export function drawRangedThingOnScore(element1, nudge1, element2, nudge2, symbol) {
+	if(!SVG) getSVG(element1);
+	if(!notes) notes = getAllNotePositions(SVG);
+	if(element1===element2) {
+		if(symbol="") console.log("Nonsense ranged symbol", element1, element2);
+		nudge1=false;
+		nudge2=true;
+	}
+	if(notes[element1.id].x > notes[element2.id].x){
+		// swap 'em
+		var temp = element1;
+		element1 = element2;
+		element2 = temp;
+		temp = nudge1;
+		nudge1 = nudge2;
+		nudge2 = temp;
+	}
+	var xFudge = 360
+	var note1 = notes[element1.id];
+	var note2 = notes[element2.id];
+	var noteset = notesBetween(element1.id, element2.id);
+	var staffNo = note1.staff;
+	var y = staffGaps[staffNo];
+	var yNudge = 0;
+	for(var i=0; i<noteset.length; i++){
+		if(annotationsSoFar[noteset[i].id]){
+			yNudge = Math.min(yNudge, -annotationsSoFar[element.id].length * 550);
+			annotationsSoFar[noteset[i].id].push([symbol, i]);
+		} else {
+			annotationsSoFar[noteset[i].id] = [[symbol, i, noteset.length-1]];
+		}
+	}
+	var group = document.createElementNS(SVGNS, "g");
+  group.setAttributeNS(null, "class", symbol + " annotation");
+	var left = xFudge + note1.x + (nudge1 ? 100 : 0); // FIXME: need a next note pos
+	var right = xFudge + note2.x + (nudge2 ? 100 : 0);
+	var yBase = y+yNudge;
+	var yTop = yBase - 300;
+	var yMid = yBase - 150;
+	switch(symbol) {
+		case "cresc":
+			var topBit = document.createElementNS(SVGNS, "polygon");
+			topBit.setAttributeNS(null, "points", left+","+yMid+" "+
+																right+","+(yTop-40)+" "+
+																right+","+yTop+" "+
+																left+","+(yMid+40));
+			var bottomBit = document.createElementNS(SVGNS, "polygon");
+			bottomBit.setAttributeNS(null, "points", left+","+yMid+" "+
+																right+","+(yBase-40)+" "+
+																right+","+yBase+" "+
+																left+","+(yMid+40));
+			group.appendChild(topBit);
+			group.appendChild(bottomBit);
+			break;
+		case "dim":
+			var topBit = document.createElementNS(SVGNS, "polygon");
+			topBit.setAttributeNS(null, "points", right+","+yMid+" "+
+																left+","+(yTop-40)+" "+
+																left+","+yTop+" "+
+																right+","+(yMid+40));
+			var bottomBit = document.createElementNS(SVGNS, "polygon");
+			bottomBit.setAttributeNS(null, "points", right+","+yMid+" "+
+																left+","+(yBase-40)+" "+
+																left+","+yBase+" "+
+																right+","+(yMid+40));
+			group.appendChild(topBit);
+			group.appendChild(bottomBit);
+			break;
+		case "phrase":
+			var path = document.createElementNS(SVGNS, "path");
+			path.setAttributeNS(null, "d", "M"+left+","+yBase+
+													" C"+(left+100)+","+(yTop-150)+
+													" "+(right-100)+","+(yTop-150)+" "
+													+right+","+yBase+
+													" C"+(right-100)+","+(yTop-50)+
+													" "+(left+100)+","+(yTop-50)+
+													" "+left+","+yBase);
+			group.appendChild(path);
+	}
+	SVG.appendChild(group);
+	console.log(symbol);
 }
 
 export function drawSingleThingOnScore(element, symbol, xnudge) {

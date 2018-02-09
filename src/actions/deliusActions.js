@@ -17,13 +17,13 @@ export function attachClickHandlerToNotes(scoreComponent) {
 					dispatch({ 
 						type: "ELEMENT_CLICKED", 
 						payload: n.getAttribute("id")
-					})
-			 	}
+					});
+			 	};
+				return { type: "CLICK_HANDLERS_ATTACHED" }
 			});
-			return { type: "CLICK_HANDLERS_ATTACHED" }
 		}, 3000)
 	}
-}
+};
 
 export function decorateNotes(scoreComponent, selectedElements) {
 	// (relating to horrible timeout hack above...)
