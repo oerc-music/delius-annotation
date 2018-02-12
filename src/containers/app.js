@@ -22,12 +22,13 @@ class App extends Component {
 			currentAnnotationSet: 1
 		 };
 		// Following bindings required to make 'this' work in the callbacks
-    this.handleBaseModeLogic = this.handleBaseModeLogic.bind(this);
-    this.postSyncAnnotation = this.postSyncAnnotation.bind(this);
-    this.switchSet = this.switchSet.bind(this);
-    this.addSet= this.addSet.bind(this);
-    this.mintAnnotationId= this.mintAnnotationId.bind(this);
+		this.handleBaseModeLogic = this.handleBaseModeLogic.bind(this);
+		this.postSyncAnnotation = this.postSyncAnnotation.bind(this);
+		this.switchSet = this.switchSet.bind(this);
+		this.addSet= this.addSet.bind(this);
+		this.mintAnnotationId= this.mintAnnotationId.bind(this);
 	}
+
 	componentDidMount() { 
 		if(this.props.graphUri) { 
 			const graphUri = this.props.graphUri;
@@ -35,81 +36,140 @@ class App extends Component {
 		}
 		this.props.attachClickHandlerToNotes(this.scoreComponent)
 	}
+
 	componentWillReceiveProps(nextProps) { 
 		// this is where we do app-specific logic for the modal UI
 		// If more than 2 note elements selected, throw out the two oldest elements
 		// leaving the most recent selection as a single selected element
 		const theseNotes = this.props.modalUI.elements["note"] || [];
 		const nextNotes = nextProps.modalUI.elements["note"] || [];
+		const theseGlyphs = this.props.modalUI.elements["annotationGlyph"] || [];
+		const nextGlyphs = nextProps.modalUI.elements["annotationGlyph"] || [];
+
 		if(nextNotes.length > 2) { 
-			this.props.popElements();
-			this.props.popElements();
+			// only allow up to two notes to be selected at a time
+			this.props.popElements("note");
+			this.props.popElements("note");
 		}
 
+		if(nextGlyphs.length > 1) {
+			// only allow up to one glyph to be selected at a time
+			this.props.popElements("annotationGlyph");
+		}
 
-		// Mode-specific rules go here
-		switch(this.props.modalUI.mode) { 
-			case "nothing": 
-				if(nextNotes.length) {
-					this.props.setMode("pointBase");
-				} 				
-				break;
-			case "pointBase":
-				if(nextNotes.length === 2) { 
-					// need to switch to other base mode 
-					this.props.setMode("rangeBase");
-				}
-				this.handleBaseModeLogic(nextProps);
-				break;
-			case "rangeBase": 
-				if(nextNotes.length === 1) { 
-					// need to switch to other base mode 
-					this.props.setMode("pointBase");
-				}
-				this.handleBaseModeLogic(nextProps);
-				break;
-			case "dynamicsMode":
-			case "fingeringsMode":
-				if(nextProps.modalUI.constituents.size !== 0){
-						if(Array.from(nextProps.modalUI.constituents)[0]==="back"){
-							this.props.clearConstituents();
-							if(theseNotes.length === 1) { 
-								this.props.setMode("pointBase");
-							} else {
-								this.props.setMode("rangeBase"); 
-							} 
-						}else {
-							// if a constituent has been selected,
-							// make a point annotation
-							console.log("Current set:" , this.state.currentAnnotationSet);
-							var annotId = this.mintAnnotationId();
+		if(!(theseGlyphs.length) &&
+			nextGlyphs.length) {
+			// User has clicked on an annotation glyph
+			// Switch to delete annotation mode
+			this.props.setMode("deleteAnnotationMode");
+			this.props.clearConstituents();
+			// ... and unselect any note elements
+			this.props.clearElements("note");
+		} else { 
+			// Mode-specific rules go here
+			switch(this.props.modalUI.mode) { 
+				case "nothing": 
+				case "deleteAnnotationMode":
+					if(nextNotes.length) {
+						// note selected
+						this.props.clearConstituents();
+						this.props.setMode("pointBase");
+					} else if(nextProps.modalUI.constituents.size) { 
+						// user wants to delete or retract annotation glyph
+						if(Array.from(nextProps.modalUI.constituents)[0]==="delete"){
+							console.log("DELETE: ", this.props.modalUI.elements.annotationGlyph[0]);
+							// INSERT DELETE-SQUIGGLY-THING CALL HERE
+							
 							this.props.postAnnotation(
+								// FIXME should really be a patch, not a post
 								this.props.route.baseUri + "/sessions/deliusAnnotation", 
 								"UnknownEtag", 
 								JSON.stringify({	
-									"@id": annotId,
-									"oa:hasTarget": { "@id": this.props.modalUI.elements["note"][0] },
-									"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] },
-									"meld:inAnnotationSet": this.state.currentAnnotationSet
+									"@id": nextGlyphs[0],
+									"meld:state": "meld:Deleted",
+									"dct:modified": new Date().toISOString()
 								})
 							);
-							drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0, this.state.currentAnnotationSet - 1, annotId);
-							// now reset UI
-							this.props.clearConstituents();
-							this.props.clearElements("note");
-							this.props.setMode("nothing");
+						} else if(Array.from(nextProps.modalUI.constituents)[0]==="changeMind"){
+							console.log("RETRACT: ", this.props.modalUI.elements.annotationGlyph[0]);
+							// INSERT DELETE-SQUIGGLY-THING CALL HERE
+							
+							this.props.postAnnotation(
+								// FIXME should really be a patch, not a post
+								this.props.route.baseUri + "/sessions/deliusAnnotation", 
+								"UnknownEtag", 
+								JSON.stringify({	
+									"@id": nextGlyphs[0],
+									"meld:state": "meld:Retracted",
+									"dct:modified": new Date().toISOString()
+								})
+							);
 						}
-					} else if(theseNotes.length !== nextNotes.length) { 
-						// if the element selections have changed, reset to base mode (in lieu of back button)
-						if(nextNotes.length === 1) { 
-							this.props.setMode("pointBase");
-						} else { 
-							this.props.setMode("rangeBase");
-						}
+						// now reset to nothing mode
 						this.props.clearConstituents();
+						this.props.clearElements("annotationGlyph");
+						this.props.setMode("nothing")
 					}
-							 
 					break;
+				case "pointBase":
+					if(nextNotes.length === 2) { 
+						// need to switch to other base mode 
+						this.props.clearConstituents();
+						this.props.setMode("rangeBase");
+					}
+					this.handleBaseModeLogic(nextProps);
+					break;
+				case "rangeBase": 
+					if(nextNotes.length === 1) { 
+						// need to switch to other base mode 
+						this.props.clearConstituents();
+						this.props.setMode("pointBase");
+					}
+					this.handleBaseModeLogic(nextProps);
+					break;
+				case "dynamicsMode":
+				case "fingeringsMode":
+					if(nextProps.modalUI.constituents.size !== 0){
+							if(Array.from(nextProps.modalUI.constituents)[0]==="back"){
+								this.props.clearConstituents();
+								if(theseNotes.length === 1) { 
+									this.props.setMode("pointBase");
+								} else {
+									this.props.setMode("rangeBase"); 
+								} 
+							}else {
+								// if a constituent has been selected,
+								// make a point annotation
+								console.log("Current set:" , this.state.currentAnnotationSet);
+								var annotId = this.mintAnnotationId();
+								this.props.postAnnotation(
+									this.props.route.baseUri + "/sessions/deliusAnnotation", 
+									"UnknownEtag", 
+									JSON.stringify({	
+										"@id": annotId,
+										"oa:hasTarget": { "@id": this.props.modalUI.elements["note"][0] },
+										"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] },
+										"meld:inAnnotationSet": this.state.currentAnnotationSet
+									})
+								);
+								drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0, this.state.currentAnnotationSet - 1, annotId);
+								// now reset UI
+								this.props.clearConstituents();
+								this.props.clearElements("note");
+								this.props.setMode("nothing");
+							}
+						} else if(theseNotes.length !== nextNotes.length) { 
+							// if the element selections have changed, reset to base mode (in lieu of back button)
+							if(nextNotes.length === 1) { 
+								this.props.setMode("pointBase");
+							} else { 
+								this.props.setMode("rangeBase");
+							}
+							this.props.clearConstituents();
+						}
+								 
+						break;
+			}
 		}
 	}
 

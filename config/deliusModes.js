@@ -136,12 +136,12 @@ export const modes = {
 	],
 	"deleteAnnotationMode": [
 		{
-			"label": "delete",
+			"label": "Delete",
 			"id": "delete",
 			"image": "/buttons/Eraser_icon.svg"
 		},
 		{
-			"label": "Change Mind",
+			"label": "Retract",
 			"id": "changeMind",
 			"image": "/buttons/cancel.svg"
 		}

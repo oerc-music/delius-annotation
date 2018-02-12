@@ -30,6 +30,7 @@ export function attachClickHandlerToAnnotationGlyphs(scoreComponent) {
 		const annotationGlyphs = scoreElement.querySelectorAll(".annotation");
 		Array.prototype.map.call(annotationGlyphs, function(g) { 
 			g.onclick = function(e) { 
+				console.log("GLYPH CLICK");
 				dispatch({ 
 					type: "ELEMENT_CLICKED", 
 					payload: {elementType: "annotationGlyph", elementId: g.getAttribute("id")}
