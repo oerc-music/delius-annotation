@@ -296,7 +296,7 @@ export function showSet(setno){
 		var classString = annotations[a].getAttribute('class')
 		var classes = classString.split(/\s+/);
 		if(classes.indexOf("set"+setno)>-1){
-			annotations[a].setAttribute(classes.filter(cn => cn!=="set"+setno).join(" "));
+			annotations[a].setAttribute('class', classes.filter(cn => cn!=="set"+setno).join(" "));
 		} else if(classes.indexOf("cached")===-1){
 			annotations[a].setAttribute('class', classString+" cached");
 		} 
