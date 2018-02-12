@@ -88,7 +88,7 @@ class App extends Component {
 									"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] }
 								})
 							);
-							drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0);
+							drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0, this.state.currentAnnotationSet - 1);
 							// now reset UI
 							this.props.clearConstituents();
 							this.props.clearElements("note");
@@ -123,7 +123,7 @@ class App extends Component {
 						"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] }
 					})
 				);
-				drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0);
+			drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0, this.state.currentAnnotationSet - 1);
 				// now reset UI
 				this.props.clearConstituents();
 				this.props.clearElements("note");
@@ -149,7 +149,7 @@ class App extends Component {
 							"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] }
 						})
 					);
-					drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0);
+					drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0, this.state.currentAnnotationSet - 1);
 					// now reset UI
 					this.props.clearConstituents();
 					this.props.clearElements("note");
@@ -171,7 +171,8 @@ class App extends Component {
 																 false, 
 																 document.getElementById(theseNotes[1]),
 																 false, 
-																 Array.from(nextProps.modalUI.constituents)[0]);
+																 Array.from(nextProps.modalUI.constituents)[0],
+																 this.state.currentAnnotationSet - 1);
 					// now reset UI
 					this.props.clearConstituents();
 					this.props.clearElements("note");
