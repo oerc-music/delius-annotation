@@ -7,7 +7,7 @@ import Score from 'meld-client/src/containers/score';
 import Modal from 'meld-client/src/containers/modalUI';
 import { fetchGraph } from '../../../meld-client/src/actions/index';
 import { setMode, clearConstituents, clearElements, popElements } from '../../../meld-client/src/actions/modalUI';
-import { attachClickHandlerToNotes, decorateNotes } from '../actions/deliusActions';
+import { attachClickHandlerToNotes, attachClickHandlerToAnnotationGlyphs, decorateNotes } from '../actions/deliusActions';
 import { postAnnotation} from '../../../meld-client/src/actions/index'
 import { modes } from '../../config/deliusModes';
 import { drawSingleThingOnScore, drawRangedThingOnScore, showSet } from '../scribble-on-score.js';
@@ -33,7 +33,7 @@ class App extends Component {
 			const graphUri = this.props.graphUri;
 			this.props.fetchGraph(graphUri);
 		}
-		this.props.attachClickHandlerToNotes(this.scoreComponent, this.props.modalUI.elements)
+		this.props.attachClickHandlerToNotes(this.scoreComponent)
 	}
 	componentWillReceiveProps(nextProps) { 
 		// this is where we do app-specific logic for the modal UI
@@ -190,6 +190,8 @@ class App extends Component {
 	componentDidUpdate(nextProps) { 
 		// update note classes (ensure only selected ones are highlighted)
 		this.props.decorateNotes(this.scoreComponent, this.props.modalUI.elements["note"] || []);
+		// attach click handlers to any annotation glyphs
+		this.props.attachClickHandlerToAnnotationGlyphs(this.scoreComponent);
 	}
 
 	postSyncAnnotation() { 
@@ -258,6 +260,7 @@ function mapStateToProps({ modalUI }) {
 function mapDispatchToProps(dispatch) { 
 	return bindActionCreators({ 
 		attachClickHandlerToNotes,
+		attachClickHandlerToAnnotationGlyphs,
 		clearConstituents, 
 		clearElements,
 		decorateNotes,

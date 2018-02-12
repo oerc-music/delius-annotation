@@ -232,12 +232,6 @@ export function drawRangedThingOnScore(element1, nudge1, element2, nudge2, symbo
 			group.appendChild(path);
 	}
 	SVG.appendChild(group);
-	group.onclick = function(e){
-		dispatch({type: "ELEMENT_CLICKED",
-							payload: {elementType: "annotationGlyph",
-												elementId: id}
-						 });
-	};
 }
 
 export function drawSingleThingOnScore(element, symbol, xnudge, annotationSet, id) {
@@ -293,12 +287,6 @@ export function drawSingleThingOnScore(element, symbol, xnudge, annotationSet, i
 	// FIXME:!!!
 	getSVG(element);
 	SVG.appendChild(group);
-	group.onclick = function(e){
-		dispatch({type: "ELEMENT_CLICKED",
-							payload: {elementType: "annotationGlyph",
-												elementId: id}
-						 });
-	};
 }
 
 export function showSet(setno){

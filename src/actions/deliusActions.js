@@ -19,11 +19,26 @@ export function attachClickHandlerToNotes(scoreComponent) {
 						payload: {elementType: "note", elementId: n.getAttribute("id")}
 					});
 			 	};
-				return { type: "CLICK_HANDLERS_ATTACHED" }
 			});
 		}, 3000)
 	}
 };
+
+export function attachClickHandlerToAnnotationGlyphs(scoreComponent) { 
+	return (dispatch) => { 
+		const scoreElement = ReactDOM.findDOMNode(scoreComponent);
+		const annotationGlyphs = scoreElement.querySelectorAll(".annotation");
+		Array.prototype.map.call(annotationGlyphs, function(g) { 
+			g.onclick = function(e) { 
+				dispatch({ 
+					type: "ELEMENT_CLICKED", 
+					payload: {elementType: "annotationGlyph", elementId: g.getAttribute("id")}
+				});
+			};
+		});
+		return { type: "CLICK_HANDLERS_ATTACHED" }
+	}
+}
 
 export function decorateNotes(scoreComponent, selectedElements) {
 	// (relating to horrible timeout hack above...)
