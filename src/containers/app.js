@@ -130,45 +130,45 @@ class App extends Component {
 				case "dynamicsMode":
 				case "fingeringsMode":
 					if(nextProps.modalUI.constituents.size !== 0){
-							if(Array.from(nextProps.modalUI.constituents)[0]==="back"){
-								this.props.clearConstituents();
-								if(theseNotes.length === 1) { 
-									this.props.setMode("pointBase");
-								} else {
-									this.props.setMode("rangeBase"); 
-								} 
-							}else {
-								// if a constituent has been selected,
-								// make a point annotation
-								console.log("Current set:" , this.state.currentAnnotationSet);
-								var annotId = this.mintAnnotationId();
-								this.props.postAnnotation(
-									this.props.route.baseUri + "/sessions/deliusAnnotation", 
-									"UnknownEtag", 
-									JSON.stringify({	
-										"@id": annotId,
-										"oa:hasTarget": { "@id": this.props.modalUI.elements["note"][0] },
-										"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] },
-										"meld:inAnnotationSet": this.state.currentAnnotationSet
-									})
-								);
-								drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0, this.state.currentAnnotationSet - 1, annotId);
-								// now reset UI
-								this.props.clearConstituents();
-								this.props.clearElements("note");
-								this.props.setMode("nothing");
-							}
-						} else if(theseNotes.length !== nextNotes.length) { 
-							// if the element selections have changed, reset to base mode (in lieu of back button)
-							if(nextNotes.length === 1) { 
-								this.props.setMode("pointBase");
-							} else { 
-								this.props.setMode("rangeBase");
-							}
+						if(Array.from(nextProps.modalUI.constituents)[0]==="back"){
 							this.props.clearConstituents();
+							if(theseNotes.length === 1) { 
+								this.props.setMode("pointBase");
+							} else {
+								this.props.setMode("rangeBase"); 
+							} 
+						} else {
+							// if a constituent has been selected,
+							// make a point annotation
+							console.log("Current set:" , this.state.currentAnnotationSet);
+							var annotId = this.mintAnnotationId();
+							this.props.postAnnotation(
+								this.props.route.baseUri + "/sessions/deliusAnnotation", 
+								"UnknownEtag", 
+								JSON.stringify({	
+									"@id": annotId,
+									"oa:hasTarget": { "@id": this.props.modalUI.elements["note"][0] },
+									"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] },
+									"meld:inAnnotationSet": this.state.currentAnnotationSet
+								})
+							);
+							drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0, this.state.currentAnnotationSet - 1, annotId);
+							// now reset UI
+							this.props.clearElements("note");
+							this.props.clearConstituents();
+							this.props.setMode("nothing");
 						}
-								 
-						break;
+					} else if(theseNotes.length !== nextNotes.length) { 
+						// if the element selections have changed, reset to base mode (in lieu of back button)
+						if(nextNotes.length === 1) { 
+							this.props.setMode("pointBase");
+						} else if(nextNotes.length === 2){ 
+							this.props.setMode("rangeBase");
+						}
+						this.props.clearConstituents();
+					}
+							 
+					break;
 			}
 		}
 	}
