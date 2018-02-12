@@ -5,6 +5,7 @@ var staffGaps = [1500, 4700, 7200, 9700];
 var SVG;
 var SVGDefs;
 var notes = false;
+var annotationAppliesTo = {};
 var stupidID = 0;
 var paths = {
 	pp: "M281 274c56 0 92 -31 92 -89c0 -95 -78 -195 -174 -195c-17 0 -30 2 -44 9c-16 8 -19 18 -24 18s-7 -7 -9 -12l-45 -112c-1 -3 -2 -6 -2 -7c0 -3 3 -3 9 -3h40c8 0 12 -4 12 -12c0 -9 -4 -13 -13 -13h-193c-8 0 -12 4 -12 12c0 9 4 13 13 13h31c10 0 12 2 15 10l123 305 c3 7 6 17 6 25c0 7 -3 12 -11 12c-18 0 -38 -26 -67 -76c-5 -9 -9 -15 -16 -15c-6 0 -11 4 -11 11c0 5 2 10 7 19c31 57 63 99 122 99c26 0 41 -9 48 -21c9 -17 6 -24 11 -24c4 0 7 8 21 20c18 16 40 26 71 26zM636 274c56 0 92 -31 92 -89c0 -95 -78 -195 -174 -195 c-17 0 -30 2 -44 9c-16 8 -19 18 -24 18s-7 -7 -9 -12l-45 -112c-1 -3 -2 -6 -2 -7c0 -3 3 -3 9 -3h40c8 0 12 -4 12 -12c0 -9 -4 -13 -13 -13h-193c-8 0 -12 4 -12 12c0 9 4 13 13 13h31c10 0 12 2 15 10l123 305c3 7 6 17 6 25c0 7 -3 12 -11 12c-15 0 -28 -17 -38 -30 c-2 -2 -4 -6 -4 -6c-5 -7 -9 -12 -16 -12c-6 0 -11 3 -11 10c0 5 2 10 8 19c22 31 48 57 96 57c26 0 41 -9 48 -21c9 -17 6 -24 11 -24c4 0 7 8 21 20c18 16 40 26 71 26zM254 237c-24 0 -50 -29 -64 -63l-20 -49c-11 -28 -19 -48 -19 -69s8 -32 25 -32 c48 0 101 127 101 176c0 22 -6 37 -23 37zM609 237c-24 0 -50 -29 -64 -63l-20 -49c-11 -28 -19 -48 -19 -69s8 -32 25 -32c48 0 101 127 101 176c0 22 -6 37 -23 37z",
@@ -141,7 +142,7 @@ function getSVGDefs(SVG){
 	return SVGDefs;
 }
 
-export function drawRangedThingOnScore(element1, nudge1, element2, nudge2, symbol, annotationSet) {
+export function drawRangedThingOnScore(element1, nudge1, element2, nudge2, symbol, annotationSet, id) {
 	if(!SVG) getSVG(element1);
 	if(!notes) notes = getAllNotePositions(SVG);
 	if(!annotationSet) annotationSet=0
@@ -178,6 +179,11 @@ export function drawRangedThingOnScore(element1, nudge1, element2, nudge2, symbo
 		}
 	}
 	var group = document.createElementNS(SVGNS, "g");
+	if(id) {
+		group.setAttributeNS(null, "id", id);
+		annotationAppliesTo[id]=["elements": [element1, element2], "nudges": [nudge1, nudge2],
+														 "symbol": symbol, "set": annotationSet];
+	}
   group.setAttributeNS(null, "class", symbol + " annotation set"+annotationSet);
 	var left = xFudge + note1.x + (nudge1 ? 180 : 0); // FIXME: need a next note pos
 	var right = xFudge + note2.x + (nudge2 ? 180 : 0);
@@ -229,7 +235,7 @@ export function drawRangedThingOnScore(element1, nudge1, element2, nudge2, symbo
 	console.log(symbol);
 }
 
-export function drawSingleThingOnScore(element, symbol, xnudge, annotationSet) {
+export function drawSingleThingOnScore(element, symbol, xnudge, annotationSet, id) {
 	if(symbol==="cresc" || symbol==="dim"){
 		console.log("Single-note ranged thing");
 		return drawRangedThingOnScore(element, xnudge, element, true, symbol, annotationSet);
@@ -252,6 +258,11 @@ export function drawSingleThingOnScore(element, symbol, xnudge, annotationSet) {
 	if(allAnnotations.length<=annotationSet) allAnnotations.push([]);
 	allAnnotations[annotationSet].push([element, symbol, xnudge]);
   var group = document.createElementNS(SVGNS, "g");
+	if(id) {
+		group.setAttributeNS(null, "id", id);
+		annotationAppliesTo[id]=["elements": [element], "nudges": [xnudge],
+														 "symbol": symbol, "set": annotationSet];
+	}
   group.setAttributeNS(null, "class", symbol + " annotation set"+annotationSet);
 	if(paths[symbol]) {
 		// this is a symbol
@@ -277,4 +288,33 @@ export function drawSingleThingOnScore(element, symbol, xnudge, annotationSet) {
 	// FIXME:!!!
 	getSVG(element);
 	SVG.appendChild(group);
+}
+
+function showSet(setno){
+	var annotations = document.getElementsByClassName('annotation');
+	for(var a=0; a<annotations.length; a++){
+		var classString = annotations[a].getAttribute('class')
+		var classes = classString.split(/\s+/);
+		if(classes.indexOf("set"+setno)>-1){
+			annotations[a].setAttribute(classes.filter(cn => cn!=="set"+setno).join(" "));
+		} else if(classes.indexOf("cached")===-1){
+			annotations[a].setAttribute('class', classString+" cached");
+		} 
+	}
+}
+
+function deleteThis(element){
+	//
+	// Do semantic stuff
+	//
+	// Then delete it
+	element.parent.removeChild(element);
+}
+
+function scratchThis(element){
+	//
+	// Do semantic stuff
+	//
+	// 
+	element.setAttribute('class', element.getAttribute('class')+' onSecondThoughts');
 }

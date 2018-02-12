@@ -16,7 +16,7 @@ export function attachClickHandlerToNotes(scoreComponent) {
 				n.onclick = function(e) { 
 					dispatch({ 
 						type: "ELEMENT_CLICKED", 
-						payload: n.getAttribute("id")
+						payload: {elementType: "note", elementId: n.getAttribute("id")}
 					});
 			 	};
 				return { type: "CLICK_HANDLERS_ATTACHED" }
