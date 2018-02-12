@@ -80,17 +80,18 @@ class App extends Component {
 							} 
 						}else {
 							// if a constituent has been selected,
-							// make a point annotation 
+							// make a point annotation
+							var annotId = this.mintAnnotationId();
 							this.props.postAnnotation(
 								"http://127.0.0.1:5000/sessions/deliusAnnotation", 
 								"UnknownEtag", 
 								JSON.stringify({	
-									"@id": this.mintAnnotationId(),
+									"@id": annotId,
 									"oa:hasTarget": { "@id": this.props.modalUI.elements[0] },
 									"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] }
 								})
 							);
-							drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0, this.state.currentAnnotationSet - 1);
+							drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0, this.state.currentAnnotationSet - 1, annotId);
 							// now reset UI
 							this.props.clearConstituents();
 							this.props.clearElements("note");
@@ -116,17 +117,18 @@ class App extends Component {
 		if(nextProps.modalUI.constituents.has("upbow") ||
 			 nextProps.modalUI.constituents.has("downbow") 
 			) { 
-				// user wants to make a point annotation
+			// user wants to make a point annotation
+			var annotId = this.mintAnnotationId();
 				this.props.postAnnotation(
 					"http://127.0.0.1:5000/sessions/deliusAnnotation", 
 					"UnknownEtag", 
 					JSON.stringify({	
-						"@id": this.mintAnnotationId(),
+						"@id": annotId,
 						"oa:hasTarget": { "@id": theseNotes[0] },
 						"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] }
 					})
 				);
-			drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0, this.state.currentAnnotationSet - 1);
+			drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0, this.state.currentAnnotationSet - 1, annotId);
 				// now reset UI
 				this.props.clearConstituents();
 				this.props.clearElements("note");
@@ -143,28 +145,30 @@ class App extends Component {
 							nextProps.modalUI.constituents.has("cresc") ||
 							nextProps.modalUI.constituents.has("dim")) { 
 				if(theseNotes.length === 1) {
-				// user wants to make a point annotation
+					// user wants to make a point annotation
+					var annotId = this.mintAnnotationId();
 					this.props.postAnnotation(
 						"http://127.0.0.1:5000/sessions/deliusAnnotation", 
 						"UnknownEtag", 
 						JSON.stringify({	
-							"@id": this.mintAnnotationId(),
+							"@id": annotId,
 							"oa:hasTarget": { "@id": theseNotes[0] },
 							"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] }
 						})
 					);
-					drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0, this.state.currentAnnotationSet - 1);
+					drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0, this.state.currentAnnotationSet - 1, annotId);
 					// now reset UI
 					this.props.clearConstituents();
 					this.props.clearElements("note");
 					this.props.setMode("nothing");
 				} else if(theseNotes.length === 2) { 
 					// user wants to make a range annotation
+					var annotId = this.mintAnnotationId();
 					this.props.postAnnotation(
 						"http://127.0.0.1:5000/sessions/deliusAnnotation", 
 						"UnknownEtag", 
 						JSON.stringify({	
-							"@id": this.mintAnnotationId(),
+							"@id": annotId,
 							"oa:hasTarget": [ 
 								{ "@id": theseNotes[0] },
 								{ "@id": theseNotes[1] }
@@ -177,7 +181,7 @@ class App extends Component {
 																 document.getElementById(theseNotes[1]),
 																 false, 
 																 Array.from(nextProps.modalUI.constituents)[0],
-																 this.state.currentAnnotationSet - 1);
+																 this.state.currentAnnotationSet - 1, annotId);
 					// now reset UI
 					this.props.clearConstituents();
 					this.props.clearElements("note");
