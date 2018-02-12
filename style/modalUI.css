@@ -65,5 +65,19 @@
 #sync { 
 	position:fixed;
 	bottom:0em;
+	right: 0em;
+}
+
+.setButtonsContainer { 
+	position:fixed;
+	bottom:0em;
 	left: 0em;
+}
+
+.setButton { 
+	float:left;
+}
+
+.cached { 
+	display:none;
 }

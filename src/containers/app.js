@@ -10,18 +10,22 @@ import { setMode, clearConstituents, clearElements, popElements } from '../../..
 import { attachClickHandlerToNotes, decorateNotes } from '../actions/deliusActions';
 import { postAnnotation} from '../../../meld-client/src/actions/index'
 import { modes } from '../../config/deliusModes';
-import { drawSingleThingOnScore, drawRangedThingOnScore } from '../scribble-on-score.js';
+import { drawSingleThingOnScore, drawRangedThingOnScore, showSet } from '../scribble-on-score.js';
 
 class App extends Component { 
 	constructor(props) {
 		super(props);
 		this.state = { 
 			currentMotif: this.props.motif || false,
-			modes: modes
+			modes: modes,
+			annotationSets: [1],
+			currentAnnotationSet: 1
 		 };
-		// Following binding required to make 'this' work in the callback
+		// Following bindings required to make 'this' work in the callbacks
     this.handleBaseModeLogic = this.handleBaseModeLogic.bind(this);
     this.postSyncAnnotation = this.postSyncAnnotation.bind(this);
+    this.switchSet = this.switchSet.bind(this);
+    this.addSet= this.addSet.bind(this);
 	}
 	componentDidMount() { 
 		if(this.props.graphUri) { 
@@ -193,14 +197,43 @@ class App extends Component {
 		);
 	}
 
+	switchSet(setNum) { 
+		// switch to a given set
+		this.setState({currentAnnotationSet: setNum});
+		showSet(setNum - 1); // showSet in scribble-on-score is 0-based
+	}
+	
+	addSet() { 
+		// add the new set, and switch to it (by setting currentAnnotationSet)
+		const newAnnotationSets = this.state.annotationSets.concat([this.state.annotationSets.length+1])
+		this.setState({
+			annotationSets: newAnnotationSets,
+			currentAnnotationSet: newAnnotationSets.length
+		});
+		showSet(newAnnotationSets.length - 1); // showSet in scribble-on-score is 0-based
+	}
+
 
 	render() { 
+		const annotationSetButtons = this.state.annotationSets.map(
+			(setNum) => {
+				if(setNum === this.state.currentAnnotationSet){
+					return <button id={"set"+setNum} key={"set"+setNum} className="setButton" disabled>{setNum}</button>;
+				} else { 
+					return <button id={"set"+setNum} key={"set"+setNum} className="setButton" onClick={() => this.switchSet(setNum)}>{setNum}</button>;
+
+				}
+			});
 		return (
 			<div> 
 					<link rel="stylesheet" href="style/modalUI.css" type="text/css" />
 					<Modal modes={this.state.modes} orientation="wide"/> 
 					<Score uri="/Late Swallows-dolet-musescore-II.mei" ref={(score) => {this.scoreComponent = score}} />
 					<button id="sync" onClick={this.postSyncAnnotation}>Sync!</button>
+					<div className="setButtonsContainer">
+						{ annotationSetButtons }
+						<button className="setButton" onClick={this.addSet}>+</button>
+					</div>
 			</div>
 		)
 	}
