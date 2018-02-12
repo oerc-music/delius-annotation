@@ -290,7 +290,7 @@ export function drawSingleThingOnScore(element, symbol, xnudge, annotationSet, i
 	SVG.appendChild(group);
 }
 
-function showSet(setno){
+export function showSet(setno){
 	var annotations = document.getElementsByClassName('annotation');
 	for(var a=0; a<annotations.length; a++){
 		var classString = annotations[a].getAttribute('class')
