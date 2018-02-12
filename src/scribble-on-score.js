@@ -232,13 +232,18 @@ export function drawRangedThingOnScore(element1, nudge1, element2, nudge2, symbo
 			group.appendChild(path);
 	}
 	SVG.appendChild(group);
-	console.log(symbol);
+	group.onclick = function(e){
+		dispatch({type: "ELEMENT_CLICKED",
+							payload: {elementType: "annotationGlyph",
+												elementId: id}
+						 });
+	};
 }
 
 export function drawSingleThingOnScore(element, symbol, xnudge, annotationSet, id) {
 	if(symbol==="cresc" || symbol==="dim"){
 		console.log("Single-note ranged thing");
-		return drawRangedThingOnScore(element, xnudge, element, true, symbol, annotationSet);
+		return drawRangedThingOnScore(element, xnudge, element, true, symbol, annotationSet, id);
 	}
 	if(!SVG) getSVG(element);
 	if(!notes) {
@@ -288,6 +293,12 @@ export function drawSingleThingOnScore(element, symbol, xnudge, annotationSet, i
 	// FIXME:!!!
 	getSVG(element);
 	SVG.appendChild(group);
+	group.onclick = function(e){
+		dispatch({type: "ELEMENT_CLICKED",
+							payload: {elementType: "annotationGlyph",
+												elementId: id}
+						 });
+	};
 }
 
 export function showSet(setno){
