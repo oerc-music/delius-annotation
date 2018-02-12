@@ -83,7 +83,7 @@ class App extends Component {
 							// make a point annotation
 							var annotId = this.mintAnnotationId();
 							this.props.postAnnotation(
-								"http://127.0.0.1:5000/sessions/deliusAnnotation", 
+								this.props.route.baseUri + "/sessions/deliusAnnotation", 
 								"UnknownEtag", 
 								JSON.stringify({	
 									"@id": annotId,
@@ -120,7 +120,7 @@ class App extends Component {
 			// user wants to make a point annotation
 			var annotId = this.mintAnnotationId();
 				this.props.postAnnotation(
-					"http://127.0.0.1:5000/sessions/deliusAnnotation", 
+					this.props.route.baseUri + "/sessions/deliusAnnotation", 
 					"UnknownEtag", 
 					JSON.stringify({	
 						"@id": annotId,
@@ -148,7 +148,7 @@ class App extends Component {
 					// user wants to make a point annotation
 					var annotId = this.mintAnnotationId();
 					this.props.postAnnotation(
-						"http://127.0.0.1:5000/sessions/deliusAnnotation", 
+						this.props.route.baseUri + "/sessions/deliusAnnotation", 
 						"UnknownEtag", 
 						JSON.stringify({	
 							"@id": annotId,
@@ -165,7 +165,7 @@ class App extends Component {
 					// user wants to make a range annotation
 					var annotId = this.mintAnnotationId();
 					this.props.postAnnotation(
-						"http://127.0.0.1:5000/sessions/deliusAnnotation", 
+						this.props.route.baseUri + "/sessions/deliusAnnotation", 
 						"UnknownEtag", 
 						JSON.stringify({	
 							"@id": annotId,
@@ -200,10 +200,10 @@ class App extends Component {
 
 	postSyncAnnotation() { 
 		this.props.postAnnotation(
-			"http://127.0.0.1:5000/sessions/deliusAnnotation", 
+			this.props.route.baseUri + "/sessions/deliusAnnotation", 
 			"UnknownEtag", 
 			JSON.stringify({	
-				"oa:hasTarget": { "@id": "http://127.0.0.1:5000/sessions/deliusAnnotation" },
+				"oa:hasTarget": { "@id": this.props.route.baseUri + "/sessions/deliusAnnotation" },
 				"oa:motivatedBy": { "@id": "motivation:Sync" }
 			})
 		);
@@ -211,7 +211,7 @@ class App extends Component {
 
 
 	mintAnnotationId() { 
-		return "http://127.0.0.1:5000/annotations/delius" + new Date().toISOString() 
+		return this.props.route.baseUri + "/annotations/delius" + new Date().toISOString() 
 	}
 
 	switchSet(setNum) { 

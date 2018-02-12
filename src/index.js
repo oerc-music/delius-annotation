@@ -11,10 +11,14 @@ import App from './containers/app';
 
 const createStoreWithMiddleware = applyMiddleware(thunk, ReduxPromise)(createStore);
 
+// ***** CHANGE ME TO DELIUS SERVER IP *******//
+const baseUri = "http://127.0.0.1:5000"
+// *******************************************//
+
 ReactDOM.render(
 	<Provider store={createStoreWithMiddleware(reducers)}>
 		<Router history={browserHistory}> 
-			<Route path="/" component={App} />
+			<Route path="/" component={App} baseUri = {baseUri} />
 		</Router>
 	</Provider>
 		, document.querySelector('.container'));
