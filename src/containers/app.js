@@ -26,6 +26,7 @@ class App extends Component {
     this.postSyncAnnotation = this.postSyncAnnotation.bind(this);
     this.switchSet = this.switchSet.bind(this);
     this.addSet= this.addSet.bind(this);
+    this.mintAnnotationId= this.mintAnnotationId.bind(this);
 	}
 	componentDidMount() { 
 		if(this.props.graphUri) { 
@@ -84,6 +85,7 @@ class App extends Component {
 								"http://127.0.0.1:5000/sessions/deliusAnnotation", 
 								"UnknownEtag", 
 								JSON.stringify({	
+									"@id": this.mintAnnotationId(),
 									"oa:hasTarget": { "@id": this.props.modalUI.elements[0] },
 									"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] }
 								})
@@ -119,6 +121,7 @@ class App extends Component {
 					"http://127.0.0.1:5000/sessions/deliusAnnotation", 
 					"UnknownEtag", 
 					JSON.stringify({	
+						"@id": this.mintAnnotationId(),
 						"oa:hasTarget": { "@id": theseNotes[0] },
 						"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] }
 					})
@@ -145,6 +148,7 @@ class App extends Component {
 						"http://127.0.0.1:5000/sessions/deliusAnnotation", 
 						"UnknownEtag", 
 						JSON.stringify({	
+							"@id": this.mintAnnotationId(),
 							"oa:hasTarget": { "@id": theseNotes[0] },
 							"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] }
 						})
@@ -160,6 +164,7 @@ class App extends Component {
 						"http://127.0.0.1:5000/sessions/deliusAnnotation", 
 						"UnknownEtag", 
 						JSON.stringify({	
+							"@id": this.mintAnnotationId(),
 							"oa:hasTarget": [ 
 								{ "@id": theseNotes[0] },
 								{ "@id": theseNotes[1] }
@@ -197,12 +202,18 @@ class App extends Component {
 		);
 	}
 
+
+	mintAnnotationId() { 
+		return "http://127.0.0.1:5000/annotations/delius" + new Date().toISOString() 
+	}
+
 	switchSet(setNum) { 
 		// switch to a given set
 		this.setState({currentAnnotationSet: setNum});
 		showSet(setNum - 1); // showSet in scribble-on-score is 0-based
 	}
 	
+
 	addSet() { 
 		// add the new set, and switch to it (by setting currentAnnotationSet)
 		const newAnnotationSets = this.state.annotationSets.concat([this.state.annotationSets.length+1])
