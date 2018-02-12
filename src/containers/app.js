@@ -81,14 +81,16 @@ class App extends Component {
 						}else {
 							// if a constituent has been selected,
 							// make a point annotation
+							console.log("Current set:" , this.state.currentAnnotationSet);
 							var annotId = this.mintAnnotationId();
 							this.props.postAnnotation(
 								this.props.route.baseUri + "/sessions/deliusAnnotation", 
 								"UnknownEtag", 
 								JSON.stringify({	
 									"@id": annotId,
-									"oa:hasTarget": { "@id": this.props.modalUI.elements[0] },
-									"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] }
+									"oa:hasTarget": { "@id": this.props.modalUI.elements["note"][0] },
+									"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] },
+									"meld:inAnnotationSet": this.state.currentAnnotationSet
 								})
 							);
 							drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0, this.state.currentAnnotationSet - 1, annotId);
@@ -125,7 +127,8 @@ class App extends Component {
 					JSON.stringify({	
 						"@id": annotId,
 						"oa:hasTarget": { "@id": theseNotes[0] },
-						"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] }
+						"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] },
+						"meld:inAnnotationSet": this.state.currentAnnotationSet
 					})
 				);
 			drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0, this.state.currentAnnotationSet - 1, annotId);
@@ -153,7 +156,8 @@ class App extends Component {
 						JSON.stringify({	
 							"@id": annotId,
 							"oa:hasTarget": { "@id": theseNotes[0] },
-							"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] }
+							"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] },
+							"meld:inAnnotationSet": this.state.currentAnnotationSet
 						})
 					);
 					drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0, this.state.currentAnnotationSet - 1, annotId);
@@ -173,7 +177,8 @@ class App extends Component {
 								{ "@id": theseNotes[0] },
 								{ "@id": theseNotes[1] }
 							],
-							"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] }
+							"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] },
+							"meld:inAnnotationSet": this.state.currentAnnotationSet
 						})
 					);
 					drawRangedThingOnScore(document.getElementById(theseNotes[0]),
