@@ -10,7 +10,7 @@ import { setMode, clearConstituents, clearElements, popElements } from '../../..
 import { attachClickHandlerToNotes, attachClickHandlerToAnnotationGlyphs, decorateNotes } from '../actions/deliusActions';
 import { postAnnotation} from '../../../meld-client/src/actions/index'
 import { modes } from '../../config/deliusModes';
-import { drawSingleThingOnScore, drawRangedThingOnScore, showSet } from '../scribble-on-score.js';
+import { drawSingleThingOnScore, drawRangedThingOnScore, showSet, leftOf } from '../scribble-on-score.js';
 
 class App extends Component { 
 	constructor(props) {
@@ -168,15 +168,22 @@ class App extends Component {
 				} else if(theseNotes.length === 2) { 
 					// user wants to make a range annotation
 					var annotId = this.mintAnnotationId();
+					var leftFirst = leftOf(theseNotes[0], theseNotes[1]);
+					var note1 = leftFirst ? theseNotes[0] : theseNotes[1];
+					var note2 = leftFirst ? theseNotes[1] : theseNotes[0];
 					this.props.postAnnotation(
 						this.props.route.baseUri + "/sessions/deliusAnnotation", 
 						"UnknownEtag", 
 						JSON.stringify({	
 							"@id": annotId,
-							"oa:hasTarget": [ 
-								{ "@id": theseNotes[0] },
-								{ "@id": theseNotes[1] }
-							],
+							"oa:hasTarget": {
+								"rdfs:member": [
+									{ "@id": note1 },
+									{ "@id": note2 } ],
+								"meld:startsWith": note1,
+								"meld:endsWith": note2,
+								"@type": "rdf:Bag"
+							},
 							"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] },
 							"meld:inAnnotationSet": this.state.currentAnnotationSet
 						})

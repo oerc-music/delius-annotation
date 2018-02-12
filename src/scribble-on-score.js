@@ -56,6 +56,13 @@ function getAllNotePositions(SVG){
 	}
 	return symbols;
 }
+
+export function leftOf(note1, note2){
+	if(!SVG) getSVG(document.getElementById(note1));
+	if(!notes) notes = getAllNotePositions(SVG);
+	return notes[note1].x < notes[note2].x;
+}
+
 function notesBetween(note1, note2){
 	if(!SVG) getSVG(element);
 	if(!notes) notes = getAllNotePositions(SVG);
