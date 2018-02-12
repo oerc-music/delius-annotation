@@ -34,7 +34,9 @@ class App extends Component {
 		// this is where we do app-specific logic for the modal UI
 		// If more than 2 note elements selected, throw out the two oldest elements
 		// leaving the most recent selection as a single selected element
-		if(nextProps.modalUI.elements.length > 2) { 
+		const theseNotes = this.props.modalUI.elements["note"] || [];
+		const nextNotes = nextProps.modalUI.elements["note"] || [];
+		if(nextNotes.length > 2) { 
 			this.props.popElements();
 			this.props.popElements();
 		}
@@ -43,19 +45,19 @@ class App extends Component {
 		// Mode-specific rules go here
 		switch(this.props.modalUI.mode) { 
 			case "nothing": 
-				if(nextProps.modalUI.elements.length) {
+				if(nextNotes.length) {
 					this.props.setMode("pointBase");
 				} 				
 				break;
 			case "pointBase":
-				if(nextProps.modalUI.elements.length === 2) { 
+				if(nextNotes.length === 2) { 
 					// need to switch to other base mode 
 					this.props.setMode("rangeBase");
 				}
 				this.handleBaseModeLogic(nextProps);
 				break;
 			case "rangeBase": 
-				if(nextProps.modalUI.elements.length === 1) { 
+				if(nextNotes.length === 1) { 
 					// need to switch to other base mode 
 					this.props.setMode("pointBase");
 				}
@@ -66,7 +68,7 @@ class App extends Component {
 				if(nextProps.modalUI.constituents.size !== 0){
 						if(Array.from(nextProps.modalUI.constituents)[0]==="back"){
 							this.props.clearConstituents();
-							if(this.props.modalUI.elements.length === 1) { 
+							if(theseNotes.length === 1) { 
 								this.props.setMode("pointBase");
 							} else {
 								this.props.setMode("rangeBase"); 
@@ -82,15 +84,15 @@ class App extends Component {
 									"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] }
 								})
 							);
-							drawSingleThingOnScore(document.getElementById(this.props.modalUI.elements[0]), Array.from(nextProps.modalUI.constituents)[0], 0);
+							drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0);
 							// now reset UI
 							this.props.clearConstituents();
-							this.props.clearElements();
+							this.props.clearElements("note");
 							this.props.setMode("nothing");
 						}
-					} else if(this.props.modalUI.elements.length !== nextProps.modalUI.elements.length) { 
+					} else if(theseNotes.length !== nextNotes.length) { 
 						// if the element selections have changed, reset to base mode (in lieu of back button)
-						if(nextProps.modalUI.elements.length === 1) { 
+						if(nextNotes.length === 1) { 
 							this.props.setMode("pointBase");
 						} else { 
 							this.props.setMode("rangeBase");
@@ -103,6 +105,8 @@ class App extends Component {
 	}
 
 	handleBaseModeLogic(nextProps) {
+		const theseNotes = this.props.modalUI.elements["note"] || [];
+		const nextNotes = nextProps.modalUI.elements["note"] || [];
 		if(nextProps.modalUI.constituents.has("upbow") ||
 			 nextProps.modalUI.constituents.has("downbow") 
 			) { 
@@ -111,14 +115,14 @@ class App extends Component {
 					"http://127.0.0.1:5000/sessions/deliusAnnotation", 
 					"UnknownEtag", 
 					JSON.stringify({	
-						"oa:hasTarget": { "@id": this.props.modalUI.elements[0] },
+						"oa:hasTarget": { "@id": theseNotes[0] },
 						"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] }
 					})
 				);
-				drawSingleThingOnScore(document.getElementById(this.props.modalUI.elements[0]), Array.from(nextProps.modalUI.constituents)[0], 0);
+				drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0);
 				// now reset UI
 				this.props.clearConstituents();
-				this.props.clearElements();
+				this.props.clearElements("note");
 				this.props.setMode("nothing");
 		} else if(nextProps.modalUI.constituents.has("finger2")) { 
 			// user wants to switch to fingerings mode
@@ -131,42 +135,42 @@ class App extends Component {
 		} else if(nextProps.modalUI.constituents.has("phrase") ||
 							nextProps.modalUI.constituents.has("cresc") ||
 							nextProps.modalUI.constituents.has("dim")) { 
-				if(this.props.modalUI.elements.length === 1) {
+				if(theseNotes.length === 1) {
 				// user wants to make a point annotation
 					this.props.postAnnotation(
 						"http://127.0.0.1:5000/sessions/deliusAnnotation", 
 						"UnknownEtag", 
 						JSON.stringify({	
-							"oa:hasTarget": { "@id": this.props.modalUI.elements[0] },
+							"oa:hasTarget": { "@id": theseNotes[0] },
 							"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] }
 						})
 					);
-					drawSingleThingOnScore(document.getElementById(this.props.modalUI.elements[0]), Array.from(nextProps.modalUI.constituents)[0], 0);
+					drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0);
 					// now reset UI
 					this.props.clearConstituents();
-					this.props.clearElements();
+					this.props.clearElements("note");
 					this.props.setMode("nothing");
-				} else if(this.props.modalUI.elements.length === 2) { 
+				} else if(theseNotes.length === 2) { 
 					// user wants to make a range annotation
 					this.props.postAnnotation(
 						"http://127.0.0.1:5000/sessions/deliusAnnotation", 
 						"UnknownEtag", 
 						JSON.stringify({	
 							"oa:hasTarget": [ 
-								{ "@id": this.props.modalUI.elements[0] },
-								{ "@id": this.props.modalUI.elements[1] }
+								{ "@id": theseNotes[0] },
+								{ "@id": theseNotes[1] }
 							],
 							"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] }
 						})
 					);
-					drawRangedThingOnScore(document.getElementById(this.props.modalUI.elements[0]),
+					drawRangedThingOnScore(document.getElementById(theseNotes[0]),
 																 false, 
-																 document.getElementById(this.props.modalUI.elements[1]),
+																 document.getElementById(theseNotes[1]),
 																 false, 
 																 Array.from(nextProps.modalUI.constituents)[0]);
 					// now reset UI
 					this.props.clearConstituents();
-					this.props.clearElements();
+					this.props.clearElements("note");
 					this.props.setMode("nothing");
 				}
 		}
@@ -175,7 +179,7 @@ class App extends Component {
 
 	componentDidUpdate(nextProps) { 
 		// update note classes (ensure only selected ones are highlighted)
-		this.props.decorateNotes(this.scoreComponent, this.props.modalUI.elements);
+		this.props.decorateNotes(this.scoreComponent, this.props.modalUI.elements["note"] || []);
 	}
 
 	postSyncAnnotation() { 
