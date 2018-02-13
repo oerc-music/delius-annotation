@@ -167,16 +167,12 @@ export function drawRangedThingOnScore(element1, nudge1, element2, nudge2, symbo
 		nudge1 = nudge2;
 		nudge2 = temp;
 	}
-	var xFudge = 360
 	var note1 = notes[element1.id];
 	var note2 = notes[element2.id];
 	var noteset = notesBetween(element1.id, element2.id);
 	var staffNo = note1.staff;
 	var y = staffGaps[staffNo];
 	var yNudge = 0;
-	if(allAnnotations.length<=annotationSet) allAnnotations.push([]);
-	if(annotationsSoFar.length<=annotationSet) annotationsSoFar.push({});
-	allAnnotations[annotationSet].push([element1, nudge1, element2, nudge2, symbol]);
 	for(var i=0; i<noteset.length; i++){
 		if(annotationsSoFar[annotationSet][noteset[i].id]){
 			yNudge = Math.min(yNudge, -annotationsSoFar[annotationSet][noteset[i].id].length * 550);
@@ -185,16 +181,31 @@ export function drawRangedThingOnScore(element1, nudge1, element2, nudge2, symbo
 			annotationsSoFar[annotationSet][noteset[i].id] = [[symbol, i, noteset.length-1]];
 		}
 	}
+	var yBase = y+yNudge;
+	if(allAnnotations.length<=annotationSet) allAnnotations.push([]);
+	if(annotationsSoFar.length<=annotationSet) annotationsSoFar.push({});
+	allAnnotations[annotationSet][id] = {symbol: symbol,
+																				elements: [element1, element2],
+																				nudges: [nudge1, nudge2],
+																				y: yBase };
+	if(id){
+		annotationAppliesTo[id]={elements: [element1, element2], nudges: [nudge1, nudge2],
+														 symbol: symbol, set: annotationSet};
+	}
+	drawRangedSymbol(element1, nudge1, element2, nudge2, symbol, annotationSet, id, yBase);
+}
+
+function drawRangedSymbol(element1, nudge1, element2, nudge2, symbol, annotationSet, id, yBase){
+	var xFudge = 540
+	var note1 = notes[element1.id];
+	var note2 = notes[element2.id];
 	var group = document.createElementNS(SVGNS, "g");
 	if(id) {
 		group.setAttributeNS(null, "id", id);
-		annotationAppliesTo[id]=["elements": [element1, element2], "nudges": [nudge1, nudge2],
-														 "symbol": symbol, "set": annotationSet];
 	}
   group.setAttributeNS(null, "class", symbol + " annotation set"+annotationSet);
-	var left = xFudge + note1.x + (nudge1 ? 180 : 0); // FIXME: need a next note pos
-	var right = xFudge + note2.x + (nudge2 ? 180 : 0);
-	var yBase = y+yNudge;
+	var left = xFudge + note1.x + (nudge1 ? 240 : 0); // FIXME: need a next note pos
+	var right = xFudge + note2.x + (nudge2 ? 350 : 0);
 	var yTop = yBase - 300;
 	var yMid = yBase - 170;
 	if(left==right) right+=200;
@@ -240,9 +251,11 @@ export function drawRangedThingOnScore(element1, nudge1, element2, nudge2, symbo
 	}
 	SVG.appendChild(group);
 }
-
+		
 export function drawSingleThingOnScore(element, symbol, xnudge, annotationSet, id) {
+	// Records presence of the annotation and draws it
 	if(symbol==="cresc" || symbol==="dim"){
+		// This looks like a point annotation, but is really a range
 		console.log("Single-note ranged thing");
 		return drawRangedThingOnScore(element, xnudge, element, true, symbol, annotationSet, id);
 	}
@@ -262,27 +275,34 @@ export function drawSingleThingOnScore(element, symbol, xnudge, annotationSet, i
 		annotationsSoFar[annotationSet][element.id] = [symbol];
 	}
 	if(allAnnotations.length<=annotationSet) allAnnotations.push([]);
-	allAnnotations[annotationSet].push([element, symbol, xnudge]);
-  var group = document.createElementNS(SVGNS, "g");
+	allAnnotations[annotationSet][id] = {symbol:symbol, elements: [element], nudges:[xnudge],
+																			 y:y+yNudge};
+	if(id){
+		annotationAppliesTo[id]={elements: [element], nudges: [xnudge],
+														 symbol: symbol, set: annotationSet};
+	}
+	drawSymbol(element, symbol, xnudge, annotationSet, id, y);
+}
+
+function drawSymbol(element, symbol, xnudge, annotationSet, id, y){
+	var group = document.createElementNS(SVGNS, "g");
 	if(id) {
 		group.setAttributeNS(null, "id", id);
-		annotationAppliesTo[id]=["elements": [element], "nudges": [xnudge],
-														 "symbol": symbol, "set": annotationSet];
 	}
   group.setAttributeNS(null, "class", symbol + " annotation set"+annotationSet);
 	if(paths[symbol]) {
 		// this is a symbol
 		var useEl = makeSymbol(symbol, "ID"+stupidID++);
-		useEl.setAttributeNS(null, "x", notes[element.id].x+xnudge+360);
-		useEl.setAttributeNS(null, "y", y+yNudge);
+		useEl.setAttributeNS(null, "x", notes[element.id].x+(xnudge ? 720 : 360));
+		useEl.setAttributeNS(null, "y", y);
 		useEl.setAttributeNS(null, "width", "720px");
 		useEl.setAttributeNS(null, "height", "720px");
 		group.appendChild(useEl);
 	} else {
 		// this is fingering
 		var textEl = document.createElementNS(SVGNS, "text"); 
-		textEl.setAttributeNS(null, "x", notes[element.id].x+xnudge+720);
-		textEl.setAttributeNS(null, "y", y+yNudge);
+		textEl.setAttributeNS(null, "x", notes[element.id].x+(xnudge ? 1080 : 720));
+		textEl.setAttributeNS(null, "y", y);
 		textEl.setAttributeNS(null, "class", "fingering");
 		var span = document.createElementNS(SVGNS, "tspan");
 		span.setAttributeNS(null, "text-anchor", "middle");
@@ -316,7 +336,7 @@ export function deleteThis(elementID){
 	element.parentNode.removeChild(element);
 	for(var i=0; i<allAnnotations.length; i++){
 		if(allAnnotations[i][elementID]) {
-			allAnnotations[i][elementID].push('deleted');
+			allAnnotations[i][elementID].deleted = true;
 			return;
 		}
 	}
@@ -331,8 +351,55 @@ export function retractThis(elementID){
 	element.setAttribute('class', element.getAttribute('class')+' retracted');
 	for(var i=0; i<allAnnotations.length; i++){
 		if(allAnnotations[i][elementID]) {
-			allAnnotations[i][elementID].push('retracted');
+			allAnnotations[i][elementID].retracted = true;
 			return;
 		}
 	}
+}
+
+export function toggleNudgeAnnotationGlyphStart(elementID){
+	for(var i=0; i<allAnnotations.length; i++){
+		console.log(i, allAnnotations[i], elementID);
+		if(allAnnotations[i][elementID]) {
+			var thisAnnotation = allAnnotations[i][elementID];
+			// 1. modify in allAnnotations
+			thisAnnotation.nudges[0] = !thisAnnotation.nudges[0];
+			// 2. Delete the symbol
+			var el = document.getElementById(elementID)
+			el.parentNode.removeChild(el);
+			// 3. redraw
+			if(thisAnnotation.elements.length>1){
+				drawRangedSymbol(thisAnnotation.elements[0], thisAnnotation.nudges[0],
+												 thisAnnotation.elements[1], thisAnnotation.nudges[1],
+												 thisAnnotation.symbol, i, elementID, thisAnnotation.y);
+				return
+			} else {
+				drawSymbol(thisAnnotation.elements[0], thisAnnotation.symbol,
+									 thisAnnotation.nudges[0], i, elementID, thisAnnotation.y);
+			}
+		}
+	}	
+}
+
+export function toggleNudgeAnnotationGlyphEnd(elementID){
+	for(var i=0; i<allAnnotations.length; i++){
+		if(allAnnotations[i][elementID]) {
+			var thisAnnotation = allAnnotations[i][elementID];
+			if(thisAnnotation.elements.length>1){
+				// 1. modify in allAnnotations
+				thisAnnotation.nudges[1] = !thisAnnotation.nudges[1];
+				// 2. Delete the symbol
+				var el = document.getElementById(elementID)
+				el.parentNode.removeChild(el);
+				// 3. redraw
+				drawRangedSymbol(thisAnnotation.elements[0], thisAnnotation.nudges[0],
+												 thisAnnotation.elements[1], thisAnnotation.nudges[1],
+												 thisAnnotation.symbol, i, elementID, thisAnnotation.y);
+				return
+			} else {
+				// error
+				console.log("well, this doesn't make sense", elementID);
+			}
+		}
+	}	
 }

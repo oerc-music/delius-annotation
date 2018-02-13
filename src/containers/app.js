@@ -10,7 +10,7 @@ import { setMode, clearConstituents, clearElements, popElements } from '../../..
 import { attachClickHandlerToNotes, attachClickHandlerToAnnotationGlyphs, decorateNotes } from '../actions/deliusActions';
 import { postAnnotation} from '../../../meld-client/src/actions/index'
 import { modes } from '../../config/deliusModes';
-import { drawSingleThingOnScore, drawRangedThingOnScore, showSet, leftOf, deleteThis, retractThis } from '../scribble-on-score.js';
+import { drawSingleThingOnScore, drawRangedThingOnScore, showSet, leftOf, deleteThis, retractThis, toggleNudgeAnnotationGlyphStart, toggleNudgeAnnotationGlyphEnd } from '../scribble-on-score.js';
 
 class App extends Component { 
 	constructor(props) {
@@ -112,7 +112,7 @@ class App extends Component {
 						} else if(Array.from(nextProps.modalUI.constituents)[0]==="nudgeStart"){
 							console.log("NUDGE START: ", this.props.modalUI.elements.annotationGlyph[0]);
 							// INSERT NUDGE START CALL HERE
-							retractThis(this.props.modalUI.elements.annotationGlyph[0]);
+							toggleNudgeAnnotationGlyphStart(this.props.modalUI.elements.annotationGlyph[0]);
 							this.props.postAnnotation(
 								// FIXME should really be a patch, not a post
 								this.props.route.baseUri + "/sessions/deliusAnnotation", 
@@ -126,7 +126,7 @@ class App extends Component {
 						} else if(Array.from(nextProps.modalUI.constituents)[0]==="nudgeEnd"){
 							console.log("NUDGE END: ", this.props.modalUI.elements.annotationGlyph[0]);
 							// INSERT NUDGE END CALL HERE
-							retractThis(this.props.modalUI.elements.annotationGlyph[0]);
+							toggleNudgeAnnotationGlyphEnd(this.props.modalUI.elements.annotationGlyph[0]);
 							this.props.postAnnotation(
 								// FIXME should really be a patch, not a post
 								this.props.route.baseUri + "/sessions/deliusAnnotation", 
