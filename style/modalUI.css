@@ -85,3 +85,8 @@
 .cached { 
 	display:none;
 }
+
+.retracted {
+	stroke: #ABA;
+	fill: #ABA;
+}

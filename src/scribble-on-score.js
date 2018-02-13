@@ -309,18 +309,30 @@ export function showSet(setno){
 	}
 }
 
-function deleteThis(element){
+export function deleteThis(elementID){
 	//
-	// Do semantic stuff
-	//
-	// Then delete it
-	element.parent.removeChild(element);
+	// delete it
+	var element = document.getElementById(elementID);
+	element.parentNode.removeChild(element);
+	for(var i=0; i<allAnnotations.length; i++){
+		if(allAnnotations[i][elementID]) {
+			allAnnotations[i][elementID].push('deleted');
+			return;
+		}
+	}
 }
 
-function scratchThis(element){
+export function retractThis(elementID){
 	//
 	// Do semantic stuff
 	//
 	// 
-	element.setAttribute('class', element.getAttribute('class')+' onSecondThoughts');
+	var element = document.getElementById(elementID);
+	element.setAttribute('class', element.getAttribute('class')+' retracted');
+	for(var i=0; i<allAnnotations.length; i++){
+		if(allAnnotations[i][elementID]) {
+			allAnnotations[i][elementID].push('retracted');
+			return;
+		}
+	}
 }

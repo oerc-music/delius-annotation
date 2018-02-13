@@ -10,7 +10,7 @@ import { setMode, clearConstituents, clearElements, popElements } from '../../..
 import { attachClickHandlerToNotes, attachClickHandlerToAnnotationGlyphs, decorateNotes } from '../actions/deliusActions';
 import { postAnnotation} from '../../../meld-client/src/actions/index'
 import { modes } from '../../config/deliusModes';
-import { drawSingleThingOnScore, drawRangedThingOnScore, showSet, leftOf } from '../scribble-on-score.js';
+import { drawSingleThingOnScore, drawRangedThingOnScore, showSet, leftOf, deleteThis, retractThis } from '../scribble-on-score.js';
 
 class App extends Component { 
 	constructor(props) {
@@ -79,7 +79,7 @@ class App extends Component {
 						if(Array.from(nextProps.modalUI.constituents)[0]==="delete"){
 							console.log("DELETE: ", this.props.modalUI.elements.annotationGlyph[0]);
 							// INSERT DELETE-SQUIGGLY-THING CALL HERE
-							
+							deleteThis(this.props.modalUI.elements.annotationGlyph[0]);
 							this.props.postAnnotation(
 								// FIXME should really be a patch, not a post
 								this.props.route.baseUri + "/sessions/deliusAnnotation", 
@@ -93,7 +93,7 @@ class App extends Component {
 						} else if(Array.from(nextProps.modalUI.constituents)[0]==="changeMind"){
 							console.log("RETRACT: ", this.props.modalUI.elements.annotationGlyph[0]);
 							// INSERT DELETE-SQUIGGLY-THING CALL HERE
-							
+							retractThis(this.props.modalUI.elements.annotationGlyph[0]);
 							this.props.postAnnotation(
 								// FIXME should really be a patch, not a post
 								this.props.route.baseUri + "/sessions/deliusAnnotation", 
