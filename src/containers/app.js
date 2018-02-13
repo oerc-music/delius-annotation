@@ -322,6 +322,9 @@ class App extends Component {
 	switchSet(setNum) { 
 		// switch to a given set
 		this.setState({currentAnnotationSet: setNum});
+		this.props.clearElements("note");
+		this.props.clearElements("annotationGlyph");
+		this.props.setMode("nothing");
 		showSet(setNum - 1); // showSet in scribble-on-score is 0-based
 	}
 	
@@ -333,6 +336,9 @@ class App extends Component {
 			annotationSets: newAnnotationSets,
 			currentAnnotationSet: newAnnotationSets.length
 		});
+		this.props.clearElements("note");
+		this.props.clearElements("annotationGlyph");
+		this.props.setMode("nothing");
 		showSet(newAnnotationSets.length - 1); // showSet in scribble-on-score is 0-based
 	}
 
