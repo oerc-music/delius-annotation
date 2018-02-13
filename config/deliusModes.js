@@ -134,7 +134,7 @@ export const modes = {
 			"image": "/buttons/back.svg"
 		}
 	],
-	"deleteAnnotationMode": [
+	"editAnnotationMode": [
 		{
 			"label": "Delete",
 			"id": "delete",
@@ -144,6 +144,16 @@ export const modes = {
 			"label": "Retract",
 			"id": "changeMind",
 			"image": "/buttons/cancel.svg"
+		},
+		{
+			"label": "↦Start",
+			"id": "nudgeStart",
+			"image": "/buttons/nudgeStart.svg"
+		},
+		{
+			"label": "↦End",
+			"id": "nudgeEnd",
+			"image": "/buttons/nudgeEnd.svg"
 		}
 	],
 	"_default": "nothing"

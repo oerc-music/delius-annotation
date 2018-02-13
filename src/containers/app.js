@@ -57,11 +57,18 @@ class App extends Component {
 			this.props.popElements("annotationGlyph");
 		}
 
+		if(theseNotes.length != nextNotes.length) { 
+			// note selection has changed
+			// deselected any annotation glyphs
+			this.props.clearElements("annotationGlyph");
+
+		}
+
 		if(!(theseGlyphs.length) &&
 			nextGlyphs.length) {
 			// User has clicked on an annotation glyph
 			// Switch to delete annotation mode
-			this.props.setMode("deleteAnnotationMode");
+			this.props.setMode("editAnnotationMode");
 			this.props.clearConstituents();
 			// ... and unselect any note elements
 			this.props.clearElements("note");
@@ -69,7 +76,7 @@ class App extends Component {
 			// Mode-specific rules go here
 			switch(this.props.modalUI.mode) { 
 				case "nothing": 
-				case "deleteAnnotationMode":
+				case "editAnnotationMode":
 					if(nextNotes.length) {
 						// note selected
 						this.props.clearConstituents();
@@ -78,7 +85,6 @@ class App extends Component {
 						// user wants to delete or retract annotation glyph
 						if(Array.from(nextProps.modalUI.constituents)[0]==="delete"){
 							console.log("DELETE: ", this.props.modalUI.elements.annotationGlyph[0]);
-							// INSERT DELETE-SQUIGGLY-THING CALL HERE
 							deleteThis(this.props.modalUI.elements.annotationGlyph[0]);
 							this.props.postAnnotation(
 								// FIXME should really be a patch, not a post
@@ -92,7 +98,6 @@ class App extends Component {
 							);
 						} else if(Array.from(nextProps.modalUI.constituents)[0]==="changeMind"){
 							console.log("RETRACT: ", this.props.modalUI.elements.annotationGlyph[0]);
-							// INSERT DELETE-SQUIGGLY-THING CALL HERE
 							retractThis(this.props.modalUI.elements.annotationGlyph[0]);
 							this.props.postAnnotation(
 								// FIXME should really be a patch, not a post
@@ -101,6 +106,34 @@ class App extends Component {
 								JSON.stringify({	
 									"@id": nextGlyphs[0],
 									"meld:state": "meld:Retracted",
+									"dct:modified": new Date().toISOString()
+								})
+							);
+						} else if(Array.from(nextProps.modalUI.constituents)[0]==="nudgeStart"){
+							console.log("NUDGE START: ", this.props.modalUI.elements.annotationGlyph[0]);
+							// INSERT NUDGE START CALL HERE
+							retractThis(this.props.modalUI.elements.annotationGlyph[0]);
+							this.props.postAnnotation(
+								// FIXME should really be a patch, not a post
+								this.props.route.baseUri + "/sessions/deliusAnnotation", 
+								"UnknownEtag", 
+								JSON.stringify({	
+									"@id": nextGlyphs[0],
+									"meld:state": "meld:NudgeStart",
+									"dct:modified": new Date().toISOString()
+								})
+							);
+						} else if(Array.from(nextProps.modalUI.constituents)[0]==="nudgeEnd"){
+							console.log("NUDGE END: ", this.props.modalUI.elements.annotationGlyph[0]);
+							// INSERT NUDGE END CALL HERE
+							retractThis(this.props.modalUI.elements.annotationGlyph[0]);
+							this.props.postAnnotation(
+								// FIXME should really be a patch, not a post
+								this.props.route.baseUri + "/sessions/deliusAnnotation", 
+								"UnknownEtag", 
+								JSON.stringify({	
+									"@id": nextGlyphs[0],
+									"meld:state": "meld:NudgeEnd",
 									"dct:modified": new Date().toISOString()
 								})
 							);
