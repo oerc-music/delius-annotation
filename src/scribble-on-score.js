@@ -1,5 +1,6 @@
 var SVGNS = "http://www.w3.org/2000/svg";
-var annotationsSoFar = [{}];
+//var annotationsSoFar = [{}];
+var chordAnnotationsSoFar = [{}];
 var allAnnotations = [[]];
 var staffGaps = [2000, 5500, 8300, 10800];
 var SVG;
@@ -33,7 +34,11 @@ function addNotePositions(parent, dict, barno, staffno, layerno){
   for(var i=0; i<parent.children.length; i++){
     if(parent.children[i].className.baseVal.split(" ").indexOf("note")>-1){
       var u = Array.from(parent.children[i].children).filter(n => n.nodeName==="use")[0];
-      dict[parent.children[i].id]={bar: barno, staff: staffno, layer: layerno, x: u.x.baseVal.value};
+			var isChord = parent.className.baseVal.split(" ").indexOf("chord")>-1;
+			var chord = isChord ? parent.children : [parent.children[i]];
+			var chordID = isChord ? parent.id : parent.children[i].id;
+      dict[parent.children[i].id]={bar: barno, staff: staffno, layer: layerno,
+																	 x: u.x.baseVal.value, chord: chord, chordID: chordID};
     } else if(parent.children[i].children.length){
       addNotePositions(parent.children[i], dict, barno, staffno, layerno);
     } 
@@ -61,6 +66,18 @@ export function leftOf(note1, note2){
 	if(!SVG) getSVG(document.getElementById(note1));
 	if(!notes) notes = getAllNotePositions(SVG);
 	return notes[note1].x < notes[note2].x;
+}
+function chordsBetween(note1, note2){
+	// For drawing purposes, chords are more important than individual
+	// notes. This is a stupid method, but performance isn't a worry
+	var noteRange = notesBetween(note1, note2);
+	var chordRange = [];
+	for(var i = 0; i<noteRange.length; i++){
+		if(chordRange.indexOf(notes[noteRange[i].id].chordID)===-1){
+			chordRange.push(notes[noteRange[i].id].chordID)
+		}
+	}
+	return chordRange;
 }
 
 function notesBetween(note1, note2){
@@ -91,7 +108,33 @@ function notesBetween(note1, note2){
 	}
 	return noteList.filter(n => notes[n.id].x >= noteDetails1.x && notes[n.id].x<=noteDetails2.x);
 }
-
+function chordForNote(elementId){
+	if(!SVG) getSVG(document.getElementById(note1));
+	if(!notes) notes = getAllNotePositions(SVG);
+	notes[elementId].chord;
+}
+/*
+function annotationsAbove(elementId, annotationSet){
+	// We can count the number of symbols above *this note*, but we
+	// really want everything in *this chord*.
+	// FIXME: Well, actually we want something cleverer than that for
+	// multiple layers, but let's not get ahead of ourselves.
+	if(!SVG) getSVG(document.getElementById(note1));
+	if(!notes) notes = getAllNotePositions(SVG);
+	var drawnAnnotations = annotationsSoFar[annotationSet];
+	if(!drawnAnnotations) return 0;
+	var chord = notes[elementId].chord;
+	var count = 0;
+	for(var notei=0; notei<chord.length; notei++){
+		var anns = drawnAnnotations[chord[notei].id];
+		console.log(anns);
+		if(anns){
+			count+=anns.length;
+		}
+	}
+	return count;
+}
+*/
 function makeSymbol(symbol, id){
 	// Has pretty gnarly side effects. Returns the 'use' element, but
 	// creates the symbol in the <defs> section of SVG. There probably
@@ -173,16 +216,21 @@ export function drawRangedThingOnScore(element1, nudge1, element2, nudge2, symbo
 	var staffNo = note1.staff;
 	var y = staffGaps[staffNo];
 	var yNudge = 0;
-	if(annotationsSoFar.length<=annotationSet) annotationsSoFar.push({});
-	for(var i=0; i<noteset.length; i++){
-		if(annotationsSoFar[annotationSet][noteset[i].id]){
-			yNudge = Math.min(yNudge, -annotationsSoFar[annotationSet][noteset[i].id].length * 550);
-			annotationsSoFar[annotationSet][noteset[i].id].push([symbol, i]);
+	while(chordAnnotationsSoFar.length<=annotationSet) {
+		chordAnnotationsSoFar.push({});
+	}
+	var chordSet = chordsBetween(element1.id, element2.id);
+	var adjustNo = 0;
+	console.log("-=----", chordSet);
+	for(var i=0; i<chordSet.length; i++){
+		if(chordAnnotationsSoFar[annotationSet][chordSet[i]]){
+			adjustNo = Math.max(adjustNo, chordAnnotationsSoFar[annotationSet][chordSet[i]].length);
+			chordAnnotationsSoFar[annotationSet][chordSet[i]].push(symbol);
 		} else {
-			annotationsSoFar[annotationSet][noteset[i].id] = [[symbol, i, noteset.length-1]];
+			chordAnnotationsSoFar[annotationSet][chordSet[i]] = [symbol];
 		}
 	}
-	var yBase = y+yNudge;
+	var yBase = y-(adjustNo*550);
 	if(allAnnotations.length<=annotationSet) allAnnotations.push([]);
 	allAnnotations[annotationSet][id] = {symbol: symbol,
 																				elements: [element1, element2],
@@ -267,12 +315,15 @@ export function drawSingleThingOnScore(element, symbol, xnudge, annotationSet, i
 	var staffNo = notes[element.id].staff;
 	var y = staffGaps[staffNo];
 	var yNudge = 0;
-	if(annotationsSoFar.length<=annotationSet) annotationsSoFar.push({});
-	if(annotationsSoFar[annotationSet][element.id]){
-		yNudge -= annotationsSoFar[annotationSet][element.id].length * 550;
-		annotationsSoFar[annotationSet][element.id].push(symbol);
+	while(chordAnnotationsSoFar.length<=annotationSet) {
+		chordAnnotationsSoFar.push({});
+	}
+	if(chordAnnotationsSoFar[annotationSet][notes[element.id].chordID]){
+		yNudge = -550 * chordAnnotationsSoFar[annotationSet][notes[element.id].chordID].length;
+		console.log(chordAnnotationsSoFar[annotationSet][notes[element.id].chordID].length);
+		chordAnnotationsSoFar[annotationSet][notes[element.id].chordID].push(symbol);
 	} else {
-		annotationsSoFar[annotationSet][element.id] = [symbol];
+		chordAnnotationsSoFar[annotationSet][notes[element.id].chordID] = [symbol];
 	}
 	if(allAnnotations.length<=annotationSet) allAnnotations.push([]);
 	allAnnotations[annotationSet][id] = {symbol:symbol, elements: [element], nudges:[xnudge],
@@ -293,7 +344,8 @@ function drawSymbol(element, symbol, xnudge, annotationSet, id, y){
 	if(paths[symbol]) {
 		// this is a symbol
 		var useEl = makeSymbol(symbol, "ID"+stupidID++);
-		useEl.setAttributeNS(null, "x", notes[element.id].x+(xnudge ? 720 : 360));
+		var bowingHack = symbol.indexOf("bow") > -1 ? 120 : 0;
+		useEl.setAttributeNS(null, "x", notes[element.id].x+(xnudge ? 720 : 360) + bowingHack);
 		useEl.setAttributeNS(null, "y", y);
 		useEl.setAttributeNS(null, "width", "720px");
 		useEl.setAttributeNS(null, "height", "720px");
