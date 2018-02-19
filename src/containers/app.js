@@ -180,7 +180,11 @@ class App extends Component {
 								"UnknownEtag", 
 								JSON.stringify({	
 									"@id": annotId,
-									"oa:hasTarget": { "@id": this.props.modalUI.elements["note"][0] },
+									"oa:hasTarget": { 
+										"@type": { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag" },
+										"rdfs:member": { "@id": this.props.modalUI.elements["note"][0] },
+										"meld:startsWith": { "@id": this.props.modalUI.elements["note"][0] }
+									},
 									"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] },
 									"meld:inAnnotationSet": this.state.currentAnnotationSet
 								})
@@ -219,7 +223,11 @@ class App extends Component {
 					"UnknownEtag", 
 					JSON.stringify({	
 						"@id": annotId,
-						"oa:hasTarget": { "@id": theseNotes[0] },
+						"oa:hasTarget": { 
+							"@type": { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag" }, 
+							"rdfs:member": { "@id": theseNotes[0] },
+							"meld:startsWith": { "@id": theseNotes[0] }
+						},
 						"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] },
 						"meld:inAnnotationSet": this.state.currentAnnotationSet
 					})
@@ -248,7 +256,12 @@ class App extends Component {
 						"UnknownEtag", 
 						JSON.stringify({	
 							"@id": annotId,
-							"oa:hasTarget": { "@id": theseNotes[0] },
+							"oa:hasTarget": { 
+								"@type": { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag" },
+								"rdfs:member": { "@id": theseNotes[0] },
+								"meld:startsWith": { "@id": theseNotes[0] },
+								"meld:endsAfter": { "@id": theseNotes[0] }
+							},
 							"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] },
 							"meld:inAnnotationSet": this.state.currentAnnotationSet
 						})
@@ -270,12 +283,12 @@ class App extends Component {
 						JSON.stringify({	
 							"@id": annotId,
 							"oa:hasTarget": {
+								"@type": {"@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag"},
 								"rdfs:member": [
 									{ "@id": note1 },
 									{ "@id": note2 } ],
-								"meld:startsWith": note1,
-								"meld:endsWith": note2,
-								"@type": "rdf:Bag"
+								"meld:startsWith": { "@id": note1 },
+								"meld:endsWith": { "@id": note2 }
 							},
 							"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] },
 							"meld:inAnnotationSet": this.state.currentAnnotationSet
