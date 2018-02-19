@@ -1,7 +1,7 @@
 var SVGNS = "http://www.w3.org/2000/svg";
 var annotationsSoFar = [{}];
 var allAnnotations = [[]];
-var staffGaps = [1500, 4700, 7200, 9700];
+var staffGaps = [2000, 5500, 8300, 10800];
 var SVG;
 var SVGDefs;
 var notes = false;
@@ -173,6 +173,7 @@ export function drawRangedThingOnScore(element1, nudge1, element2, nudge2, symbo
 	var staffNo = note1.staff;
 	var y = staffGaps[staffNo];
 	var yNudge = 0;
+	if(annotationsSoFar.length<=annotationSet) annotationsSoFar.push({});
 	for(var i=0; i<noteset.length; i++){
 		if(annotationsSoFar[annotationSet][noteset[i].id]){
 			yNudge = Math.min(yNudge, -annotationsSoFar[annotationSet][noteset[i].id].length * 550);
@@ -183,7 +184,6 @@ export function drawRangedThingOnScore(element1, nudge1, element2, nudge2, symbo
 	}
 	var yBase = y+yNudge;
 	if(allAnnotations.length<=annotationSet) allAnnotations.push([]);
-	if(annotationsSoFar.length<=annotationSet) annotationsSoFar.push({});
 	allAnnotations[annotationSet][id] = {symbol: symbol,
 																				elements: [element1, element2],
 																				nudges: [nudge1, nudge2],
@@ -281,7 +281,7 @@ export function drawSingleThingOnScore(element, symbol, xnudge, annotationSet, i
 		annotationAppliesTo[id]={elements: [element], nudges: [xnudge],
 														 symbol: symbol, set: annotationSet};
 	}
-	drawSymbol(element, symbol, xnudge, annotationSet, id, y);
+	drawSymbol(element, symbol, xnudge, annotationSet, id, y+yNudge);
 }
 
 function drawSymbol(element, symbol, xnudge, annotationSet, id, y){
@@ -359,7 +359,6 @@ export function retractThis(elementID){
 
 export function toggleNudgeAnnotationGlyphStart(elementID){
 	for(var i=0; i<allAnnotations.length; i++){
-		console.log(i, allAnnotations[i], elementID);
 		if(allAnnotations[i][elementID]) {
 			var thisAnnotation = allAnnotations[i][elementID];
 			// 1. modify in allAnnotations
