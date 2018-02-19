@@ -1,7 +1,7 @@
 var SVGNS = "http://www.w3.org/2000/svg";
-//var annotationsSoFar = [{}];
 var chordAnnotationsSoFar = [{}];
 var allAnnotations = [[]];
+var theJoyOfX = [[],[],[],[]];
 var staffGaps = [2000, 5500, 8300, 10800];
 var SVG;
 var SVGDefs;
@@ -37,6 +37,10 @@ function addNotePositions(parent, dict, barno, staffno, layerno){
 			var isChord = parent.className.baseVal.split(" ").indexOf("chord")>-1;
 			var chord = isChord ? parent.children : [parent.children[i]];
 			var chordID = isChord ? parent.id : parent.children[i].id;
+			if(theJoyOfX[staffno].indexOf(u.x.baseVal.value)===-1) {
+				theJoyOfX[staffno].push(u.x.baseVal.value);
+				theJoyOfX[staffno] = theJoyOfX[staffno].sort((x, y) => x-y);
+			}
       dict[parent.children[i].id]={bar: barno, staff: staffno, layer: layerno,
 																	 x: u.x.baseVal.value, chord: chord, chordID: chordID};
     } else if(parent.children[i].children.length){
@@ -113,28 +117,6 @@ function chordForNote(elementId){
 	if(!notes) notes = getAllNotePositions(SVG);
 	notes[elementId].chord;
 }
-/*
-function annotationsAbove(elementId, annotationSet){
-	// We can count the number of symbols above *this note*, but we
-	// really want everything in *this chord*.
-	// FIXME: Well, actually we want something cleverer than that for
-	// multiple layers, but let's not get ahead of ourselves.
-	if(!SVG) getSVG(document.getElementById(note1));
-	if(!notes) notes = getAllNotePositions(SVG);
-	var drawnAnnotations = annotationsSoFar[annotationSet];
-	if(!drawnAnnotations) return 0;
-	var chord = notes[elementId].chord;
-	var count = 0;
-	for(var notei=0; notei<chord.length; notei++){
-		var anns = drawnAnnotations[chord[notei].id];
-		console.log(anns);
-		if(anns){
-			count+=anns.length;
-		}
-	}
-	return count;
-}
-*/
 function makeSymbol(symbol, id){
 	// Has pretty gnarly side effects. Returns the 'use' element, but
 	// creates the symbol in the <defs> section of SVG. There probably
@@ -251,9 +233,28 @@ function drawRangedSymbol(element1, nudge1, element2, nudge2, symbol, annotation
 	if(id) {
 		group.setAttributeNS(null, "id", id);
 	}
+	var deltax1 = 0;
+	var deltax2 = 0;
+	if(nudge1){
+		var pos1 = theJoyOfX[note1.staff].indexOf(note1.x);
+		if(pos1>-1 && pos1< theJoyOfX[note1.staff]-1){
+			deltax1 = (theJoyOfX[note1.staff][pos1+1] - note1.x) / 3;
+		} else {
+			deltax1 = 240;
+		}
+	}
+	if(nudge2){
+		var pos2 = theJoyOfX[note2.staff].indexOf(note2.x);
+		console.log(theJoyOfX[note2.staff], note2.x, pos2);
+		if(pos2>-1 && pos2< theJoyOfX[note2.staff].length-1){
+			deltax2 = 3 * (theJoyOfX[note2.staff][pos2+1] - note2.x) / 5;
+		} else {
+			deltax2 = 350;
+		}
+	}
   group.setAttributeNS(null, "class", symbol + " annotation set"+annotationSet);
-	var left = xFudge + note1.x + (nudge1 ? 240 : 0); // FIXME: need a next note pos
-	var right = xFudge + note2.x + (nudge2 ? 350 : 0);
+	var left = xFudge + note1.x + deltax1;
+	var right = xFudge + note2.x + deltax2;
 	var yTop = yBase - 300;
 	var yMid = yBase - 170;
 	if(left==right) right+=200;
@@ -340,12 +341,24 @@ function drawSymbol(element, symbol, xnudge, annotationSet, id, y){
 	if(id) {
 		group.setAttributeNS(null, "id", id);
 	}
+	var deltax = 360;
+	if(xnudge){
+		var elid = element.id
+		var eln = notes[elid];
+		var staffxxx = theJoyOfX[eln.staff];
+		var staffn = staffxxx.indexOf(eln.x);
+		if(staffn>-1 && staffn < staffxxx.length-1){
+			deltax += (staffxxx[staffn+1] - eln.x) / 2;
+		} else {
+			deltax += 360;
+		}
+	}
   group.setAttributeNS(null, "class", symbol + " annotation set"+annotationSet);
 	if(paths[symbol]) {
 		// this is a symbol
 		var useEl = makeSymbol(symbol, "ID"+stupidID++);
 		var bowingHack = symbol.indexOf("bow") > -1 ? 120 : 0;
-		useEl.setAttributeNS(null, "x", notes[element.id].x+(xnudge ? 720 : 360) + bowingHack);
+		useEl.setAttributeNS(null, "x", notes[element.id].x+deltax + bowingHack);
 		useEl.setAttributeNS(null, "y", y);
 		useEl.setAttributeNS(null, "width", "720px");
 		useEl.setAttributeNS(null, "height", "720px");
@@ -353,11 +366,12 @@ function drawSymbol(element, symbol, xnudge, annotationSet, id, y){
 	} else {
 		// this is fingering
 		var textEl = document.createElementNS(SVGNS, "text"); 
-		textEl.setAttributeNS(null, "x", notes[element.id].x+(xnudge ? 1080 : 720));
+		textEl.setAttributeNS(null, "x", notes[element.id].x+deltax + 120);
 		textEl.setAttributeNS(null, "y", y);
 		textEl.setAttributeNS(null, "class", "fingering");
 		var span = document.createElementNS(SVGNS, "tspan");
-		span.setAttributeNS(null, "text-anchor", "middle");
+		//span.setAttributeNS(null, "text-anchor", "middle");
+		span.setAttributeNS(null, "text-anchor", "left");
 		var textNode = document.createTextNode(symbol[symbol.length-1]);
 		span.appendChild(textNode);
 		textEl.appendChild(span);
@@ -423,7 +437,6 @@ export function toggleNudgeAnnotationGlyphStart(elementID){
 				drawRangedSymbol(thisAnnotation.elements[0], thisAnnotation.nudges[0],
 												 thisAnnotation.elements[1], thisAnnotation.nudges[1],
 												 thisAnnotation.symbol, i, elementID, thisAnnotation.y);
-				return
 			} else {
 				drawSymbol(thisAnnotation.elements[0], thisAnnotation.symbol,
 									 thisAnnotation.nudges[0], i, elementID, thisAnnotation.y);
