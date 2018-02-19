@@ -281,7 +281,7 @@ export function drawSingleThingOnScore(element, symbol, xnudge, annotationSet, i
 		annotationAppliesTo[id]={elements: [element], nudges: [xnudge],
 														 symbol: symbol, set: annotationSet};
 	}
-	drawSymbol(element, symbol, xnudge, annotationSet, id, y);
+	drawSymbol(element, symbol, xnudge, annotationSet, id, y+yNudge);
 }
 
 function drawSymbol(element, symbol, xnudge, annotationSet, id, y){
