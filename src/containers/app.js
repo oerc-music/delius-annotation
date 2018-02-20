@@ -57,7 +57,8 @@ class App extends Component {
 			this.props.popElements("annotationGlyph");
 		}
 
-		if(theseNotes.length != nextNotes.length) { 
+		if(theseNotes.length !== nextNotes.length &&
+			 nextNotes.length !== 0) { 
 			// note selection has changed
 			// deselected any annotation glyphs
 			this.props.clearElements("annotationGlyph");
@@ -173,7 +174,6 @@ class App extends Component {
 						} else {
 							// if a constituent has been selected,
 							// make a point annotation
-							console.log("Current set:" , this.state.currentAnnotationSet);
 							var annotId = this.mintAnnotationId();
 							this.props.postAnnotation(
 								this.props.route.baseUri + "/sessions/deliusAnnotation", 
