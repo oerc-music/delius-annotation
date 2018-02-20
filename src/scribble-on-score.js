@@ -203,7 +203,6 @@ export function drawRangedThingOnScore(element1, nudge1, element2, nudge2, symbo
 	}
 	var chordSet = chordsBetween(element1.id, element2.id);
 	var adjustNo = 0;
-	console.log("-=----", chordSet);
 	for(var i=0; i<chordSet.length; i++){
 		if(chordAnnotationsSoFar[annotationSet][chordSet[i]]){
 			adjustNo = Math.max(adjustNo, chordAnnotationsSoFar[annotationSet][chordSet[i]].length);
@@ -213,7 +212,9 @@ export function drawRangedThingOnScore(element1, nudge1, element2, nudge2, symbo
 		}
 	}
 	var yBase = y-(adjustNo*550);
-	if(allAnnotations.length<=annotationSet) allAnnotations.push([]);
+	while(allAnnotations.length<=annotationSet) {
+		allAnnotations.push([]);
+	}
 	allAnnotations[annotationSet][id] = {symbol: symbol,
 																				elements: [element1, element2],
 																				nudges: [nudge1, nudge2],
@@ -237,19 +238,26 @@ function drawRangedSymbol(element1, nudge1, element2, nudge2, symbol, annotation
 	var deltax2 = 0;
 	if(nudge1){
 		var pos1 = theJoyOfX[note1.staff].indexOf(note1.x);
-		if(pos1>-1 && pos1< theJoyOfX[note1.staff]-1){
+		if(pos1>-1 && pos1< theJoyOfX[note1.staff].length-1){
 			deltax1 = (theJoyOfX[note1.staff][pos1+1] - note1.x) / 3;
+		} else if (pos1>-1) {
+			deltax1 = 360;
 		} else {
+			console.log("Something is wrong with nudge locations:",
+									theJoyOfX[note1.staff], note1.x, pos1);
 			deltax1 = 240;
 		}
 	}
 	if(nudge2){
 		var pos2 = theJoyOfX[note2.staff].indexOf(note2.x);
-		console.log(theJoyOfX[note2.staff], note2.x, pos2);
 		if(pos2>-1 && pos2< theJoyOfX[note2.staff].length-1){
 			deltax2 = 3 * (theJoyOfX[note2.staff][pos2+1] - note2.x) / 5;
+		} else if (pos2>-1) {
+			deltax2 = 1080;
 		} else {
-			deltax2 = 350;
+			console.log("Something is wrong with nudge locations:",
+									theJoyOfX[note1.staff], note1.x, pos1);
+			deltax2 = 360;
 		}
 	}
   group.setAttributeNS(null, "class", symbol + " annotation set"+annotationSet);
@@ -326,7 +334,9 @@ export function drawSingleThingOnScore(element, symbol, xnudge, annotationSet, i
 	} else {
 		chordAnnotationsSoFar[annotationSet][notes[element.id].chordID] = [symbol];
 	}
-	if(allAnnotations.length<=annotationSet) allAnnotations.push([]);
+	while(allAnnotations.length<=annotationSet) {
+		allAnnotations.push([]);
+	}
 	allAnnotations[annotationSet][id] = {symbol:symbol, elements: [element], nudges:[xnudge],
 																			 y:y+yNudge};
 	if(id){
