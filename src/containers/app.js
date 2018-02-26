@@ -7,7 +7,7 @@ import Score from 'meld-client/src/containers/score';
 import Modal from 'meld-client/src/containers/modalUI';
 import { fetchGraph } from '../../../meld-client/src/actions/index';
 import { setMode, clearConstituents, clearElements, popElements } from '../../../meld-client/src/actions/modalUI';
-import { attachClickHandlerToNotes, attachClickHandlerToAnnotationGlyphs, decorateNotes } from '../actions/deliusActions';
+import { attachClickHandlerToNotes, attachClickHandlerToAnnotationGlyphs, decorateNotes, generateCursorBoxes, hideCursorBoxes, showCursorBoxes } from '../actions/deliusActions';
 import { postAnnotation} from '../../../meld-client/src/actions/index'
 import { modes } from '../../config/deliusModes';
 import { drawSingleThingOnScore, drawRangedThingOnScore, showSet, leftOf, deleteThis, retractThis, toggleNudgeAnnotationGlyphStart, toggleNudgeAnnotationGlyphEnd } from '../scribble-on-score.js';
@@ -19,7 +19,8 @@ class App extends Component {
 			currentMotif: this.props.motif || false,
 			modes: modes,
 			annotationSets: [1],
-			currentAnnotationSet: 1
+			currentAnnotationSet: 1,
+			displayCursorBoxes: false
 		 };
 		// Following bindings required to make 'this' work in the callbacks
 		this.handleBaseModeLogic = this.handleBaseModeLogic.bind(this);
@@ -35,6 +36,8 @@ class App extends Component {
 			this.props.fetchGraph(graphUri);
 		}
 		this.props.attachClickHandlerToNotes(this.scoreComponent)
+		// generate boxes for measures (and adorn with cursor click-handler)
+		this.props.generateCursorBoxes(this.scoreComponent);
 	}
 
 	componentWillReceiveProps(nextProps) { 
@@ -45,6 +48,38 @@ class App extends Component {
 		const nextNotes = nextProps.modalUI.elements["note"] || [];
 		const theseGlyphs = this.props.modalUI.elements["annotationGlyph"] || [];
 		const nextGlyphs = nextProps.modalUI.elements["annotationGlyph"] || [];
+		const thisCursor = this.props.modalUI.elements["cursor"] || [];
+		const nextCursor = nextProps.modalUI.elements["cursor"] || [];
+
+		// CURSOR LOGIC:
+		// ********************
+		if(nextCursor.length > 1) {
+			// only allow up to one cursor to be selected at a time
+			this.props.popElements("cursor");
+		}
+
+		if(nextProps.modalUI.constituents.has("cursor")) { 
+		// show or hide based on "cursor" constituent click
+			if(this.state.displayCursorBoxes) {
+				this.setState({ displayCursorBoxes: false })
+				this.props.hideCursorBoxes(this.scoreComponent);
+			} else { 
+				this.setState({ displayCursorBoxes: true })
+				this.props.showCursorBoxes(this.scoreComponent);
+			}
+			this.props.clearConstituents();
+		}
+
+// TODO		
+//		if(nextCursor.length) { 
+//			// hide cursor boxes if one has been selected
+//			this.setState({ displayCursorBoxes: false })
+//			this.props.hideCursorBoxes(this.scoreComponent);
+//			this.props.clearConstituents();
+//		}
+		
+		// ********************
+		// END CURSOR LOGIC
 
 		if(nextNotes.length > 2) { 
 			// only allow up to two notes to be selected at a time
@@ -56,14 +91,19 @@ class App extends Component {
 			// only allow up to one glyph to be selected at a time
 			this.props.popElements("annotationGlyph");
 		}
+		
 
 		if(theseNotes.length !== nextNotes.length &&
 			 nextNotes.length !== 0) { 
 			// note selection has changed
 			// deselected any annotation glyphs
 			this.props.clearElements("annotationGlyph");
-
 		}
+
+		if(!(thisCursor.length) && nextCursor.length) {
+			// User has clicked on a cursor box
+			// TODO
+		} 
 
 		if(!(theseGlyphs.length) &&
 			nextGlyphs.length) {
@@ -392,9 +432,12 @@ function mapDispatchToProps(dispatch) {
 		clearConstituents, 
 		clearElements,
 		decorateNotes,
+		generateCursorBoxes,
+		hideCursorBoxes,
 		postAnnotation,
 		popElements,
-		setMode 
+		setMode,
+		showCursorBoxes
 	}, dispatch);
 }
 

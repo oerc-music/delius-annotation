@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom';
+import { boxesForMeasures } from '../../../meld-client/src/library/boxesForMeasures';
 
 export function attachClickHandlerToNotes(scoreComponent) {  
 	// horrible hack -- 
@@ -23,6 +24,49 @@ export function attachClickHandlerToNotes(scoreComponent) {
 		}, 3000)
 	}
 };
+
+export function generateCursorBoxes(scoreComponent) { 
+	// horrible hack -- see above
+	const scoreElement = ReactDOM.findDOMNode(scoreComponent);
+	return (dispatch) => { 
+		setTimeout(() => {	
+			const verovioSVG = scoreElement.querySelector("svg");
+			const boxes = boxesForMeasures(verovioSVG, "hidden");
+			Array.prototype.map.call(boxes, function(b) {
+				// attach click handlers to boxes
+				b.onclick = function(e) { 
+					dispatch({
+						type: "ELEMENT_CLICKED",
+						payload: {
+							elementType: "cursor", 
+							elementId: b.getAttribute("id")
+						}
+					})
+				}
+			});
+		}, 3000)
+	}
+}
+
+export function hideCursorBoxes(scoreComponent) { 
+	const boxes = ReactDOM.findDOMNode(scoreComponent).querySelectorAll(".barBox");
+	console.log("CURSOR: HIDE", boxes)
+	Array.prototype.map.call(boxes, function(b) { 
+			b.classList.add("hidden");
+			console.log("Tried to hide ", b);
+		});
+	return { type: "HIDE_CURSOR_BOXES" }
+}
+
+export function showCursorBoxes(scoreComponent) { 
+	const boxes = ReactDOM.findDOMNode(scoreComponent).querySelectorAll(".barBox");
+	console.log("CURSOR: SHOW", boxes)
+	Array.prototype.map.call(boxes, function(b) { 
+		console.log("Tried to show ", b);
+		b.classList.remove("hidden") 
+	});
+	return { type: "SHOW_CURSOR_BOXES" }
+}
 
 export function attachClickHandlerToAnnotationGlyphs(scoreComponent) { 
 	return (dispatch) => { 
@@ -59,3 +103,4 @@ export function decorateNotes(scoreComponent, selectedElements) {
 	});
 	return {type: "NOTES_DECORATED"};
 }
+

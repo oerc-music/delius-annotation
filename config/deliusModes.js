@@ -1,6 +1,15 @@
 export const modes = {
-	"nothing": [],
+	"nothing": [
+		{
+			"label": "Cursor",
+			"id": "cursor"
+		}
+	],
 	"pointBase": [
+		{
+			"label": "Cursor",
+			"id": "cursor"
+		},
 		{
 			"label": "Upbow",
 			"id": "upbow",
@@ -33,6 +42,10 @@ export const modes = {
 		}
 	],
 	"rangeBase": [
+		{
+			"label": "Cursor",
+			"id": "cursor"
+		},
 		{
 			"label": "Upbow",
 			"id": "upbow",

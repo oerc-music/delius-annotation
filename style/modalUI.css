@@ -4,6 +4,7 @@
 	height: 100vh;
 	width:5em;
 	position: fixed;
+	z-index:1;
 }
 
 #modalPane.tall { 
@@ -50,8 +51,8 @@
 }
 		
 .note.active { 
-	fill: red;
-	color:red;
+	fill: magenta;
+	color:magenta;
 }
 .annotation {
 	stroke: #006633;
@@ -89,4 +90,12 @@
 .retracted {
 	stroke: #ABA;
 	fill: #ABA;
+}
+
+.barBox {
+	fill: rgba(16,64,64,0.75);
+}
+
+.barBox.hidden {
+	display: none;
 }
