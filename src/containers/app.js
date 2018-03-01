@@ -50,6 +50,8 @@ class App extends Component {
 		const nextGlyphs = nextProps.modalUI.elements["annotationGlyph"] || [];
 		const thisCursor = this.props.modalUI.elements["cursor"] || [];
 		const nextCursor = nextProps.modalUI.elements["cursor"] || [];
+		let nextDisplayCursorBoxes = false;
+		console.log("+++++: ", this.state.displayCursorBoxes);
 
 		// CURSOR LOGIC:
 		// ********************
@@ -58,7 +60,7 @@ class App extends Component {
 			this.props.popElements("cursor");
 		}
 
-		if(this.props.modalUI.constituents.has("cursor")) { 
+		if(nextProps.modalUI.constituents.has("cursor")) { 
 		// show or hide based on "cursor" constituent click
 			if(this.state.displayCursorBoxes) {
 				this.setState({ displayCursorBoxes: false }, () => {
@@ -66,16 +68,15 @@ class App extends Component {
 					this.props.hideCursorBoxes(this.scoreComponent)
 				});
 				this.props.hideCursorBoxes(this.scoreComponent);
+				nextDisplayCursorBoxes = false;
 			} else { 
 				this.props.clearElements("cursor"); // new cursor requested
 				this.setState({ displayCursorBoxes: true }, () => {
 					// callback: show cursor boxes once set state is done
 					// and switch to nothing mode
-					this.props.clearElements("note")
-					this.props.clearElements("annotationGlyph")
-					this.props.setMode("nothing");
 					this.props.showCursorBoxes(this.scoreComponent);
 				});
+				nextDisplayCursorBoxes = true;
 			}
 			this.props.clearConstituents();
 
@@ -86,6 +87,7 @@ class App extends Component {
 				this.props.hideCursorBoxes(this.scoreComponent);
 			});
 			this.props.clearConstituents();
+			nextDisplayCursorBoxes = false;
 		}
 
 		// ********************
@@ -118,6 +120,12 @@ class App extends Component {
 			this.props.clearConstituents();
 			// ... and unselect any note elements
 			this.props.clearElements("note");
+		} else if(nextDisplayCursorBoxes) { 
+			// User has decided to place a cursor
+			// switch to nothing mode
+			this.props.clearElements("note")
+			this.props.clearElements("annotationGlyph")
+			this.props.setMode("nothing");
 		} else { 
 			// Mode-specific rules go here
 			switch(this.props.modalUI.mode) { 
