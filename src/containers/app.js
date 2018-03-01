@@ -49,9 +49,8 @@ class App extends Component {
 		const theseGlyphs = this.props.modalUI.elements["annotationGlyph"] || [];
 		const nextGlyphs = nextProps.modalUI.elements["annotationGlyph"] || [];
 		const thisCursor = this.props.modalUI.elements["cursor"] || [];
-		const nextCursor = nextProps.modalUI.elements["cursor"] || [];
+		let nextCursor = nextProps.modalUI.elements["cursor"] || [];
 		let nextDisplayCursorBoxes = false;
-		console.log("+++++: ", this.state.displayCursorBoxes);
 
 		// CURSOR LOGIC:
 		// ********************
@@ -88,8 +87,18 @@ class App extends Component {
 			});
 			this.props.clearConstituents();
 			nextDisplayCursorBoxes = false;
-		}
 
+		}
+		
+		if(thisCursor.length && nextProps.modalUI.constituents.has("important")) { 
+			console.log("important!!!: ", thisCursor);
+			this.props.clearConstituents();
+			this.props.setMode("nothing");
+			this.props.clearElements("cursor");
+			nextCursor = [];
+			
+		}
+ 
 		// ********************
 		// END CURSOR LOGIC
 
@@ -104,12 +113,13 @@ class App extends Component {
 			this.props.popElements("annotationGlyph");
 		}
 		
-
 		if(theseNotes.length !== nextNotes.length &&
 			 nextNotes.length !== 0) { 
 			// note selection has changed
 			// deselected any annotation glyphs
+			// and reset cursor
 			this.props.clearElements("annotationGlyph");
+			this.props.clearElements("cursor");
 		}
 
 		if(!(theseGlyphs.length) &&
@@ -126,11 +136,18 @@ class App extends Component {
 			this.props.clearElements("note")
 			this.props.clearElements("annotationGlyph")
 			this.props.setMode("nothing");
-		} else { 
+		} else if(nextCursor.length) {
+			// User has a cursor placed
+			// switch to activeCursor mode
+			this.props.setMode("activeCursorMode");
+		}
+		else { 
 			// Mode-specific rules go here
 			switch(this.props.modalUI.mode) { 
 				case "nothing": 
+				case "activeCursorMode":
 				case "editAnnotationMode":
+				console.log("MODE IS :", this.props.modalUI.mode);
 					if(nextNotes.length) {
 						// note selected
 						this.props.clearConstituents();

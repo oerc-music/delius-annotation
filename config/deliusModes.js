@@ -5,6 +5,16 @@ export const modes = {
 			"id": "cursor"
 		}
 	],
+	"activeCursorMode": [
+		{
+			"label": "Cursor",
+			"id": "cursor"
+		},
+		{
+			"label": "Important!",
+			"id": "important"
+		}
+	],
 	"pointBase": [
 		{
 			"label": "Cursor",
