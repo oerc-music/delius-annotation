@@ -49,22 +49,24 @@ export function generateCursorBoxes(scoreComponent) {
 }
 
 export function hideCursorBoxes(scoreComponent) { 
-	const boxes = ReactDOM.findDOMNode(scoreComponent).querySelectorAll(".barBox");
-	console.log("CURSOR: HIDE", boxes)
-	Array.prototype.map.call(boxes, function(b) { 
-			b.classList.add("hidden");
-			console.log("Tried to hide ", b);
-		});
+	if(scoreComponent) { 
+		const boxes = ReactDOM.findDOMNode(scoreComponent).querySelectorAll(".barBox");
+		console.log("CURSOR: HIDE", boxes)
+		Array.prototype.map.call(boxes, function(b) { 
+				b.classList.add("hidden");
+			});
+	}
 	return { type: "HIDE_CURSOR_BOXES" }
 }
 
 export function showCursorBoxes(scoreComponent) { 
-	const boxes = ReactDOM.findDOMNode(scoreComponent).querySelectorAll(".barBox");
-	console.log("CURSOR: SHOW", boxes)
-	Array.prototype.map.call(boxes, function(b) { 
-		console.log("Tried to show ", b);
-		b.classList.remove("hidden") 
-	});
+	if(scoreComponent) { 
+		const boxes = ReactDOM.findDOMNode(scoreComponent).querySelectorAll(".barBox");
+		console.log("CURSOR: SHOW", boxes)
+		Array.prototype.map.call(boxes, function(b) { 
+			b.classList.remove("hidden") 
+		});
+	}
 	return { type: "SHOW_CURSOR_BOXES" }
 }
 

@@ -58,26 +58,36 @@ class App extends Component {
 			this.props.popElements("cursor");
 		}
 
-		if(nextProps.modalUI.constituents.has("cursor")) { 
+		if(this.props.modalUI.constituents.has("cursor")) { 
 		// show or hide based on "cursor" constituent click
 			if(this.state.displayCursorBoxes) {
-				this.setState({ displayCursorBoxes: false })
+				this.setState({ displayCursorBoxes: false }, () => {
+					// callback: hide cursor boxes once set state is done
+					this.props.hideCursorBoxes(this.scoreComponent)
+				});
 				this.props.hideCursorBoxes(this.scoreComponent);
 			} else { 
-				this.setState({ displayCursorBoxes: true })
-				this.props.showCursorBoxes(this.scoreComponent);
+				this.props.clearElements("cursor"); // new cursor requested
+				this.setState({ displayCursorBoxes: true }, () => {
+					// callback: show cursor boxes once set state is done
+					// and switch to nothing mode
+					this.props.clearElements("note")
+					this.props.clearElements("annotationGlyph")
+					this.props.setMode("nothing");
+					this.props.showCursorBoxes(this.scoreComponent);
+				});
 			}
+			this.props.clearConstituents();
+
+		} else if(this.state.displayCursorBoxes && nextCursor.length) {
+			// hide cursor boxes if one has been selected
+			console.log("RESET: ", this.props.modalUI, nextProps.modalUI, this.state.displayCursorBoxes);
+			this.setState({ displayCursorBoxes: false }, () => {
+				this.props.hideCursorBoxes(this.scoreComponent);
+			});
 			this.props.clearConstituents();
 		}
 
-// TODO		
-//		if(nextCursor.length) { 
-//			// hide cursor boxes if one has been selected
-//			this.setState({ displayCursorBoxes: false })
-//			this.props.hideCursorBoxes(this.scoreComponent);
-//			this.props.clearConstituents();
-//		}
-		
 		// ********************
 		// END CURSOR LOGIC
 
@@ -99,11 +109,6 @@ class App extends Component {
 			// deselected any annotation glyphs
 			this.props.clearElements("annotationGlyph");
 		}
-
-		if(!(thisCursor.length) && nextCursor.length) {
-			// User has clicked on a cursor box
-			// TODO
-		} 
 
 		if(!(theseGlyphs.length) &&
 			nextGlyphs.length) {
@@ -354,6 +359,7 @@ class App extends Component {
 		this.props.decorateNotes(this.scoreComponent, this.props.modalUI.elements["note"] || []);
 		// attach click handlers to any annotation glyphs
 		this.props.attachClickHandlerToAnnotationGlyphs(this.scoreComponent);
+		console.log("after update: ", this.state.displayCursorBoxes);
 	}
 
 	postSyncAnnotation() { 
