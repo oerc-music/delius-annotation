@@ -80,7 +80,23 @@ class App extends Component {
 			this.props.clearConstituents();
 
 		} else if(this.state.displayCursorBoxes && nextCursor.length) {
-			// hide cursor boxes if one has been selected
+			// cursor position has been selected
+			// make corresponding annotation...
+			var annotId = this.mintAnnotationId();
+			this.props.postAnnotation(
+				this.props.route.baseUri + "/sessions/deliusAnnotation", 
+				"UnknownEtag", 
+				JSON.stringify({	
+					"@id": annotId,
+					"oa:hasTarget": { 
+						"@type": { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag" }, 
+						"rdfs:member": { "@id": nextCursor[0].replace("-box","") }
+					},
+					"oa:motivatedBy": { "@id": "cursor" },
+					"meld:inAnnotationSet": this.state.currentAnnotationSet
+				})
+			);
+			// hide cursor boxes 
 			console.log("RESET: ", this.props.modalUI, nextProps.modalUI, this.state.displayCursorBoxes);
 			this.setState({ displayCursorBoxes: false }, () => {
 				this.props.hideCursorBoxes(this.scoreComponent);
@@ -91,7 +107,23 @@ class App extends Component {
 		}
 		
 		if(thisCursor.length && nextProps.modalUI.constituents.has("important")) { 
-			console.log("important!!!: ", thisCursor);
+			// user has specified the selected cursor position as important
+			// make corresponding annotation...
+			var annotId = this.mintAnnotationId();
+			this.props.postAnnotation(
+				this.props.route.baseUri + "/sessions/deliusAnnotation", 
+				"UnknownEtag", 
+				JSON.stringify({	
+					"@id": annotId,
+					"oa:hasTarget": { 
+						"@type": { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag" }, 
+						"rdfs:member": { "@id": nextCursor[0].replace("-box","") }
+					},
+					"oa:motivatedBy": { "@id": "important" },
+					"meld:inAnnotationSet": this.state.currentAnnotationSet
+				})
+			);
+			// and clear selections
 			this.props.clearConstituents();
 			this.props.setMode("nothing");
 			this.props.clearElements("cursor");
