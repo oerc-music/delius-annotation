@@ -7,7 +7,7 @@ import Score from 'meld-client/src/containers/score';
 import Modal from 'meld-client/src/containers/modalUI';
 import { fetchGraph } from '../../../meld-client/src/actions/index';
 import { setMode, clearConstituents, clearElements, popElements } from '../../../meld-client/src/actions/modalUI';
-import { attachClickHandlerToNotes, attachClickHandlerToAnnotationGlyphs, decorateNotes, generateCursorBoxes, hideCursorBoxes, showCursorBoxes } from '../actions/deliusActions';
+import { attachClickHandlerToNotes, attachClickHandlerToAnnotationGlyphs, decorateNotes, generateCursorBoxes, hideCursorBoxes, showCursorBoxes, unselectCursor } from '../actions/deliusActions';
 import { postAnnotation} from '../../../meld-client/src/actions/index'
 import { modes } from '../../config/deliusModes';
 import { drawSingleThingOnScore, drawRangedThingOnScore, showSet, leftOf, deleteThis, retractThis, toggleNudgeAnnotationGlyphStart, toggleNudgeAnnotationGlyphEnd } from '../scribble-on-score.js';
@@ -73,6 +73,7 @@ class App extends Component {
 				this.setState({ displayCursorBoxes: true }, () => {
 					// callback: show cursor boxes once set state is done
 					// and switch to nothing mode
+					this.props.unselectCursor(this.scoreComponent);
 					this.props.showCursorBoxes(this.scoreComponent);
 				});
 				nextDisplayCursorBoxes = true;
@@ -96,10 +97,10 @@ class App extends Component {
 					"meld:inAnnotationSet": this.state.currentAnnotationSet
 				})
 			);
-			// hide cursor boxes 
+			// hide cursor boxes, except the selected one
 			console.log("RESET: ", this.props.modalUI, nextProps.modalUI, this.state.displayCursorBoxes);
 			this.setState({ displayCursorBoxes: false }, () => {
-				this.props.hideCursorBoxes(this.scoreComponent);
+				this.props.hideCursorBoxes(this.scoreComponent, nextCursor[0]);
 			});
 			this.props.clearConstituents();
 			nextDisplayCursorBoxes = false;
@@ -500,7 +501,8 @@ function mapDispatchToProps(dispatch) {
 		postAnnotation,
 		popElements,
 		setMode,
-		showCursorBoxes
+		showCursorBoxes,
+		unselectCursor
 	}, dispatch);
 }
 

@@ -99,3 +99,10 @@
 .barBox.hidden {
 	display: none;
 }
+
+.barBox.selected { 
+	stroke:rgba(16,64,64,0.75);
+	stroke-width: 100px;
+	pointer-events: none;
+	fill-opacity:0;
+}

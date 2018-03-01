@@ -48,13 +48,33 @@ export function generateCursorBoxes(scoreComponent) {
 	}
 }
 
-export function hideCursorBoxes(scoreComponent) { 
+export function unselectCursor(scoreComponent) {
 	if(scoreComponent) { 
-		const boxes = ReactDOM.findDOMNode(scoreComponent).querySelectorAll(".barBox");
-		console.log("CURSOR: HIDE", boxes)
+		const box = ReactDOM.findDOMNode(scoreComponent).querySelector(".barBox.selected");
+		if(box) { 
+			box.classList.remove("selected");
+			console.log("Unselected cursor!");
+		}
+	}
+	return { type: "UNSELECT_CURSOR" }
+}
+
+export function hideCursorBoxes(scoreComponent, exceptThisOne) { 
+	if(scoreComponent) { 
+		// hide all the boxes, except the selected one (if specified)
+		const query = exceptThisOne ? ".barBox:not(#"+exceptThisOne+")" : ".barBox";
+		const boxes = ReactDOM.findDOMNode(scoreComponent).querySelectorAll(query);
+		console.log("CURSOR: HIDE", boxes, query)
 		Array.prototype.map.call(boxes, function(b) { 
-				b.classList.add("hidden");
-			});
+			b.classList.add("hidden");
+		});
+
+		if(exceptThisOne) {
+			// style the selected box if provided
+			let s = ReactDOM.findDOMNode(scoreComponent).querySelector("#" + exceptThisOne)
+			s.classList.add("selected");
+		}
+
 	}
 	return { type: "HIDE_CURSOR_BOXES" }
 }
