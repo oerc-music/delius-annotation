@@ -64,7 +64,7 @@ export function hideCursorBoxes(scoreComponent, exceptThisOne) {
 		// hide all the boxes, except the selected one (if specified)
 		const query = exceptThisOne ? ".barBox:not(#"+exceptThisOne+")" : ".barBox";
 		const boxes = ReactDOM.findDOMNode(scoreComponent).querySelectorAll(query);
-		console.log("CURSOR: HIDE", boxes, query)
+		console.log("~Hide: ", boxes);
 		Array.prototype.map.call(boxes, function(b) { 
 			b.classList.add("hidden");
 		});

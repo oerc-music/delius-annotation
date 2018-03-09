@@ -29,6 +29,7 @@ class App extends Component {
 		this.switchSet = this.switchSet.bind(this);
 		this.addSet= this.addSet.bind(this);
 		this.mintAnnotationId= this.mintAnnotationId.bind(this);
+		this.clearCursor= this.clearCursor.bind(this);
 	}
 
 	componentDidMount() { 
@@ -67,33 +68,13 @@ class App extends Component {
 					// callback: hide cursor boxes once set state is done
 					this.props.hideCursorBoxes(this.scoreComponent)
 				});
-				this.props.hideCursorBoxes(this.scoreComponent);
 				nextDisplayCursorBoxes = false;
-
-
 			} else { 
-				this.props.clearElements("cursor"); // new cursor requested
+				this.clearCursor(); // new cursor requested, so clear existing
 				this.setState({ displayCursorBoxes: true }, () => {
 					// callback: show cursor boxes once set state is done
 					// and switch to nothing mode
-					this.props.unselectCursor(this.scoreComponent);
 					this.props.showCursorBoxes(this.scoreComponent);
-					// if we were tracking a previous cursor annotation, 
-					// send the cursorCleared annotation and stop tracking 
-					if(this.state.currentCursorAnnotation) {
-						var annotId = this.mintAnnotationId();
-						this.props.postAnnotation(
-							this.props.route.baseUri + "/sessions/deliusAnnotation", 
-							"UnknownEtag", 
-							JSON.stringify({	
-								"@id": annotId,
-								"oa:hasTarget": { "@id": this.state.currentCursorAnnotation },
-								"oa:motivatedBy": { "@id": "cursorCleared" },
-								"meld:inAnnotationSet": this.state.currentAnnotationSet
-							})
-						);
-						this.setState({ currentCursorAnnotation: "" });
-					}
 				});
 				nextDisplayCursorBoxes = true;
 			}
@@ -124,7 +105,6 @@ class App extends Component {
 			});
 			this.props.clearConstituents();
 			nextDisplayCursorBoxes = false;
-
 		}
 		
 		if(thisCursor.length && nextProps.modalUI.constituents.has("important")) { 
@@ -144,7 +124,7 @@ class App extends Component {
 			// and clear selections
 			this.props.clearConstituents();
 			this.props.setMode("nothing");
-			this.props.clearElements("cursor");
+			this.clearCursor();
 			nextCursor = [];
 			
 		}
@@ -169,9 +149,8 @@ class App extends Component {
 			// deselected any annotation glyphs
 			// and reset cursor
 			this.props.clearElements("annotationGlyph");
-			this.props.clearElements("cursor");
+			this.clearCursor();
 		}
-
 		if(!(theseGlyphs.length) &&
 			nextGlyphs.length) {
 			// User has clicked on an annotation glyph
@@ -180,6 +159,7 @@ class App extends Component {
 			this.props.clearConstituents();
 			// ... and unselect any note elements
 			this.props.clearElements("note");
+			this.clearCursor();
 		} else if(nextDisplayCursorBoxes) { 
 			// User has decided to place a cursor
 			// switch to nothing mode
@@ -327,6 +307,29 @@ class App extends Component {
 					break;
 			}
 		}
+	}
+
+	clearCursor() {
+		this.props.clearElements("cursor"); 
+		this.props.hideCursorBoxes(this.scoreComponent);
+		// if we were tracking a previous cursor annotation, 
+		// send the cursorCleared annotation and stop tracking 
+		if(this.state.currentCursorAnnotation) {
+			var annotId = this.mintAnnotationId();
+			this.props.postAnnotation(
+				this.props.route.baseUri + "/sessions/deliusAnnotation", 
+				"UnknownEtag", 
+				JSON.stringify({	
+					"@id": annotId,
+					"oa:hasTarget": { "@id": this.state.currentCursorAnnotation },
+					"oa:motivatedBy": { "@id": "cursorCleared" },
+					"meld:inAnnotationSet": this.state.currentAnnotationSet
+				})
+			);
+			this.setState({ currentCursorAnnotation: "" });
+		}
+		// visually reset the cursor selection
+		this.props.unselectCursor(this.scoreComponent);
 	}
 
 	handleBaseModeLogic(nextProps) {
