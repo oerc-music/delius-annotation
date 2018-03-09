@@ -20,6 +20,7 @@ class App extends Component {
 			modes: modes,
 			annotationSets: [1],
 			currentAnnotationSet: 1,
+			currentCursorAnnotation: "",
 			displayCursorBoxes: false
 		 };
 		// Following bindings required to make 'this' work in the callbacks
@@ -68,6 +69,8 @@ class App extends Component {
 				});
 				this.props.hideCursorBoxes(this.scoreComponent);
 				nextDisplayCursorBoxes = false;
+
+
 			} else { 
 				this.props.clearElements("cursor"); // new cursor requested
 				this.setState({ displayCursorBoxes: true }, () => {
@@ -75,6 +78,22 @@ class App extends Component {
 					// and switch to nothing mode
 					this.props.unselectCursor(this.scoreComponent);
 					this.props.showCursorBoxes(this.scoreComponent);
+					// if we were tracking a previous cursor annotation, 
+					// send the cursorCleared annotation and stop tracking 
+					if(this.state.currentCursorAnnotation) {
+						var annotId = this.mintAnnotationId();
+						this.props.postAnnotation(
+							this.props.route.baseUri + "/sessions/deliusAnnotation", 
+							"UnknownEtag", 
+							JSON.stringify({	
+								"@id": annotId,
+								"oa:hasTarget": { "@id": this.state.currentCursorAnnotation },
+								"oa:motivatedBy": { "@id": "cursorCleared" },
+								"meld:inAnnotationSet": this.state.currentAnnotationSet
+							})
+						);
+						this.setState({ currentCursorAnnotation: "" });
+					}
 				});
 				nextDisplayCursorBoxes = true;
 			}
@@ -84,6 +103,7 @@ class App extends Component {
 			// cursor position has been selected
 			// make corresponding annotation...
 			var annotId = this.mintAnnotationId();
+			this.setState({ currentCursorAnnotation: annotId });
 			this.props.postAnnotation(
 				this.props.route.baseUri + "/sessions/deliusAnnotation", 
 				"UnknownEtag", 
@@ -116,10 +136,7 @@ class App extends Component {
 				"UnknownEtag", 
 				JSON.stringify({	
 					"@id": annotId,
-					"oa:hasTarget": { 
-						"@type": { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag" }, 
-						"rdfs:member": { "@id": nextCursor[0].replace("-box","") }
-					},
+					"oa:hasTarget": { "@id": this.state.currentCursorAnnotation },
 					"oa:motivatedBy": { "@id": "important" },
 					"meld:inAnnotationSet": this.state.currentAnnotationSet
 				})
@@ -180,7 +197,6 @@ class App extends Component {
 				case "nothing": 
 				case "activeCursorMode":
 				case "editAnnotationMode":
-				console.log("MODE IS :", this.props.modalUI.mode);
 					if(nextNotes.length) {
 						// note selected
 						this.props.clearConstituents();
