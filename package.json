@@ -19,7 +19,7 @@
     "babel-preset-stage-1": "^6.1.18",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0",
-	  "meld-client": "file:../meld-client",
+	  "meld-clients-core": "oerc-music/meld-clients-core",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "react-redux": "^4.0.0",

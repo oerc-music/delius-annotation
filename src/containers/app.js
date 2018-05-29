@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom'
 import { connect } from 'react-redux' ;
 import { bindActionCreators } from 'redux';
 
-import Score from 'meld-client/src/containers/score';
-import Modal from 'meld-client/src/containers/modalUI';
-import { fetchGraph } from '../../../meld-client/src/actions/index';
+import Score from 'meld-clients-core/src/containers/score';
+import Modal from 'meld-clients-core/src/containers/modalUI';
+import { fetchGraph } from 'meld-clients-core/src/actions/index';
 import { setMode, clearConstituents, clearElements, popElements } from '../../../meld-client/src/actions/modalUI';
 import { attachClickHandlerToNotes, attachClickHandlerToAnnotationGlyphs, decorateNotes, generateCursorBoxes, hideCursorBoxes, showCursorBoxes, unselectCursor } from '../actions/deliusActions';
-import { postAnnotation} from '../../../meld-client/src/actions/index'
+import { postAnnotation} from 'meld-clients-core/src/actions/index'
 import { modes } from '../../config/deliusModes';
 import { drawSingleThingOnScore, drawRangedThingOnScore, showSet, leftOf, deleteThis, retractThis, toggleNudgeAnnotationGlyphStart, toggleNudgeAnnotationGlyphEnd } from '../scribble-on-score.js';
 
