@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import Score from 'meld-clients-core/src/containers/score';
 import Modal from 'meld-clients-core/src/containers/modalUI';
 import { fetchGraph } from 'meld-clients-core/src/actions/index';
-import { setMode, clearConstituents, clearElements, popElements } from '../../../meld-client/src/actions/modalUI';
+import { setMode, clearConstituents, clearElements, popElements } from 'meld-clients-core/src/actions/modalUI';
 import { attachClickHandlerToNotes, attachClickHandlerToAnnotationGlyphs, decorateNotes, generateCursorBoxes, hideCursorBoxes, showCursorBoxes, unselectCursor } from '../actions/deliusActions';
 import { postAnnotation} from 'meld-clients-core/src/actions/index'
 import { modes } from '../../config/deliusModes';
@@ -493,7 +493,7 @@ class App extends Component {
 			<div> 
 					<link rel="stylesheet" href="style/modalUI.css" type="text/css" />
 					<Modal modes={this.state.modes} orientation="wide"/> 
-					<Score uri="/Late Swallows-dolet-musescore-II.mei" ref={(score) => {this.scoreComponent = score}} />
+					<Score uri="/Late Swallows-dolet-musescore-II.mei" options = { {pageWidth:60000} } ref={(score) => {this.scoreComponent = score}} />
 					<button id="sync" onClick={this.postSyncAnnotation}>Sync!</button>
 					<div className="setButtonsContainer">
 						{ annotationSetButtons }
