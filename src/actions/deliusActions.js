@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
-import { boxesForMeasures } from '../../../meld-client/src/library/boxesForMeasures';
+import { boxesForMeasures } from 'meld-clients-core/src/library/boxesForMeasures';
 
 export function attachClickHandlerToNotes(scoreComponent) {  
 	// horrible hack -- 

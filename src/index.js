@@ -6,14 +6,14 @@ import thunk from 'redux-thunk';
 import ReduxPromise from 'redux-promise';
 import { Router, Route, browserHistory } from 'react-router'
 
-import reducers from '../../meld-client/src/reducers';
+import reducers from 'meld-clients-core/src/reducers';
 import App from './containers/app';
 
 const createStoreWithMiddleware = applyMiddleware(thunk, ReduxPromise)(createStore);
 
 // ***** CHANGE ME TO DELIUS SERVER IP *******//
 //const baseUri = "http://192.168.0.180:5000"
-const baseUri = "http://127.0.0.1:5000"
+const baseUri = "http://127.0.0.1:6000"
 // *******************************************//
 
 ReactDOM.render(
