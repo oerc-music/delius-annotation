@@ -2,13 +2,15 @@ export const modes = {
 	"nothing": [
 		{
 			"label": "Cursor",
-			"id": "cursor"
+			"id": "cursor",
+			"image": "/buttons/cursor.svg"
 		}
 	],
 	"activeCursorMode": [
 		{
 			"label": "Cursor",
-			"id": "cursor"
+			"id": "cursor",
+			"image": "/buttons/cursor.svg"
 		},
 		{
 			"label": "Important!",
@@ -18,7 +20,8 @@ export const modes = {
 	"pointBase": [
 		{
 			"label": "Cursor",
-			"id": "cursor"
+			"id": "cursor",
+			"image": "/buttons/cursor.svg"
 		},
 		{
 			"label": "Upbow",
@@ -54,7 +57,8 @@ export const modes = {
 	"rangeBase": [
 		{
 			"label": "Cursor",
-			"id": "cursor"
+			"id": "cursor",
+			"image": "/buttons/cursor.svg"
 		},
 		{
 			"label": "Upbow",
