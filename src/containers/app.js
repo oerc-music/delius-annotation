@@ -12,6 +12,16 @@ import { postAnnotation} from 'meld-clients-core/src/actions/index'
 import { modes } from '../../config/deliusModes';
 import { drawSingleThingOnScore, drawRangedThingOnScore, showSet, leftOf, deleteThis, retractThis, toggleNudgeAnnotationGlyphStart, toggleNudgeAnnotationGlyphEnd } from '../scribble-on-score.js';
 
+const scale = 36;
+const vrvOptions = {
+	noLayout:1,
+	adjustPageHeight:0,
+	scale:scale,
+	spacingStaff: 24,
+	pageHeight: 700*100/scale,
+	pageWidth: 1000*100/scale
+}
+
 class App extends Component { 
 	constructor(props) {
 		super(props);
@@ -493,7 +503,7 @@ class App extends Component {
 			<div> 
 					<link rel="stylesheet" href="style/modalUI.css" type="text/css" />
 					<Modal modes={this.state.modes} orientation="wide"/> 
-					<Score uri="/Late Swallows-dolet-musescore-II.mei" ref={(score) => {this.scoreComponent = score}} />
+					<Score uri="/Late Swallows-dolet-musescore-II.mei" ref={(score) => {this.scoreComponent = score}} options={vrvOptions} />
 					<button id="sync" onClick={this.postSyncAnnotation}>Sync!</button>
 					<div className="setButtonsContainer">
 						{ annotationSetButtons }
