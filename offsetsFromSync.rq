@@ -1,0 +1,17 @@
+PREFIX oa: <http://www.w3.org/ns/oa#>
+
+INSERT {
+  ?a a oa:Annotation ;
+       oa:hasTarget ?offsetTarget .
+} WHERE { 
+   ?a oa:annotatedAt ?ts .
+   BIND(xsd:dateTime(?ts) as ?t) .
+   BIND(xsd:dateTime("2018-02-12T16:15:17.393Z") as ?sync) .
+   BIND(HOURS(?t) -  HOURS(?sync) as ?dH) .
+   BIND(MINUTES(?t) - MINUTES(?sync) as ?dM) .
+   BIND(SECONDS(?t) - SECONDS(?sync) as ?dS) .
+   BIND( ((?dH * 60) + ?dM) * 60 + ?dS as ?offset) . 
+   FILTER(?offset > 0) .
+   BIND(IRI(CONCAT("http://127.0.0.1:8080/DELIUS_EVENT.mp3?t=", STR(?offset))) as ?offsetTarget)
+}
+
