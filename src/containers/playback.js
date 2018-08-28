@@ -110,10 +110,8 @@ class Playback extends Component {
 							<div className="media-controls">
 								<PlayPause/>
 								<CurrentTime/>
-								<Progress/>
 								<SeekBar/>
 								<Duration/>
-								<MuteUnmute/>
 								<Volume/>
 							</div>
 						</div>
