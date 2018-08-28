@@ -493,7 +493,7 @@ class App extends Component {
 			<div> 
 					<link rel="stylesheet" href="style/modalUI.css" type="text/css" />
 					<Modal modes={this.state.modes} orientation="wide"/> 
-					<Score uri="/Late Swallows-dolet-musescore-II.mei" options = { {pageWidth:60000} } ref={(score) => {this.scoreComponent = score}} />
+					<Score uri="/Late Swallows-dolet-musescore-II.mei" ref={(score) => {this.scoreComponent = score}} />
 					<button id="sync" onClick={this.postSyncAnnotation}>Sync!</button>
 					<div className="setButtonsContainer">
 						{ annotationSetButtons }
