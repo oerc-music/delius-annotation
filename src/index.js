@@ -21,7 +21,7 @@ ReactDOM.render(
 	<Provider store={createStoreWithMiddleware(reducers)}>
 		<Router history={browserHistory}> 
 			<Route path="/" component={App} baseUri = {baseUri} />
-			<Route path="/playback" component={Playback} baseUri={baseUri} graphUri={baseUri + "/sessions/deliusAnnotation-REANNOTATION"} />
+			<Route path="/playback" component={Playback} baseUri={baseUri} graphUri="/delius-REANNOTATION-test.jsonld" />
 		</Router>
 	</Provider>
 		, document.querySelector('.container'));
