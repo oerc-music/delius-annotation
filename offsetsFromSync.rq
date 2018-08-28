@@ -12,6 +12,6 @@ INSERT {
    BIND(SECONDS(?t) - SECONDS(?sync) as ?dS) .
    BIND( ((?dH * 60) + ?dM) * 60 + ?dS as ?offset) . 
    FILTER(?offset > 0) .
-   BIND(IRI(CONCAT("http://127.0.0.1:8080/DELIUS_EVENT.mp3?t=", STR(?offset))) as ?offsetTarget)
+   BIND(IRI(CONCAT("http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=", STR(?offset))) as ?offsetTarget)
 }
 
