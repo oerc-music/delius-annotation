@@ -45,7 +45,7 @@ class Playback extends Component {
 			const graphUri = this.props.route.graphUri;
 			console.log("GRAPH: ", graphUri);
 			// TODO exclude MEI / mp3 files from traversal
-			this.props.traverse(graphUri);
+			this.props.traverse(graphUri, {numHops:0});
 		}
 		// generate boxes for measures (and adorn with cursor click-handler)
 		this.props.generateCursorBoxes(this.scoreComponent);
