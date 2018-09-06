@@ -1,0 +1,5 @@
+@prefix mo: <http://purl.org/ontology/mo/> .
+
+<http://localhost:8080/deliusScore.ttl> a mo:Score ;
+	mo:published_as  <http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei> .
+

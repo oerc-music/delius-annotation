@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom';
 import { boxesForMeasures } from 'meld-clients-core/src/library/boxesForMeasures';
+import { PROCESS_ANNOTATION } from 'meld-clients-core/src/actions/index';
 
 export function attachClickHandlerToNotes(scoreComponent) {  
 	// horrible hack -- 
@@ -126,3 +127,22 @@ export function decorateNotes(scoreComponent, selectedElements) {
 	return {type: "NOTES_DECORATED"};
 }
 
+export function projectAnnotations(outcomes) { 
+	return (dispatch) => { 
+		console.log("~~~OUTSIDE MAP ", outcomes[0]["@graph"]);
+		outcomes[0]["@graph"].map( (outcome) => {
+			// FIXME "targets" and "bodies" here should really be 
+			// "fragments" and "payloads" or similar in the core reducer
+			// TODO, think through and improve
+			console.log("~~~INSIDE MAP ", outcome);
+			let outcomeWrapper = {
+				targets: outcome["http://www.w3.org/ns/oa#hasTarget"],
+				bodies: outcome
+			}
+			dispatch({
+				type: PROCESS_ANNOTATION,
+				payload: outcomeWrapper
+			})
+		})
+	}
+}

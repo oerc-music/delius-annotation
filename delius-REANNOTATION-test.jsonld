@@ -1,0 +1,1745 @@
+{
+  "@context": {
+    "dcterms": "http://purl.org/dc/terms/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "http://127.0.0.1:5000/annotations/e9ipE5j35tSjn4HzPVQTtC",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-09T18:39:44.053882",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-09T18:39:43.592Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=8666"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000616233887"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/P9jQ2QP5FVoHLXRqnLJeuh",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T20:43:39.443574",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T20:43:39.260Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000668359490"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000235231926"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=16102"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/Cjw4z4UbpKu96URVCHzt6W",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-09T17:35:32.943992",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-09T17:35:32.607Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=4815"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000797961483"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/mf"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/ye27mZNrAZMhoZmUbpcvZ5",
+      "dcterms:created": "2018-02-12T16:15:17.713637",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T16:15:17.393Z",
+      "http://www.w3.org/ns/oa#hasTarget": {
+        "@id": "file:///home/davidw/delius-annotation/127.0.0.1:5000/sessions/deliusAnnotation-REANNOTATION"
+      },
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "http://meld.linkedmusic.org/motivation/Sync"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/LGU2TKqdVBtSzAFMcXuTV4",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T20:48:52.339146",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T20:48:52.133Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000703416060"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=16415"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000235231926"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/JPVTTYAj8UHC2Jup6VeXGM",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T20:56:37.816250",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T20:56:37.375Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000001791620436"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000235231926"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=16880"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/TNkYCKnNVEMzEeSnMe7kzj",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-09T18:35:55.470411",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-09T18:35:54.024Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000797961483"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=8437"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/WWX7kvv99qsSkGfaNwPDFn",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-12T16:16:49.868112",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T16:16:49.303Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000715904844"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=92"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000446009478"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/QoahVzJhViQqwPrvX9KThS",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T20:22:55.397827",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T20:22:55.078Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000797961483"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=14858"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000235231926"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/sessions/deliusAnnotation-REANNOTATION",
+      "http://purl.org/ontology/mo/performance_of": {
+        "@id": "http://localhost:8080/deliusScore.ttl"
+      },
+      "http://www.w3.org/ns/ldp#contains": [
+        {
+          "@id": "http://127.0.0.1:5000/annotations/P9jQ2QP5FVoHLXRqnLJeuh"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/KpCgpGWaaLUyLNxqWiJcfn"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/fKokEXbDSZgFnhwSYTDTH9"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/TNkYCKnNVEMzEeSnMe7kzj"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/DQxUUxTfADDVxiMscjCx4X"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/TB4Vg45iC9KXGJh3dc5qpZ"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/5ugMNZfhNLDnkPLjKJMkzD"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/NphU6DA6ZHidB8iBbsbj35"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/dyG4nzperA5pAkuW3owr4L"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/QoahVzJhViQqwPrvX9KThS"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/iU5SLqiLCS8Gjt777Aukog"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/DgzDAYBFxFWurWoxiuzBwY"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/rtLkiAwgJusoBgEKyQqVsU"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/yJeMdq4pwguEaSvS9GD7od"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/KgherihwUd89zU3rsZZXXn"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/yFE8LQWo6qXh2RAZSJxuVW"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/BKE6QGX5CvXytSqhrY2T5Q"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/HrbGSHTv8vSJRvpFFXP8sE"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/gqgyG7cscuQ8rtJvDN2LD4"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/qJ3ktnYXepJfvdoLe6DsjB"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/xNdhQohTwTgmk3ZJzsZiAP"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/Cjw4z4UbpKu96URVCHzt6W"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/LGU2TKqdVBtSzAFMcXuTV4"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/ZojeT7LvZMZXn97KVUfpo6"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/QifVBV7FfeKvPSekr8pbdR"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/GkgfVxwS63PLHUqchASgWd"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/tLnaJXeSyT22zEkyEMBxnf"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/RBFVbzNPfU8VWjuz9wjKqL"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/eEmJj4J9wAZ2RJ7tqVegy8"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/58AAFWWiJ8ekohGSC2AMA8"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/jkEFTzokLvVDYwBeCPkRk2"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/J4cH4mu5yh8iQwXwmCoxnF"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/ski2bGqEQULNSo8uWuNbme"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/GyZkCXtM9BExeDa2ymLyh7"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/aTseAFanNBRry9DkKV6kDn"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/YvU9pkpcUuz9gxV2vQaykc"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/zZU3iZNajbPFGoRSsHg9Mo"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/kG3PbKDvCBYsAwCfGDTHij"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/x49gAQpb74FHuqFKNxLmPK"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/umg4P7jiUuNmwmPzE9qRL4"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/iyizcZ8AFb9CBEtuZkJQJC"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/chiHnHqJmJo2tWBHqaoUCN"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/Aco9qZaGeoJoXWSNrPMvfU"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/BZEYsmuz72VKcQ77kZnZNm"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/EcBmZSXqC9WGGthdBAvmDM"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/z2YYdzKUhUX8mvvfzLP2C9"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/yxowZ6itZ2crbzZPPrPPvK"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/WWX7kvv99qsSkGfaNwPDFn"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/kpvazvvUZn89CEHdYHSggg"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/EgCovEYdD9TQxMQuNXCmKo"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/gnL5QWvmCLWyrKEGehzL6A"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/Lzoc8D8CtcpaMavFmSimbX"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/w7Mnx4QpHgoNJmzN7r6MV7"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/jKcLqunPGJdRSWm4mq7ysD"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/jwvKj3SprZpSkWj9mHJydW"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/cW23R7bPd8DzufNS7iGUod"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/phg2huPtk3NPucNxkw9rmb"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/BM7eKgrUM8RCkeuJuFLGn7"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/2hKJffzHZ7DEHLx6TgoRT4"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/vTDJNntMAt2V5MsqUwRb7h"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/TmestvWaXUjaPWpPoB32v9"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/ijx3rdfaHdX6PqZQNPoxZn"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/e9ipE5j35tSjn4HzPVQTtC"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/VmafbsX34eTgwV8kXsUHBY"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/fmHpGtLJUgiSWz2ED3wZJ5"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/7iQS92NSep6TKAy87gDeEV"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/aTXi5KgwszfLxxvb8oskqh"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/qyXMy4GfAXpacEpSBQydt9"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/5nP9R9moLeHZ6TNCjefZPg"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/TbYYr3sJaEKs8W7CHcUVQY"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/d8t625iaQnoYxyaBGmN5dW"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/dyqfkmPGGVCRmma86wEKNN"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/SZFk9zecJz7yVRLCo7Aedd"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/mRNucbrqP48dtz2oVGejc4"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/VPDbZ6DrUkeyh2TzSbZmU6"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/sLZd4jvxZbXu64VemohjZh"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/TfiJ8tq6TE9Uk6h7omAx8H"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/hC6Nob9TXYNccnfiWqbgK7"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/JPVTTYAj8UHC2Jup6VeXGM"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/VxSw45VxGauny8c8v9HCvQ"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/GSRghGNai9Hz8sfmpB2Sz8"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/ye27mZNrAZMhoZmUbpcvZ5"
+        },
+        {
+          "@id": "http://127.0.0.1:5000/annotations/kdXgHm4iBrHdFaRWcLp4Lm"
+        }
+      ]
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/kdXgHm4iBrHdFaRWcLp4Lm",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T20:26:36.842863",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T20:26:36.506Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000010980479"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000001817795034"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=15079"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/z2YYdzKUhUX8mvvfzLP2C9",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-09T17:45:34.229913",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-09T17:45:33.981Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000797961483"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=5416"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000235231926"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/5ugMNZfhNLDnkPLjKJMkzD",
+      "dcterms:created": "2018-02-12T16:14:25.469632",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T16:14:25.092Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000446009478"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000732791930"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/dim"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/fKokEXbDSZgFnhwSYTDTH9",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-12T16:15:22.892984",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T16:15:22.376Z",
+      "http://www.w3.org/ns/oa#hasTarget": {
+        "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=5"
+      },
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/mf"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/BZEYsmuz72VKcQ77kZnZNm",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-12T18:41:26.916098",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T18:41:26.381Z",
+      "http://www.w3.org/ns/oa#hasTarget": {
+        "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=8769"
+      },
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/mf"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/KgherihwUd89zU3rsZZXXn",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T21:27:36.768771",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T21:27:36.449Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000001676784569"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000001195767291"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=18739"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/VxSw45VxGauny8c8v9HCvQ",
+      "dcterms:created": "2018-02-12T16:01:12.239359",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T16:01:11.934Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000446009478"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000715904844"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/ijx3rdfaHdX6PqZQNPoxZn",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T20:53:31.895628",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T20:53:31.470Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000235231926"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=16694"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000001791620436"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/tLnaJXeSyT22zEkyEMBxnf",
+      "dcterms:created": "2018-02-12T16:09:55.993842",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T16:09:55.578Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000446009478"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000715904844"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/KpCgpGWaaLUyLNxqWiJcfn",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T20:29:38.884657",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T20:29:38.599Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000446009478"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000235231926"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=15261"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/TfiJ8tq6TE9Uk6h7omAx8H",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-12T16:23:29.935309",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T16:23:29.482Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=492"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000715904844"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000446009478"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/DgzDAYBFxFWurWoxiuzBwY",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-12T16:27:03.313079",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T16:27:02.755Z",
+      "http://www.w3.org/ns/oa#hasTarget": {
+        "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=705"
+      },
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/mf"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/mRNucbrqP48dtz2oVGejc4",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T20:40:03.992181",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T20:40:03.368Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000001791620436"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000235231926"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=15886"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/ZojeT7LvZMZXn97KVUfpo6",
+      "dcterms:created": "2018-02-12T16:01:20.960855",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T16:01:20.521Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000446009478"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000454096707"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/umg4P7jiUuNmwmPzE9qRL4",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T20:41:35.072755",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T20:41:34.913Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=15977"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000010980479"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000668359490"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/chiHnHqJmJo2tWBHqaoUCN",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T20:17:17.072423",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T20:17:15.751Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000454096707"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000797961483"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=14518"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/SZFk9zecJz7yVRLCo7Aedd",
+      "dcterms:created": "2018-02-12T16:10:20.975327",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T16:10:20.523Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000454096707"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000446009478"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/DQxUUxTfADDVxiMscjCx4X",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T21:07:29.764480",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T21:07:29.481Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000235231926"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000797961483"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=17532"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/QifVBV7FfeKvPSekr8pbdR",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T20:47:16.036693",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T20:47:15.851Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000001791620436"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=16318"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000235231926"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/TB4Vg45iC9KXGJh3dc5qpZ",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-09T18:24:32.230803",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-09T18:24:31.890Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000235231926"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=7754"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000797961483"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/phrase"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/sLZd4jvxZbXu64VemohjZh",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T21:23:08.926701",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T21:23:08.638Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=18471"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000235231926"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000797961483"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/hC6Nob9TXYNccnfiWqbgK7",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-09T17:48:19.117247",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-09T17:48:18.597Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000797961483"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000235231926"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=5581"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/GyZkCXtM9BExeDa2ymLyh7",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T20:59:21.817152",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T20:59:21.452Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=17044"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000797961483"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000454096707"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/EgCovEYdD9TQxMQuNXCmKo",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-09T18:24:41.098808",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-09T18:24:40.623Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000010980479"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=7763"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000668359490"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/5nP9R9moLeHZ6TNCjefZPg",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-09T18:29:03.398359",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-09T18:29:03.152Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=8026"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000010980479"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/cW23R7bPd8DzufNS7iGUod",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-12T18:41:45.448346",
+      "http://meld.linkedmusic.org/terms/inAnnotationSet": "1",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T18:41:44.964Z",
+      "http://www.w3.org/ns/oa#hasTarget": {
+        "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=8787"
+      },
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/fmHpGtLJUgiSWz2ED3wZJ5",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T21:21:44.238359",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T21:21:43.530Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=18386"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000235231926"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000797961483"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/jKcLqunPGJdRSWm4mq7ysD",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T21:30:59.505147",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T21:30:58.494Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000454096707"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=18941"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000797961483"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/dim"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/x49gAQpb74FHuqFKNxLmPK",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-09T18:43:09.594183",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-09T18:43:07.671Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000235231926"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=8870"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/yJeMdq4pwguEaSvS9GD7od",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T20:27:34.587376",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T20:27:34.091Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=15137"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000797961483"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/mf"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/7iQS92NSep6TKAy87gDeEV",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-12T18:41:39.689869",
+      "http://meld.linkedmusic.org/terms/inAnnotationSet": "1",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T18:41:39.088Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000446009478"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=8782"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/mf"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/dyqfkmPGGVCRmma86wEKNN",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T20:50:16.137654",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T20:50:15.955Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000797961483"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000235231926"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=16498"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/w7Mnx4QpHgoNJmzN7r6MV7",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-09T18:42:14.572592",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-09T18:42:14.173Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000454096707"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=8817"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/rtLkiAwgJusoBgEKyQqVsU",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-09T18:29:31.020808",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-09T18:29:30.472Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000732791930"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=8053"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/iyizcZ8AFb9CBEtuZkJQJC",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T21:27:06.968419",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T21:27:06.559Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=18709"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000454096707"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000797961483"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/VPDbZ6DrUkeyh2TzSbZmU6",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-09T18:39:53.570940",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-09T18:39:53.254Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=8676"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000454096707"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/dim"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/GkgfVxwS63PLHUqchASgWd",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-09T18:36:19.741161",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-09T18:36:19.333Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000010980479"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=8462"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/dim"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/BKE6QGX5CvXytSqhrY2T5Q",
+      "dcterms:created": "2018-02-12T16:14:04.627634",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T16:14:04.170Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000446009478"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000715904844"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/dyG4nzperA5pAkuW3owr4L",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T21:31:13.378157",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T21:31:13.075Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000001783954713"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=18956"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000001828507364"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/J4cH4mu5yh8iQwXwmCoxnF",
+      "dcterms:created": "2018-02-12T16:05:18.716295",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T16:05:18.176Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000446009478"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000715904844"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/jwvKj3SprZpSkWj9mHJydW",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T21:24:53.643550",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T21:24:53.218Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000235231926"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=18576"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000797961483"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/aTseAFanNBRry9DkKV6kDn",
+      "dcterms:created": "2018-02-12T16:05:27.135743",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T16:05:26.667Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000454096707"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000001424443788"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/BM7eKgrUM8RCkeuJuFLGn7",
+      "dcterms:created": "2018-02-12T16:07:44.666760",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T16:07:44.432Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000616233887"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000797961483"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/yxowZ6itZ2crbzZPPrPPvK",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-12T16:22:21.170176",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T16:22:20.630Z",
+      "http://www.w3.org/ns/oa#hasTarget": {
+        "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=423"
+      },
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/mf"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/NphU6DA6ZHidB8iBbsbj35",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T21:43:00.349016",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T21:42:59.872Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000797961483"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000235231926"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=19662"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/phrase"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/iU5SLqiLCS8Gjt777Aukog",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-09T18:42:23.848564",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-09T18:42:23.564Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=8826"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000235231926"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/vTDJNntMAt2V5MsqUwRb7h",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T21:44:43.371009",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T21:44:42.720Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000001388260574"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000001828507364"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=19765"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/phrase"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/GSRghGNai9Hz8sfmpB2Sz8",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-12T16:23:36.708438",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T16:23:36.247Z",
+      "http://www.w3.org/ns/oa#hasTarget": {
+        "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=499"
+      },
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/finger2"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/aTXi5KgwszfLxxvb8oskqh",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-12T16:17:43.148237",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T16:17:42.762Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=145"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000715904844"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000001424443788"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/qJ3ktnYXepJfvdoLe6DsjB",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T20:51:30.842187",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T20:51:30.614Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000235231926"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000797961483"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=16573"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/Lzoc8D8CtcpaMavFmSimbX",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-12T16:22:08.464871",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T16:22:07.915Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000732791930"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=410"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000715904844"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/Aco9qZaGeoJoXWSNrPMvfU",
+      "dcterms:created": "2018-02-12T16:07:38.709065",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T16:07:38.236Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000446009478"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000715904844"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/EcBmZSXqC9WGGthdBAvmDM",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-09T16:41:51.263501",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-09T16:41:50.923Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=1593"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000797961483"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000891965884"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/eEmJj4J9wAZ2RJ7tqVegy8",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-09T18:31:06.207574",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-09T18:31:05.527Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=8148"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000732791930"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/TbYYr3sJaEKs8W7CHcUVQY",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T20:24:04.220018",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T20:24:03.840Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=14926"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000797961483"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000454096707"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/RBFVbzNPfU8VWjuz9wjKqL",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T21:44:32.536686",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T21:44:32.159Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000668359490"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000797961483"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=19755"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/phrase"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/gnL5QWvmCLWyrKEGehzL6A",
+      "dcterms:created": "2018-02-12T16:11:24.532594",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T16:11:24.153Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000010980479"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000797961483"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/2hKJffzHZ7DEHLx6TgoRT4",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T21:24:31.605403",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T21:24:31.262Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=18554"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000797961483"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000454096707"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/TmestvWaXUjaPWpPoB32v9",
+      "dcterms:created": "2018-02-12T16:11:19.512157",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T16:11:19.076Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000446009478"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000715904844"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/kG3PbKDvCBYsAwCfGDTHij",
+      "dcterms:created": "2018-02-12T16:09:03.283728",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T16:09:02.767Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000446009478"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000715904844"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/YvU9pkpcUuz9gxV2vQaykc",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-12T16:26:57.254608",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T16:26:56.799Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=699"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000715904844"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000446009478"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/kpvazvvUZn89CEHdYHSggg",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-09T18:21:23.723997",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-09T18:21:23.475Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000001817795034"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=7566"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000001424443788"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/phrase"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/jkEFTzokLvVDYwBeCPkRk2",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-12T16:15:28.002679",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T16:15:27.580Z",
+      "http://www.w3.org/ns/oa#hasTarget": {
+        "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=10"
+      },
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/finger2"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/xNdhQohTwTgmk3ZJzsZiAP",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T21:22:15.924738",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T21:22:15.629Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=18418"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000235231926"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000797961483"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/gqgyG7cscuQ8rtJvDN2LD4",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T21:05:47.118739",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T21:05:46.743Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000235231926"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=17429"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000797961483"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/ski2bGqEQULNSo8uWuNbme",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-09T18:24:35.273385",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-09T18:24:34.792Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=7757"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000010980479"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/58AAFWWiJ8ekohGSC2AMA8",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-12T16:53:33.806916",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T16:53:33.305Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000732791930"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000715904844"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=2296"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/qyXMy4GfAXpacEpSBQydt9",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T21:26:43.700522",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T21:26:43.333Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000235231926"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000797961483"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=18686"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/phg2huPtk3NPucNxkw9rmb",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-08T21:43:23.874409",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-08T21:43:23.516Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=19686"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000235231926"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000797961483"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/phrase"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/d8t625iaQnoYxyaBGmN5dW",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-09T18:31:58.710825",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-09T18:31:58.304Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000001424443788"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=8201"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/cresc"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/VmafbsX34eTgwV8kXsUHBY",
+      "dcterms:created": "2018-02-12T16:14:35.293238",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T16:14:34.831Z",
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/finger2"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/HrbGSHTv8vSJRvpFFXP8sE",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-12T16:17:34.953691",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T16:17:34.526Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000446009478"
+        },
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000001068804216"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=137"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/dim"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/yFE8LQWo6qXh2RAZSJxuVW",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-12T16:27:09.215553",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-12T16:27:08.680Z",
+      "http://www.w3.org/ns/oa#hasTarget": {
+        "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=711"
+      },
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/finger1"
+      }
+    },
+    {
+      "@id": "http://127.0.0.1:5000/annotations/zZU3iZNajbPFGoRSsHg9Mo",
+      "@type": "http://www.w3.org/ns/oa#Annotation",
+      "dcterms:created": "2018-02-09T18:42:17.873290",
+      "http://www.w3.org/ns/oa#annotatedAt": "2018-02-09T18:42:17.420Z",
+      "http://www.w3.org/ns/oa#hasTarget": [
+        {
+          "@id": "http://localhost:8080/Late%20Swallows-dolet-musescore-II.mei#note-0000000891965884"
+        },
+        {
+          "@id": "http://127.0.0.1:8080/DELIUS_EVENT.mp3#t=8820"
+        }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy": {
+        "@id": "file:///Users/davidlewis/Development/meld/meld/server/dim"
+      }
+    }
+  ]
+}
+
