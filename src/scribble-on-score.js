@@ -67,7 +67,7 @@ function getAllNotePositions(SVG){
 }
 
 export function leftOf(note1, note2){
-	if(!SVG) getSVG(document.getElementById(note1));
+	if(!SVG) SVG = getSVG(document.getElementById(note1));
 	if(!notes) notes = getAllNotePositions(SVG);
 	return notes[note1].x < notes[note2].x;
 }
@@ -85,7 +85,7 @@ function chordsBetween(note1, note2){
 }
 
 function notesBetween(note1, note2){
-	if(!SVG) getSVG(element);
+	if(!SVG) SVG = getSVG(element);
 	if(!notes) notes = getAllNotePositions(SVG);
 	var noteDetails1 = notes[note1];
 	var noteDetails2 = notes[note2];
@@ -113,7 +113,7 @@ function notesBetween(note1, note2){
 	return noteList.filter(n => notes[n.id].x >= noteDetails1.x && notes[n.id].x<=noteDetails2.x);
 }
 function chordForNote(elementId){
-	if(!SVG) getSVG(document.getElementById(note1));
+	if(!SVG) SVG = getSVG(document.getElementById(note1));
 	if(!notes) notes = getAllNotePositions(SVG);
 	notes[elementId].chord;
 }
@@ -122,6 +122,7 @@ function makeSymbol(symbol, id){
 	// creates the symbol in the <defs> section of SVG. There probably
 	// is a better way. N.B. Here, we're creating a new symbol
 	// definition for every annotation, which is also fairly stupid.
+	console.log("make symbol", symbol, id);
 	var symbolEl = document.createElementNS(SVGNS, "symbol");
   symbolEl.setAttributeNS(null, "viewBox", "0 0 1000 1000");
   symbolEl.setAttributeNS(null, "overflow", "inherit");
@@ -147,8 +148,7 @@ function getSVG(element){
 		element = element.parentNode;
 	}
 	if(element.parentNode){
-		SVG = element.parentNode;
-		return SVG;
+		return element.parentNode;
 	} else {
 		console.log("Looking for SVG for element that is not a child of one", element);
 	}
@@ -157,7 +157,7 @@ function getSVGDefs(SVG){
 	// N.B. In Verovio, we this is in the parent SVG, not the Child
 	var mainSVG = SVG;
 	var mySVG = getSVG(SVG);
-	SVG = mainSVG;
+//	SVG = mainSVG;
 	var topLevel = mySVG.childNodes;
 	for(var i=0; i<topLevel.length; i++){
 		if(topLevel[i].nodeName.toLowerCase()==="defs"){
@@ -175,7 +175,7 @@ function getSVGDefs(SVG){
 }
 
 export function drawRangedThingOnScore(element1, nudge1, element2, nudge2, symbol, annotationSet, id) {
-	if(!SVG) getSVG(element1);
+	if(!SVG) SVG = getSVG(element1);
 	if(!notes) notes = getAllNotePositions(SVG);
 	if(!annotationSet) annotationSet=0
 	// if(element1===element2) {
@@ -258,7 +258,7 @@ function drawRangedSymbol(element1, nudge1, element2, nudge2, symbol, annotation
 			console.log("Something is wrong with nudge locations:",
 									theJoyOfX[note1.staff], note1.x, pos1);
 			deltax2 = 360;
-		}
+v		}
 	}
   group.setAttributeNS(null, "class", symbol + " annotation set"+annotationSet);
 	var left = xFudge + note1.x + deltax1;
@@ -313,10 +313,9 @@ export function drawSingleThingOnScore(element, symbol, xnudge, annotationSet, i
 	// Records presence of the annotation and draws it
 	if(symbol==="cresc" || symbol==="dim"){
 		// This looks like a point annotation, but is really a range
-		console.log("Single-note ranged thing");
 		return drawRangedThingOnScore(element, xnudge, element, true, symbol, annotationSet, id);
 	}
-	if(!SVG) getSVG(element);
+	if(!SVG) SVG = getSVG(element);
 	if(!notes) {
 		notes = getAllNotePositions(SVG);
 	}
@@ -347,6 +346,7 @@ export function drawSingleThingOnScore(element, symbol, xnudge, annotationSet, i
 }
 
 function drawSymbol(element, symbol, xnudge, annotationSet, id, y){
+	console.log(element, symbol, xnudge, annotationSet, id, y)
 	var group = document.createElementNS(SVGNS, "g");
 	if(id) {
 		group.setAttributeNS(null, "id", id);
@@ -388,7 +388,7 @@ function drawSymbol(element, symbol, xnudge, annotationSet, id, y){
 		group.appendChild(textEl);
 	}
 	// FIXME:!!!
-	getSVG(element);
+	if(!SVG) SVG = getSVG(element);
 	SVG.appendChild(group);
 }
 
@@ -476,4 +476,109 @@ export function toggleNudgeAnnotationGlyphEnd(elementID){
 			}
 		}
 	}	
+}
+
+function isScore(uri){
+	// This is stupid, and should be done through the graph (or the
+	// annotation should be clearer).
+	if(uri.indexOf(".mei#") > -1){
+		return true;
+	}
+	return false;
+}
+
+function annotationSymbol(annotation) {
+	if(annotation["http://www.w3.org/ns/oa#motivatedBy"]){
+		return annotation["http://www.w3.org/ns/oa#motivatedBy"]["@id"];
+	} else return false;
+}
+function annotationTargets(annotation){
+	var scoreTargets = {start:false, startOff: false, end: false, endOff: false};
+	var predicates = ["http://meld.linkedmusic.org/terms/startsWith",
+										"http://meld.linkedmusic.org/terms/startsAfter",
+										"http://meld.linkedmusic.org/terms/endsWith",
+										"http://meld.linkedmusic.org/terms/endsAfter"];
+	if(annotation["http://www.w3.org/ns/oa#hasTarget"]){
+		var targets = annotation["http://www.w3.org/ns/oa#hasTarget"];
+		for(var i=0; i<targets.length; i++){
+			var k = Object.keys(targets[i]);
+			for(var p=0; p<k.length; p++){
+				var key = k[p];
+				var val = targets[i][key];
+				switch(key){
+					case "http://meld.linkedmusic.org/terms/startsWith":
+						if(typeof(val)=='string'){
+							scoreTargets.start = val.substring(val.indexOf('#')+1);
+						} else if(val["@id"]){
+							scoreTargets.start = val["@id"].substring(val["@id"].indexOf('#')+1);
+						} 
+						break;
+					case "http://meld.linkedmusic.org/terms/startsAfter":
+						scoreTargets.start = val["@id"].substring(val["@id"].indexOf('#')+1);
+						scoreTargets.startOff = true;
+						break;
+					case "http://meld.linkedmusic.org/terms/endsWith":
+						scoreTargets.end = val["@id"].substring(val["@id"].indexOf('#')+1);
+						break;
+					case "http://meld.linkedmusic.org/terms/endsAfter":
+						scoreTargets.end = val["@id"].substring(val["@id"].indexOf('#')+1);
+						scoreTargets.endOff = true;
+						break;
+				}
+			}
+		}
+	}
+	return scoreTargets;
+}
+
+function shortform(url){
+	var lastSlash = url.lastIndexOf('/');
+	var lastBit = url.substring(lastSlash+1);
+	console.log("Annotation is a ", lastBit);
+	return lastBit;
+}
+
+function cheapGetSVG(){
+	var svgcollection =  document.getElementsByClassName('definition-scale');
+	if(svgcollection.length) return svgcollection[0];
+	return false;
+}
+
+export function replayAnnotations(annotations, targetSVG){
+	// SORT FIRST
+	// FIXME
+	SVG = targetSVG;
+	SVGDefs = (SVG);
+	if(SVG){
+		if(!notes) notes = getAllNotePositions(SVG);
+		var oldAnnotations = SVG.getElementsByClassName('annotation');
+		for(var j=oldAnnotations.length-1; j>=0; j--){
+			oldAnnotations[j].remove();
+		}
+	}
+	for(var i=0; i<annotations.length; i++){
+		var annotation = annotations[i];
+		var symbol = annotationSymbol(annotation);
+		var target = annotationTargets(annotation);
+		if(target.start){
+			if(target.end){
+				// ranged
+				var note1 =notes[target.start];
+				var staffNo = note1.staff;
+				var y = staffGaps[note.staff];
+				drawRangedSymbol(document.getElementById(target.start), target.startOff,
+												 document.getElementById(target.end), target.endOff,
+												 shortform(symbol), 0, annotation["@id"], y);
+			} else {
+				// point symbol
+				var note = notes[target.start];
+				var y = staffGaps[note.staff];
+				drawSymbol(document.getElementById(target.start), shortform(symbol), target.startOff, 0,
+									 annotation["@id"], y);
+			}
+		} 
+	}
+	var items = SVG.getElementsByClassName('annotation');
+//	console.log('>>>>', SVG, items);
+	return SVG;
 }

@@ -1,10 +1,10 @@
 {
    "name": "delius-annotator",
-   "version": "0.0.1",
+   "version": "0.0.2",
    "description": "Annotation app, using MELD, for recording live instrumental masterclass annotations",
    "main": "index.js",
    "scripts": {
-      "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js"
+      "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --port 8082"
    },
    "author": "Davids Weigl and Lewis, University of Oxford e-Research Centre",
    "license": "BSD-3-Clause",

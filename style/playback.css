@@ -1,0 +1,54 @@
+.topbar {
+		width:100%;
+		z-index: -20;
+		position: fixed;
+		top: 0;
+		left: 0;
+		margin: 0;
+		height: 53px;
+		background-color: #002147;
+}
+.topbar h3 {
+		margin-left: 260px;
+		color: white;
+		font-family: "Open Sans",Helvetica,Arial,sans-seruf
+}
+#oulogo {
+		position: fixed;
+		left: 115px;
+		background-color: white;
+		top: 0;
+		padding: 0 5px;
+}
+.foot {
+		height: 60px;
+		width: 100%;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		background-color: #002147;
+		color: white;
+		z-index: -20;
+}
+.media.qvid {
+		padding: 5px;
+		margin: 10px;
+		background-color: white;
+}
+.playbackapp .scorepane {
+		top: 220px;
+		z-index: -10;
+}
+.playbackapp .annotationDescription {
+		position: fixed;
+		left: 260px;
+		top: 125px;
+		padding: 15px;
+		color: white;
+		font-style: italic;
+		font-size: 180%;
+		font-family: georgia, times, serif;
+		#		background-color: #002147;
+		background-color: #004721;
+		border-radius: 12px;
+}

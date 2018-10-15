@@ -1,0 +1,319 @@
+{
+  "@graph" : [ {
+    "@id" : "_:b0",
+    "http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000001969904731"
+  }, {
+    "@id" : "_:b1",
+    "endsAfter" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000000274728790",
+    "http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000000274728790"
+  }, {
+    "@id" : "_:b10",
+    "endsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000001982030950",
+    "http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000002041215627"
+  }, {
+    "@id" : "_:b11",
+    "endsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000000851477994",
+    "http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000000587669782"
+  }, {
+    "@id" : "_:b12",
+    "endsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000000842251611",
+    "http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000002045852260"
+  }, {
+    "@id" : "_:b13",
+    "endsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000001646713650",
+    "http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000001497734708"
+  }, {
+    "@id" : "_:b14",
+    "http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000001040008351"
+  }, {
+    "@id" : "_:b15",
+    "endsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000001274360509",
+    "http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000001677331907"
+  }, {
+    "@id" : "_:b16",
+    "http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000000437619516"
+  }, {
+    "@id" : "_:b17",
+    "endsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000002002865514",
+    "http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000001903623378"
+  }, {
+    "@id" : "_:b18",
+    "http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000001765319859"
+  }, {
+    "@id" : "_:b19",
+    "http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000001783008958"
+  }, {
+    "@id" : "_:b2",
+    "http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000001745662903"
+  }, {
+    "@id" : "_:b20",
+    "endsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000000684581176",
+    "http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000000862778542"
+  }, {
+    "@id" : "_:b21",
+    "http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000002076645521"
+  }, {
+    "@id" : "_:b22",
+    "http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000001765319859"
+  }, {
+    "@id" : "_:b23",
+    "endsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000002115133093",
+    "http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000000862778542"
+  }, {
+    "@id" : "_:b3",
+    "http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000000134175578"
+  }, {
+    "@id" : "_:b4",
+    "endsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000001030026780",
+    "http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000001238568546"
+  }, {
+    "@id" : "_:b5",
+    "http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000000034996349"
+  }, {
+    "@id" : "_:b6",
+    "http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000002076645521"
+  }, {
+    "@id" : "_:b7",
+    "http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000001954214938"
+  }, {
+    "@id" : "_:b8",
+    "http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000000343847943"
+  }, {
+    "@id" : "_:b9",
+    "http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000001969904731"
+  }, {
+    "@id" : "http://192.168.0.180:5000/annotations/delius2018-02-21T14:21:27.059Z",
+    "@type" : "ns2:Annotation",
+    "created" : "2018-02-21T14:21:27.646939",
+    "annotatedAt" : "2018-02-21T14:21:27.060Z",
+    "hasTarget" : [ "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4#t=1046",
+										{
+											"http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000001040008351"}],
+    "motivatedBy" : "file:///home/davidw/meld/server/finger2"
+  }, {
+    "@id" : "http://192.168.0.180:5000/annotations/delius2018-02-21T14:21:30.946Z",
+    "@type" : "ns2:Annotation",
+    "created" : "2018-02-21T14:21:30.566565",
+    "annotatedAt" : "2018-02-21T14:21:30.946Z",
+    "hasTarget" : [ "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4#t=1050",
+										{
+											"@id" : "_:b19",
+											"http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000001783008958"
+										}],
+    "motivatedBy" : "file:///home/davidw/meld/server/finger3"
+  }, {
+    "@id" : "http://192.168.0.180:5000/annotations/delius2018-02-21Tfake1",
+    "@type" : "ns2:Annotation",
+    "created" : "2018-02-21T14:21:31.000000",
+    "annotatedAt" : "2018-02-21T14:21:31.000Z",
+    "hasTarget" : [ "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4#t=1051",
+										{
+											"http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000000461340488"}],
+    "motivatedBy" : "file:///home/davidw/meld/server/finger2"
+  }, {
+    "@id" : "http://192.168.0.180:5000/annotations/delius2018-02-21Tfake2",
+    "@type" : "ns2:Annotation",
+    "created" : "2018-02-21T14:21:32.000000",
+    "annotatedAt" : "2018-02-21T14:21:32.000Z",
+    "hasTarget" : [ "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4#t=1052",
+										{
+											"http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000001676784569"
+										}],
+    "motivatedBy" : "file:///home/davidw/meld/server/finger3"
+  }, {
+    "@id" : "http://192.168.0.180:5000/annotations/delius2018-02-21T14:23:00.913Z",
+    "@type" : "ns2:Annotation",
+    "created" : "2018-02-21T14:23:39.635924",
+    "annotatedAt" : "2018-02-21T14:23:40.095Z",
+    "hasTarget" : [ "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4#t=1144", "_:b6" ],
+    "motivatedBy" : "file:///home/davidw/meld/server/mp"
+  }, {
+    "@id" : "http://192.168.0.180:5000/annotations/delius2018-02-21T14:23:04.597Z",
+    "@type" : "ns2:Annotation",
+    "created" : "2018-02-21T14:23:43.124582",
+    "annotatedAt" : "2018-02-21T14:23:43.584Z",
+    "hasTarget" : [ "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4#t=1148", "_:b22" ],
+    "motivatedBy" : "file:///home/davidw/meld/server/mp"
+  }, {
+    "@id" : "http://192.168.0.180:5000/annotations/delius2018-02-21T14:23:08.416Z",
+    "@type" : "ns2:Annotation",
+    "created" : "2018-02-21T14:23:07.982356",
+    "annotatedAt" : "2018-02-21T14:23:46.551Z",
+    "hasTarget" : [ "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4#t=1152", {
+			"http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000001969904731"
+		} ],
+    "motivatedBy" : "file:///home/davidw/meld/server/mp"
+  }, {
+    "@id" : "http://192.168.0.180:5000/annotations/delius2018-02-21T14:23:55.216Z",
+    "@type" : "ns2:Annotation",
+    "created" : "2018-02-21T14:23:54.793158",
+    "annotatedAt" : "2018-02-21T14:23:55.216Z",
+    "hasTarget" : [ "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4#t=1199", "_:b21" ],
+    "motivatedBy" : "file:///home/davidw/meld/server/mf"
+  }, {
+    "@id" : "http://192.168.0.180:5000/annotations/delius2018-02-21T14:24:11.533Z",
+    "@type" : "ns2:Annotation",
+    "created" : "2018-02-21T14:24:11.132222",
+    "annotatedAt" : "2018-02-21T14:24:11.533Z",
+    "hasTarget" : [ "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4#t=1215", "_:b18" ],
+    "motivatedBy" : "file:///home/davidw/meld/server/mf"
+  }, {
+    "@id" : "http://192.168.0.180:5000/annotations/delius2018-02-21T14:24:17.066Z",
+    "@type" : "ns2:Annotation",
+    "created" : "2018-02-21T14:24:16.669376",
+    "annotatedAt" : "2018-02-21T14:24:17.066Z",
+    "hasTarget" : [ "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4#t=1221", "_:b9" ],
+    "motivatedBy" : "file:///home/davidw/meld/server/mf"
+  }, {
+    "@id" : "http://192.168.0.180:5000/annotations/delius2018-02-21T14:29:25.442Z",
+    "@type" : "ns2:Annotation",
+    "created" : "2018-02-21T14:29:25.077597",
+    "annotatedAt" : "2018-02-21T14:29:25.442Z",
+    "hasTarget" : [ "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4#t=1529", "_:b2" ],
+    "motivatedBy" : "file:///home/davidw/meld/server/downbow"
+  }, {
+    "@id" : "http://192.168.0.180:5000/annotations/delius2018-02-21T14:43:10.202Z",
+    "@type" : "ns2:Annotation",
+    "created" : "2018-02-21T14:43:09.878324",
+    "annotatedAt" : "2018-02-21T14:43:13.346Z",
+    "hasTarget" : [ "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4#t=2357",
+										{
+											"endsAfter" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000000274728790",
+											"http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000000274728790"
+										}
+									],
+    "motivatedBy" : "file:///home/davidw/meld/server/cresc"
+  }, {
+    "@id" : "http://192.168.0.180:5000/annotations/delius2018-02-21T14:46:21.693Z",
+    "@type" : "ns2:Annotation",
+    "created" : "2018-02-21T14:46:21.680669",
+    "annotatedAt" : "2018-02-21T14:46:21.738Z",
+    "hasTarget" : [ "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4#t=2545",
+										{"endsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000001982030950",
+										 "http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000002041215627"} ],
+    "motivatedBy" : "file:///home/davidw/meld/server/cresc"
+  }, {
+    "@id" : "http://192.168.0.180:5000/annotations/delius2018-02-21T14:53:44.405Z",
+    "@type" : "ns2:Annotation",
+    "created" : "2018-02-21T14:53:44.008086",
+    "annotatedAt" : "2018-02-21T14:53:44.405Z",
+    "hasTarget" : [ "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4#t=2988", "_:b17" ],
+    "motivatedBy" : "file:///home/davidw/meld/server/phrase"
+  }, {
+    "@id" : "http://192.168.0.180:5000/annotations/delius2018-02-21T14:53:46.859Z",
+    "@type" : "ns2:Annotation",
+    "created" : "2018-02-21T14:53:46.504867",
+    "annotatedAt" : "2018-02-21T14:53:46.859Z",
+    "hasTarget" : [ "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4#t=2990", "_:b5" ],
+    "motivatedBy" : "file:///home/davidw/meld/server/upbow"
+  }, {
+    "@id" : "http://192.168.0.180:5000/annotations/delius2018-02-21T15:01:45.082Z",
+    "@type" : "ns2:Annotation",
+    "created" : "2018-02-21T16:03:48.974500",
+    "annotatedAt" : "2018-02-21T15:01:45.083Z",
+    "hasTarget" : [ "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4#t=3469", "_:b12" ],
+    "motivatedBy" : "file:///home/davidw/meld/server/phrase"
+  }, {
+    "@id" : "http://192.168.0.180:5000/annotations/delius2018-02-21T15:11:46.507Z",
+    "@type" : "ns2:Annotation",
+    "created" : "2018-02-21T15:11:46.520367",
+    "annotatedAt" : "2018-02-21T15:11:46.507Z",
+    "hasTarget" : [ "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4#t=4070", "_:b23" ],
+    "motivatedBy" : "file:///home/davidw/meld/server/cresc"
+  }, {
+    "@id" : "http://192.168.0.180:5000/annotations/delius2018-02-21T15:11:50.464Z",
+    "@type" : "ns2:Annotation",
+    "created" : "2018-02-21T15:11:50.086841",
+    "annotatedAt" : "2018-02-21T15:11:50.473Z",
+    "hasTarget" : [ "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4#t=4074", "_:b13" ],
+    "motivatedBy" : "file:///home/davidw/meld/server/cresc"
+  }, {
+    "@id" : "http://192.168.0.180:5000/annotations/delius2018-02-21T15:11:57.136Z",
+    "@type" : "ns2:Annotation",
+    "created" : "2018-02-21T15:11:56.800502",
+    "annotatedAt" : "2018-02-21T15:11:57.137Z",
+    "hasTarget" : [ "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4#t=4081",
+										{
+											"endsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000000851477994",
+											"http://meld.linkedmusic.org/terms/startsWith" : "http://localhost:8082/Late%20Swallows-dolet-musescore-II.mei#note-0000000587669782"}
+									],
+    "motivatedBy" : "file:///home/davidw/meld/server/cresc"
+  }, {
+    "@id" : "http://192.168.0.180:5000/annotations/delius2018-02-21T15:15:23.831Z",
+    "@type" : "ns2:Annotation",
+    "created" : "2018-02-21T15:15:23.429554",
+    "annotatedAt" : "2018-02-21T15:15:23.831Z",
+    "hasTarget" : [ "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4#t=4287", "_:b3" ],
+    "motivatedBy" : "file:///home/davidw/meld/server/upbow"
+  }, {
+    "@id" : "http://192.168.0.180:5000/annotations/delius2018-02-21T15:15:26.132Z",
+    "@type" : "ns2:Annotation",
+    "created" : "2018-02-21T15:15:25.880934",
+    "annotatedAt" : "2018-02-21T15:15:26.132Z",
+    "hasTarget" : [ "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4#t=4290", "_:b16" ],
+    "motivatedBy" : "file:///home/davidw/meld/server/downbow"
+  }, {
+    "@id" : "http://192.168.0.180:5000/annotations/delius2018-02-21T15:15:28.199Z",
+    "@type" : "ns2:Annotation",
+    "created" : "2018-02-21T15:15:27.833939",
+    "annotatedAt" : "2018-02-21T15:15:28.200Z",
+    "hasTarget" : [ "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4#t=4292", "_:b8" ],
+    "motivatedBy" : "file:///home/davidw/meld/server/upbow"
+  }, {
+    "@id" : "http://192.168.0.180:5000/annotations/delius2018-02-21T15:15:30.627Z",
+    "@type" : "ns2:Annotation",
+    "created" : "2018-02-21T15:15:30.270481",
+    "annotatedAt" : "2018-02-21T15:15:30.627Z",
+    "hasTarget" : [ "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4#t=4294", "_:b7" ],
+    "motivatedBy" : "file:///home/davidw/meld/server/downbow"
+  }, {
+    "@id" : "http://192.168.0.180:5000/annotations/delius2018-02-21T15:16:09.637Z",
+    "@type" : "ns2:Annotation",
+    "created" : "2018-02-21T15:16:09.754870",
+    "annotatedAt" : "2018-02-21T15:16:09.637Z",
+    "hasTarget" : [ "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4#t=4333", "_:b20" ],
+    "motivatedBy" : "file:///home/davidw/meld/server/phrase"
+  }, {
+    "@id" : "http://192.168.0.180:5000/annotations/delius2018-02-21T15:16:13.121Z",
+    "@type" : "ns2:Annotation",
+    "created" : "2018-02-21T15:16:12.911969",
+    "annotatedAt" : "2018-02-21T15:16:13.122Z",
+    "hasTarget" : [ "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4#t=4337", "_:b4" ],
+    "motivatedBy" : "file:///home/davidw/meld/server/phrase"
+  }, {
+    "@id" : "http://192.168.0.180:5000/annotations/delius2018-02-21T15:16:17.451Z",
+    "@type" : "ns2:Annotation",
+    "created" : "2018-02-21T15:16:17.143524",
+    "annotatedAt" : "2018-02-21T15:16:17.451Z",
+    "hasTarget" : [ "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4#t=4341", "_:b15" ],
+    "motivatedBy" : "file:///home/davidw/meld/server/phrase"
+  } ],
+  "@id" : "urn:x-arq:DefaultGraphNode",
+  "@context" : {
+    "motivatedBy" : {
+      "@id" : "http://www.w3.org/ns/oa#motivatedBy",
+      "@type" : "@id"
+    },
+    "hasTarget" : {
+      "@id" : "http://www.w3.org/ns/oa#hasTarget",
+      "@type" : "@id"
+    },
+    "annotatedAt" : "http://www.w3.org/ns/oa#annotatedAt",
+    "created" : "http://purl.org/dc/terms/created",
+    "endsWith" : {
+      "@id" : "http://meld.linkedmusic.org/terms/endsWith",
+      "@type" : "@id"
+    },
+    "endsAfter" : {
+      "@id" : "http://meld.linkedmusic.org/terms/endsAfter",
+      "@type" : "@id"
+    },
+    "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "xml" : "http://www.w3.org/XML/1998/namespace",
+    "xsd" : "http://www.w3.org/2001/XMLSchema#",
+    "dcterms" : "http://purl.org/dc/terms/",
+    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
+    "ns2" : "http://www.w3.org/ns/oa#",
+    "ns1" : "http://meld.linkedmusic.org/terms/"
+  }
+}

@@ -13,9 +13,10 @@ import { setMode, clearConstituents, clearElements, popElements } from 'meld-cli
 import { attachClickHandlerToNotes, attachClickHandlerToAnnotationGlyphs, decorateNotes, generateCursorBoxes, hideCursorBoxes, projectAnnotations, showCursorBoxes, unselectCursor } from '../actions/deliusActions';
 import { registerClock, tickTimedResource } from 'meld-clients-core/src/actions/index'
 import { modes } from '../../config/deliusModes';
-import { drawSingleThingOnScore, drawRangedThingOnScore, showSet, leftOf, deleteThis, retractThis, toggleNudgeAnnotationGlyphStart, toggleNudgeAnnotationGlyphEnd } from '../scribble-on-score.js';
+import { drawSingleThingOnScore, drawRangedThingOnScore, showSet, leftOf, deleteThis, retractThis, toggleNudgeAnnotationGlyphStart, toggleNudgeAnnotationGlyphEnd, replayAnnotations } from '../scribble-on-score.js';
 
-const clockProvider = "http://127.0.0.1:8080/DELIUS_EVENT.mp3"
+// const clockProvider = "http://127.0.0.1:8080/DELIUS_EVENT.mp3"
+const clockProvider = "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4"
 
 class Playback extends Component { 
 	constructor(props) {
@@ -24,7 +25,15 @@ class Playback extends Component {
 			currentMotif: this.props.motif || false,
 			currentCursorAnnotation: "",
 			displayCursorBoxes: false,
-			lastMediaTick: 0
+			lastMediaTick: 0,
+			describe: {
+				finger2: "fingering (2)",
+				finger3: "fingering (3)",
+				cresc: "crescendo",
+				dim: "diminuendo",
+				mf: "mezzoforte",
+				mp: "mezzopiano"
+			}
 		 };
 		// Following bindings required to make 'this' work in the callbacks
 		this.tick = this.tick.bind(this);
@@ -49,9 +58,11 @@ class Playback extends Component {
 		}
 		// generate boxes for measures (and adorn with cursor click-handler)
 		this.props.generateCursorBoxes(this.scoreComponent);
+		console.log('mounted');
 	}
 	
 	componentDidUpdate(prevProps, prevState) {
+		console.log('updating');
 		if("graph" in prevProps) { 
 			// check our traversal objectives if the graph has updated
 			if(prevProps.graph.graph.length !== this.props.graph.graph.length) { 
@@ -83,27 +94,45 @@ class Playback extends Component {
 		}
 	}
 
-	render() { 
+	render() {
+		var annotationsToShow = false;
 		if("mediaResources" in this.props.timesync &&
 			clockProvider in this.props.timesync.mediaResources) { 
 			let cT = this.props.timesync.mediaResources[clockProvider]["currentTime"];
 			// if a delay is desired between time and action, modify cT here
 			const syncs = this.props.timesync.mediaResources[clockProvider]["times"];
 			const times = Object.keys(syncs).map((t) => Number(t)); // ensure number, not string
+			var annotationDescription = false;
 			let timesToShow =[]
 			if(times.length) { 
 				timesToShow = times.filter( (t) => { return t <= cT });
 			}
-			const annotationsToShow = timesToShow.map( (toShow) => { 
+			annotationsToShow = timesToShow.map( (toShow) => { 
 				return syncs[toShow];
 			});
-			console.log("Please draw these annotations: ", annotationsToShow);
+			var lastTime = timesToShow.length ? Math.max(...timesToShow) : -10;
+			if(cT - lastTime <5){
+				var lastAnnotation = syncs[lastTime];
+				var motivation = lastAnnotation["http://www.w3.org/ns/oa#motivatedBy"]["@id"];
+				var annotationDescription = this.state.describe[motivation.substring(motivation.lastIndexOf('/')+1)];
+			} else {
+				console.log(cT, lastTime);
+			}
+			console.log("Please draw these annotations: ", annotationsToShow, "T", timesToShow, "S", syncs, annotationDescription);
 		}
 		return (
-			<div> 
-					<link rel="stylesheet" href="style/modalUI.css" type="text/css" />
+				<div>
+				<link rel="stylesheet" href="style/playback.css" type="text/css" />
+				<div className="topbar">
+				<a id="oulogo" href="https://www.ox.ac.uk"><img height="115px" width="115px" src="/style/university_of_oxford.png"/></a>
+				<h3>String quartet workshop</h3>
+				</div>
+			<div className="playbackapp"> 
+				<link rel="stylesheet" href="style/modalUI.css" type="text/css" />
+				{annotationDescription &&
+				 <div className="annotationDescription">{annotationDescription}</div>}
 					<Media>
-						<div className="media">
+						<div className="media qvid">
 							<div className="media-player">
 								<Player src={ clockProvider } onTimeUpdate={ (t) => {this.tick(clockProvider, t)} } />
 							</div>
@@ -112,12 +141,13 @@ class Playback extends Component {
 								<CurrentTime/>
 								<SeekBar/>
 								<Duration/>
-								<Volume/>
 							</div>
 						</div>
 					</Media>
-					<Score uri="/Late Swallows-dolet-musescore-II.mei" options={{pageWidth:19000}} ref={(score) => {this.scoreComponent = score}} />
+				<Score className="underVideo" uri="/Late Swallows-dolet-musescore-II.mei" options={{pageWidth:19000, spacingStaff:24}} scoreAnnotations={annotationsToShow} drawAnnotation={replayAnnotations} ref={(score) => {this.scoreComponent = score}} />
 			</div>
+				<div className="foot" />
+				</div>
 		)
 	}
 }

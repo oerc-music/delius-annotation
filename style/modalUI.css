@@ -106,3 +106,14 @@
 	pointer-events: none;
 	fill-opacity:0;
 }
+.qvid {
+		position: fixed;
+		right: 5px;
+		top: 5px;
+}
+.qvid video {
+		max-height: 240px;
+}
+.qvid input {
+		width: 200px;
+}

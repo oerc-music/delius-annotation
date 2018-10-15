@@ -15,13 +15,14 @@ const createStoreWithMiddleware = applyMiddleware(thunk, ReduxPromise)(createSto
 // ***** CHANGE ME TO DELIUS SERVER IP *******//
 //const baseUri = "http://192.168.0.180:5000"
 const baseUri = "http://127.0.0.1:6000"
+const graphUri="/delius-shorter.jsonld";
 // *******************************************//
 
 ReactDOM.render(
 	<Provider store={createStoreWithMiddleware(reducers)}>
 		<Router history={browserHistory}> 
 			<Route path="/" component={App} baseUri = {baseUri} />
-			<Route path="/playback" component={Playback} baseUri={baseUri} graphUri="/delius-REANNOTATION-test.jsonld" />
+  		<Route path="/playback" component={Playback} baseUri={baseUri} graphUri={graphUri} />
 		</Router>
 	</Provider>
 		, document.querySelector('.container'));
