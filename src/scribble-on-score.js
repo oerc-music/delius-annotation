@@ -1,3 +1,4 @@
+var meldURL = "https://meld.linkedmusic.org/";
 var SVGNS = "http://www.w3.org/2000/svg";
 var chordAnnotationsSoFar = [{}];
 var allAnnotations = [[]];
@@ -85,7 +86,7 @@ function chordsBetween(note1, note2){
 }
 
 function notesBetween(note1, note2){
-	if(!SVG) SVG = getSVG(element);
+	if(!SVG) SVG = getSVG(note1);
 	if(!notes) notes = getAllNotePositions(SVG);
 	var noteDetails1 = notes[note1];
 	var noteDetails2 = notes[note2];
@@ -113,16 +114,16 @@ function notesBetween(note1, note2){
 	return noteList.filter(n => notes[n.id].x >= noteDetails1.x && notes[n.id].x<=noteDetails2.x);
 }
 function chordForNote(elementId){
-	if(!SVG) SVG = getSVG(document.getElementById(note1));
+	if(!SVG) SVG = getSVG(document.getElementById(elementId));
 	if(!notes) notes = getAllNotePositions(SVG);
-	notes[elementId].chord;
+	return notes[elementId].chord;
 }
 function makeSymbol(symbol, id){
 	// Has pretty gnarly side effects. Returns the 'use' element, but
 	// creates the symbol in the <defs> section of SVG. There probably
 	// is a better way. N.B. Here, we're creating a new symbol
 	// definition for every annotation, which is also fairly stupid.
-	console.log("make symbol", symbol, id);
+	// console.log("make symbol", symbol, id);
 	var symbolEl = document.createElementNS(SVGNS, "symbol");
   symbolEl.setAttributeNS(null, "viewBox", "0 0 1000 1000");
   symbolEl.setAttributeNS(null, "overflow", "inherit");
@@ -258,7 +259,7 @@ function drawRangedSymbol(element1, nudge1, element2, nudge2, symbol, annotation
 			console.log("Something is wrong with nudge locations:",
 									theJoyOfX[note1.staff], note1.x, pos1);
 			deltax2 = 360;
-v		}
+		}
 	}
   group.setAttributeNS(null, "class", symbol + " annotation set"+annotationSet);
 	var left = xFudge + note1.x + deltax1;
@@ -342,11 +343,10 @@ export function drawSingleThingOnScore(element, symbol, xnudge, annotationSet, i
 		annotationAppliesTo[id]={elements: [element], nudges: [xnudge],
 														 symbol: symbol, set: annotationSet};
 	}
-	drawSymbol(element, symbol, xnudge, annotationSet, id, y+yNudge);
+	return drawSymbol(element, symbol, xnudge, annotationSet, id, y+yNudge);
 }
 
 function drawSymbol(element, symbol, xnudge, annotationSet, id, y){
-	console.log(element, symbol, xnudge, annotationSet, id, y)
 	var group = document.createElementNS(SVGNS, "g");
 	if(id) {
 		group.setAttributeNS(null, "id", id);
@@ -390,6 +390,7 @@ function drawSymbol(element, symbol, xnudge, annotationSet, id, y){
 	// FIXME:!!!
 	if(!SVG) SVG = getSVG(element);
 	SVG.appendChild(group);
+	return group;
 }
 
 export function showSet(setno){
@@ -494,33 +495,35 @@ function annotationSymbol(annotation) {
 }
 function annotationTargets(annotation){
 	var scoreTargets = {start:false, startOff: false, end: false, endOff: false};
-	var predicates = ["http://meld.linkedmusic.org/terms/startsWith",
-										"http://meld.linkedmusic.org/terms/startsAfter",
-										"http://meld.linkedmusic.org/terms/endsWith",
-										"http://meld.linkedmusic.org/terms/endsAfter"];
+	var predicates = [meldURL+"terms/startsWith",
+										meldURL+"terms/startsAfter",
+										meldURL+"terms/endsWith",
+										meldURL+"terms/endsAfter"];
 	if(annotation["http://www.w3.org/ns/oa#hasTarget"]){
 		var targets = annotation["http://www.w3.org/ns/oa#hasTarget"];
+		if(!Array.isArray(targets)) targets = [targets];
 		for(var i=0; i<targets.length; i++){
 			var k = Object.keys(targets[i]);
 			for(var p=0; p<k.length; p++){
 				var key = k[p];
 				var val = targets[i][key];
+				console.log(key, val);
 				switch(key){
-					case "http://meld.linkedmusic.org/terms/startsWith":
+					case meldURL+"terms/startsWith":
 						if(typeof(val)=='string'){
 							scoreTargets.start = val.substring(val.indexOf('#')+1);
 						} else if(val["@id"]){
 							scoreTargets.start = val["@id"].substring(val["@id"].indexOf('#')+1);
 						} 
 						break;
-					case "http://meld.linkedmusic.org/terms/startsAfter":
+					case meldURL+"terms/startsAfter":
 						scoreTargets.start = val["@id"].substring(val["@id"].indexOf('#')+1);
 						scoreTargets.startOff = true;
 						break;
-					case "http://meld.linkedmusic.org/terms/endsWith":
+					case meldURL+"terms/endsWith":
 						scoreTargets.end = val["@id"].substring(val["@id"].indexOf('#')+1);
 						break;
-					case "http://meld.linkedmusic.org/terms/endsAfter":
+					case meldURL+"terms/endsAfter":
 						scoreTargets.end = val["@id"].substring(val["@id"].indexOf('#')+1);
 						scoreTargets.endOff = true;
 						break;
@@ -579,6 +582,6 @@ export function replayAnnotations(annotations, targetSVG){
 		} 
 	}
 	var items = SVG.getElementsByClassName('annotation');
-//	console.log('>>>>', SVG, items);
+	var o = new XMLSerializer();
 	return SVG;
 }

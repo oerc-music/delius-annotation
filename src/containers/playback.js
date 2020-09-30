@@ -3,17 +3,17 @@ import ReactDOM from 'react-dom'
 import { connect } from 'react-redux' ;
 import { bindActionCreators } from 'redux';
 import { Media, Player, controls, utils } from 'react-media-player'
+
+import Score from 'meld-clients-core/lib/containers/score';
+import Modal from 'meld-clients-core/lib/containers/modalUI';
+import { traverse, setTraversalObjectives, checkTraversalObjectives } from 'meld-clients-core/lib/actions/index';
+import { setMode, clearConstituents, clearElements, popElements } from 'meld-clients-core/lib/actions/modalUI';
+import { attachClickHandlerToNotes, attachClickHandlerToAnnotationGlyphs, decorateNotes, generateCursorBoxes, hideCursorBoxes, projectAnnotations, showCursorBoxes, unselectCursor } from '../actions/deliusActions';
+import { registerClock, tickTimedResource } from 'meld-clients-core/lib/actions/index'
+import { modes } from '../config/deliusModes';
+import { drawSingleThingOnScore, drawRangedThingOnScore, showSet, leftOf, deleteThis, retractThis, toggleNudgeAnnotationGlyphStart, toggleNudgeAnnotationGlyphEnd, replayAnnotations } from '../scribble-on-score.js';
 const { PlayPause, CurrentTime, Progress, SeekBar, Duration, MuteUnmute, Volume, Fullscreen } = controls
 const { formatTime } = utils
-
-import Score from 'meld-clients-core/src/containers/score';
-import Modal from 'meld-clients-core/src/containers/modalUI';
-import { traverse, setTraversalObjectives, checkTraversalObjectives } from 'meld-clients-core/src/actions/index';
-import { setMode, clearConstituents, clearElements, popElements } from 'meld-clients-core/src/actions/modalUI';
-import { attachClickHandlerToNotes, attachClickHandlerToAnnotationGlyphs, decorateNotes, generateCursorBoxes, hideCursorBoxes, projectAnnotations, showCursorBoxes, unselectCursor } from '../actions/deliusActions';
-import { registerClock, tickTimedResource } from 'meld-clients-core/src/actions/index'
-import { modes } from '../../config/deliusModes';
-import { drawSingleThingOnScore, drawRangedThingOnScore, showSet, leftOf, deleteThis, retractThis, toggleNudgeAnnotationGlyphStart, toggleNudgeAnnotationGlyphEnd, replayAnnotations } from '../scribble-on-score.js';
 
 // const clockProvider = "http://127.0.0.1:8080/DELIUS_EVENT.mp3"
 const clockProvider = "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4"
@@ -50,8 +50,8 @@ class Playback extends Component {
 	}
 	componentDidMount() { 
 		console.log("PROPS: ", this.props);
-		if(this.props.route.graphUri) { 
-			const graphUri = this.props.route.graphUri;
+		if(this.props.graphUri) { 
+			const graphUri = this.props.graphUri;
 			console.log("GRAPH: ", graphUri);
 			// TODO exclude MEI / mp3 files from traversal
 			this.props.traverse(graphUri, {numHops:0});
@@ -144,7 +144,7 @@ class Playback extends Component {
 							</div>
 						</div>
 					</Media>
-				<Score className="underVideo" uri="/Late Swallows-dolet-musescore-II.mei" options={{pageWidth:19000, spacingStaff:24}} scoreAnnotations={annotationsToShow} drawAnnotation={replayAnnotations} ref={(score) => {this.scoreComponent = score}} />
+				<Score className="underVideo" uri="/Late Swallows-dolet-musescore-II.mei" options={{pageWidth:19000, spacingStaff:24, breaks:'none', scale: 36}} scoreAnnotations={annotationsToShow} drawAnnotation={replayAnnotations} ref={(score) => {this.scoreComponent = score}} />
 			</div>
 				<div className="foot" />
 				</div>

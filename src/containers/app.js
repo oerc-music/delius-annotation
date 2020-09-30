@@ -2,24 +2,26 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux' ;
 import { bindActionCreators } from 'redux';
+import {prefix as pref} from 'meld-clients-core/lib/library/prefixes';
 
-import Score from 'meld-clients-core/src/containers/score';
-import Modal from 'meld-clients-core/src/containers/modalUI';
-import { fetchGraph } from 'meld-clients-core/src/actions/index';
-import { setMode, clearConstituents, clearElements, popElements } from 'meld-clients-core/src/actions/modalUI';
+import Score from 'meld-clients-core/lib/containers/score';
+import Modal from 'meld-clients-core/lib/containers/modalUI';
+import { fetchGraph } from 'meld-clients-core/lib/actions/index';
+import { setMode, clearConstituents, clearElements, popElements } from 'meld-clients-core/lib/actions/modalUI';
 import { attachClickHandlerToNotes, attachClickHandlerToAnnotationGlyphs, decorateNotes, generateCursorBoxes, hideCursorBoxes, showCursorBoxes, unselectCursor } from '../actions/deliusActions';
-import { postAnnotation} from 'meld-clients-core/src/actions/index'
-import { modes } from '../../config/deliusModes';
-import { drawSingleThingOnScore, drawRangedThingOnScore, showSet, leftOf, deleteThis, retractThis, toggleNudgeAnnotationGlyphStart, toggleNudgeAnnotationGlyphEnd } from '../scribble-on-score.js';
+import { postAnnotation} from 'meld-clients-core/lib/actions/index'
+import { modes } from '../config/deliusModes';
+import { drawSingleThingOnScore, drawRangedThingOnScore, showSet, leftOf, deleteThis, retractThis, toggleNudgeAnnotationGlyphStart, toggleNudgeAnnotationGlyphEnd, replayAnnotations } from '../scribble-on-score.js';
 
 const scale = 36;
 const vrvOptions = {
-	noLayout:1,
+//	noLayout:1,
+	breaks: 'none',
 	adjustPageHeight:0,
 	scale:scale,
 	spacingStaff: 24,
 	pageHeight: 700*100/scale,
-	pageWidth: 1000*100/scale
+	pageWidth: 10000*100/scale
 }
 
 class App extends Component { 
@@ -31,7 +33,8 @@ class App extends Component {
 			annotationSets: [1],
 			currentAnnotationSet: 1,
 			currentCursorAnnotation: "",
-			displayCursorBoxes: false
+			displayCursorBoxes: false,
+			annotationsToShow: []
 		 };
 		// Following bindings required to make 'this' work in the callbacks
 		this.handleBaseModeLogic = this.handleBaseModeLogic.bind(this);
@@ -96,16 +99,16 @@ class App extends Component {
 			var annotId = this.mintAnnotationId();
 			this.setState({ currentCursorAnnotation: annotId });
 			this.props.postAnnotation(
-				this.props.route.baseUri + "/sessions/deliusAnnotation", 
+				this.props.baseUri + "/sessions/deliusAnnotation",
 				"UnknownEtag", 
 				JSON.stringify({	
 					"@id": annotId,
-					"oa:hasTarget": { 
+					[pref.oa+"hasTarget"]: { 
 						"@type": { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag" }, 
-						"rdfs:member": { "@id": nextCursor[0].replace("-box","") }
+						[pref.rdfs+"member"]: { "@id": nextCursor[0].replace("-box","") }
 					},
-					"oa:motivatedBy": { "@id": "cursor" },
-					"meld:inAnnotationSet": this.state.currentAnnotationSet
+					[pref.oa+"motivatedBy"]: { "@id": "cursor" },
+					[pref.meld+"inAnnotationSet"]: this.state.currentAnnotationSet
 				})
 			);
 			// hide cursor boxes, except the selected one
@@ -122,13 +125,13 @@ class App extends Component {
 			// make corresponding annotation...
 			var annotId = this.mintAnnotationId();
 			this.props.postAnnotation(
-				this.props.route.baseUri + "/sessions/deliusAnnotation", 
+				this.props.baseUri + "/sessions/deliusAnnotation", 
 				"UnknownEtag", 
 				JSON.stringify({	
 					"@id": annotId,
-					"oa:hasTarget": { "@id": this.state.currentCursorAnnotation },
-					"oa:motivatedBy": { "@id": "important" },
-					"meld:inAnnotationSet": this.state.currentAnnotationSet
+					[pref.oa+"hasTarget"]: { "@id": this.state.currentCursorAnnotation },
+					[pref.oa+"motivatedBy"]: { "@id": "important" },
+					[pref.meld+"inAnnotationSet"]: this.state.currentAnnotationSet
 				})
 			);
 			// and clear selections
@@ -198,7 +201,7 @@ class App extends Component {
 							deleteThis(this.props.modalUI.elements.annotationGlyph[0]);
 							this.props.postAnnotation(
 								// FIXME should really be a patch, not a post
-								this.props.route.baseUri + "/sessions/deliusAnnotation", 
+								this.props.baseUri + "/sessions/deliusAnnotation", 
 								"UnknownEtag", 
 								JSON.stringify({	
 									"@id": nextGlyphs[0],
@@ -211,7 +214,7 @@ class App extends Component {
 							retractThis(this.props.modalUI.elements.annotationGlyph[0]);
 							this.props.postAnnotation(
 								// FIXME should really be a patch, not a post
-								this.props.route.baseUri + "/sessions/deliusAnnotation", 
+								this.props.baseUri + "/sessions/deliusAnnotation", 
 								"UnknownEtag", 
 								JSON.stringify({	
 									"@id": nextGlyphs[0],
@@ -225,7 +228,7 @@ class App extends Component {
 							toggleNudgeAnnotationGlyphStart(this.props.modalUI.elements.annotationGlyph[0]);
 							this.props.postAnnotation(
 								// FIXME should really be a patch, not a post
-								this.props.route.baseUri + "/sessions/deliusAnnotation", 
+								this.props.baseUri + "/sessions/deliusAnnotation", 
 								"UnknownEtag", 
 								JSON.stringify({	
 									"@id": nextGlyphs[0],
@@ -239,7 +242,7 @@ class App extends Component {
 							toggleNudgeAnnotationGlyphEnd(this.props.modalUI.elements.annotationGlyph[0]);
 							this.props.postAnnotation(
 								// FIXME should really be a patch, not a post
-								this.props.route.baseUri + "/sessions/deliusAnnotation", 
+								this.props.baseUri + "/sessions/deliusAnnotation", 
 								"UnknownEtag", 
 								JSON.stringify({	
 									"@id": nextGlyphs[0],
@@ -284,25 +287,28 @@ class App extends Component {
 							// if a constituent has been selected,
 							// make a point annotation
 							var annotId = this.mintAnnotationId();
+							var annot = {	
+								"@id": annotId,
+								[pref.oa+"hasTarget"]: { 
+									"@type": { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag" },
+									[pref.rdfs+"member"]: { "@id": this.props.modalUI.elements["note"][0] },
+									[pref.meld+"startsWith"]: { "@id": this.props.modalUI.elements["note"][0] }
+								},
+								[pref.oa+"motivatedBy"]: { "@id": Array.from(nextProps.modalUI.constituents)[0] },
+								[pref.meld+"inAnnotationSet"]: this.state.currentAnnotationSet
+							};
 							this.props.postAnnotation(
-								this.props.route.baseUri + "/sessions/deliusAnnotation", 
+								this.props.baseUri + "/sessions/deliusAnnotation", 
 								"UnknownEtag", 
-								JSON.stringify({	
-									"@id": annotId,
-									"oa:hasTarget": { 
-										"@type": { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag" },
-										"rdfs:member": { "@id": this.props.modalUI.elements["note"][0] },
-										"meld:startsWith": { "@id": this.props.modalUI.elements["note"][0] }
-									},
-									"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] },
-									"meld:inAnnotationSet": this.state.currentAnnotationSet
-								})
+								JSON.stringify(annot)
 							);
-							drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0, this.state.currentAnnotationSet - 1, annotId);
+							console.log("Ready to draw?");
+//							drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0, this.state.currentAnnotationSet - 1, annotId);
 							// now reset UI
 							this.props.clearElements("note");
 							this.props.clearConstituents();
 							this.props.setMode("nothing");
+							this.setState({annotationsToShow: this.state.annotationsToShow.concat(annot)});
 						}
 					} else if(theseNotes.length !== nextNotes.length) { 
 						// if the element selections have changed, reset to base mode (in lieu of back button)
@@ -327,13 +333,13 @@ class App extends Component {
 		if(this.state.currentCursorAnnotation) {
 			var annotId = this.mintAnnotationId();
 			this.props.postAnnotation(
-				this.props.route.baseUri + "/sessions/deliusAnnotation", 
+				this.props.baseUri + "/sessions/deliusAnnotation", 
 				"UnknownEtag", 
 				JSON.stringify({	
 					"@id": annotId,
-					"oa:hasTarget": { "@id": this.state.currentCursorAnnotation },
-					"oa:motivatedBy": { "@id": "cursorCleared" },
-					"meld:inAnnotationSet": this.state.currentAnnotationSet
+					[pref.oa+"hasTarget"]: { "@id": this.state.currentCursorAnnotation },
+					[pref.oa+"motivatedBy"]: { "@id": "cursorCleared" },
+					[pref.meld+"inAnnotationSet"]: this.state.currentAnnotationSet
 				})
 			);
 			this.setState({ currentCursorAnnotation: "" });
@@ -351,17 +357,17 @@ class App extends Component {
 			// user wants to make a point annotation
 			var annotId = this.mintAnnotationId();
 				this.props.postAnnotation(
-					this.props.route.baseUri + "/sessions/deliusAnnotation", 
+					this.props.baseUri + "/sessions/deliusAnnotation", 
 					"UnknownEtag", 
 					JSON.stringify({	
 						"@id": annotId,
-						"oa:hasTarget": { 
+						[pref.oa+"hasTarget"]: { 
 							"@type": { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag" }, 
-							"rdfs:member": { "@id": theseNotes[0] },
-							"meld:startsWith": { "@id": theseNotes[0] }
+							[pref.rdfs+"member"]: { "@id": theseNotes[0] },
+							[pref.meld+"startsWith"]: { "@id": theseNotes[0] }
 						},
-						"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] },
-						"meld:inAnnotationSet": this.state.currentAnnotationSet
+						[pref.oa+"motivatedBy"]: { "@id": Array.from(nextProps.modalUI.constituents)[0] },
+						[pref.meld+"inAnnotationSet"]: this.state.currentAnnotationSet
 					})
 				);
 			drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0, this.state.currentAnnotationSet - 1, annotId);
@@ -384,18 +390,18 @@ class App extends Component {
 					// user wants to make a point annotation
 					var annotId = this.mintAnnotationId();
 					this.props.postAnnotation(
-						this.props.route.baseUri + "/sessions/deliusAnnotation", 
+						this.props.baseUri + "/sessions/deliusAnnotation", 
 						"UnknownEtag", 
 						JSON.stringify({	
 							"@id": annotId,
-							"oa:hasTarget": { 
+							[pref.oa+"hasTarget"]: { 
 								"@type": { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag" },
-								"rdfs:member": { "@id": theseNotes[0] },
-								"meld:startsWith": { "@id": theseNotes[0] },
-								"meld:endsAfter": { "@id": theseNotes[0] }
+								[pref.rdfs+"member"]: { "@id": theseNotes[0] },
+								[pref.meld+"startsWith"]: { "@id": theseNotes[0] },
+								[pref.meld+"endsAfter"]: { "@id": theseNotes[0] }
 							},
-							"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] },
-							"meld:inAnnotationSet": this.state.currentAnnotationSet
+							[pref.oa+"motivatedBy"]: { "@id": Array.from(nextProps.modalUI.constituents)[0] },
+							[pref.meld+"inAnnotationSet"]: this.state.currentAnnotationSet
 						})
 					);
 					drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0, this.state.currentAnnotationSet - 1, annotId);
@@ -410,20 +416,20 @@ class App extends Component {
 					var note1 = leftFirst ? theseNotes[0] : theseNotes[1];
 					var note2 = leftFirst ? theseNotes[1] : theseNotes[0];
 					this.props.postAnnotation(
-						this.props.route.baseUri + "/sessions/deliusAnnotation", 
+						this.props.baseUri + "/sessions/deliusAnnotation", 
 						"UnknownEtag", 
 						JSON.stringify({	
 							"@id": annotId,
-							"oa:hasTarget": {
+							[pref.oa+"hasTarget"]: {
 								"@type": {"@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag"},
 								"rdfs:member": [
 									{ "@id": note1 },
 									{ "@id": note2 } ],
-								"meld:startsWith": { "@id": note1 },
-								"meld:endsWith": { "@id": note2 }
+								[pref.meld+"startsWith"]: { "@id": note1 },
+								[pref.meld+"endsWith"]: { "@id": note2 }
 							},
-							"oa:motivatedBy": { "@id": Array.from(nextProps.modalUI.constituents)[0] },
-							"meld:inAnnotationSet": this.state.currentAnnotationSet
+							[pref.oa+"motivatedBy"]: { "@id": Array.from(nextProps.modalUI.constituents)[0] },
+							[pref.meld+"inAnnotationSet"]: this.state.currentAnnotationSet
 						})
 					);
 					drawRangedThingOnScore(document.getElementById(theseNotes[0]),
@@ -445,24 +451,27 @@ class App extends Component {
 		// update note classes (ensure only selected ones are highlighted)
 		this.props.decorateNotes(this.scoreComponent, this.props.modalUI.elements["note"] || []);
 		// attach click handlers to any annotation glyphs
+		this.props.attachClickHandlerToNotes(this.scoreComponent)
 		this.props.attachClickHandlerToAnnotationGlyphs(this.scoreComponent);
 		console.log("after update: ", this.state.displayCursorBoxes);
 	}
 
 	postSyncAnnotation() { 
 		this.props.postAnnotation(
-			this.props.route.baseUri + "/sessions/deliusAnnotation", 
+			this.props.baseUri + "/sessions/deliusAnnotation", 
 			"UnknownEtag", 
 			JSON.stringify({	
-				"oa:hasTarget": { "@id": this.props.route.baseUri + "/sessions/deliusAnnotation" },
-				"oa:motivatedBy": { "@id": "motivation:Sync" }
+				[pref.oa+"hasTarget"]: { "@id":
+														this.props.baseUri + "/sessions/deliusAnnotation"
+													},
+				[pref.oa+"motivatedBy"]: { "@id": "motivation:Sync" }
 			})
 		);
 	}
 
 
-	mintAnnotationId() { 
-		return this.props.route.baseUri + "/annotations/delius" + new Date().toISOString() 
+	mintAnnotationId() {
+		return this.props.baseUri + "/annotations/delius" + new Date().toISOString() 
 	}
 
 	switchSet(setNum) { 
@@ -503,7 +512,7 @@ class App extends Component {
 			<div> 
 					<link rel="stylesheet" href="style/modalUI.css" type="text/css" />
 					<Modal modes={this.state.modes} orientation="wide"/> 
-					<Score uri="/Late Swallows-dolet-musescore-II.mei" ref={(score) => {this.scoreComponent = score}} options={vrvOptions} />
+				<Score uri="/Late Swallows-dolet-musescore-II.mei" ref={(score) => {this.scoreComponent = score}} options={vrvOptions} scoreAnnotations={this.state.annotationsToShow} drawAnnotation={replayAnnotations} />
 					<button id="sync" onClick={this.postSyncAnnotation}>Sync!</button>
 					<div className="setButtonsContainer">
 						{ annotationSetButtons }

@@ -32,6 +32,7 @@ export function generateCursorBoxes(scoreComponent) {
 	return (dispatch) => { 
 		setTimeout(() => {	
 			const verovioSVG = scoreElement.querySelector("svg");
+			if(!verovioSVG) return;
 			const boxes = boxesForMeasures(verovioSVG, "hidden");
 			Array.prototype.map.call(boxes, function(b) {
 				// attach click handlers to boxes
