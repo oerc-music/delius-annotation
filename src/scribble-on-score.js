@@ -507,7 +507,6 @@ function annotationTargets(annotation){
 			for(var p=0; p<k.length; p++){
 				var key = k[p];
 				var val = targets[i][key];
-				console.log(key, val);
 				switch(key){
 					case meldURL+"terms/startsWith":
 						if(typeof(val)=='string'){
@@ -576,6 +575,7 @@ export function replayAnnotations(annotations, targetSVG){
 				// point symbol
 				var note = notes[target.start];
 				var y = staffGaps[note.staff];
+										annotation["@id"], y);
 				drawSymbol(document.getElementById(target.start), shortform(symbol), target.startOff, 0,
 									 annotation["@id"], y);
 			}
