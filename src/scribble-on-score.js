@@ -575,7 +575,6 @@ export function replayAnnotations(annotations, targetSVG){
 				// point symbol
 				var note = notes[target.start];
 				var y = staffGaps[note.staff];
-										annotation["@id"], y);
 				drawSymbol(document.getElementById(target.start), shortform(symbol), target.startOff, 0,
 									 annotation["@id"], y);
 			}
