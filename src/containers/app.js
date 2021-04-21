@@ -415,22 +415,23 @@ class App extends Component {
 					var leftFirst = leftOf(theseNotes[0], theseNotes[1]);
 					var note1 = leftFirst ? theseNotes[0] : theseNotes[1];
 					var note2 = leftFirst ? theseNotes[1] : theseNotes[0];
+					var annot = {
+						"@id": annotId,
+						[pref.oa+"hasTarget"]: {
+							"@type": {"@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag"},
+							"rdfs:member": [
+								{ "@id": note1 },
+								{ "@id": note2 } ],
+							[pref.meld+"startsWith"]: { "@id": note1 },
+							[pref.meld+"endsWith"]: { "@id": note2 }
+						},
+						[pref.oa+"motivatedBy"]: { "@id": Array.from(nextProps.modalUI.constituents)[0] },
+						[pref.meld+"inAnnotationSet"]: this.state.currentAnnotationSet
+					}
 					this.props.postAnnotation(
 						this.props.baseUri + "/sessions/deliusAnnotation", 
 						"UnknownEtag", 
-						JSON.stringify({	
-							"@id": annotId,
-							[pref.oa+"hasTarget"]: {
-								"@type": {"@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag"},
-								"rdfs:member": [
-									{ "@id": note1 },
-									{ "@id": note2 } ],
-								[pref.meld+"startsWith"]: { "@id": note1 },
-								[pref.meld+"endsWith"]: { "@id": note2 }
-							},
-							[pref.oa+"motivatedBy"]: { "@id": Array.from(nextProps.modalUI.constituents)[0] },
-							[pref.meld+"inAnnotationSet"]: this.state.currentAnnotationSet
-						})
+						JSON.stringify(annot)
 					);
 					drawRangedThingOnScore(document.getElementById(theseNotes[0]),
 																 false, 
@@ -442,6 +443,7 @@ class App extends Component {
 					this.props.clearConstituents();
 					this.props.clearElements("note");
 					this.props.setMode("nothing");
+					this.setState({annotationsToShow: this.state.annotationsToShow.concat(annot)});
 				}
 		}
 

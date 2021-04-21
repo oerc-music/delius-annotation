@@ -329,7 +329,6 @@ export function drawSingleThingOnScore(element, symbol, xnudge, annotationSet, i
 	}
 	if(chordAnnotationsSoFar[annotationSet][notes[element.id].chordID]){
 		yNudge = -550 * chordAnnotationsSoFar[annotationSet][notes[element.id].chordID].length;
-		console.log(chordAnnotationsSoFar[annotationSet][notes[element.id].chordID].length);
 		chordAnnotationsSoFar[annotationSet][notes[element.id].chordID].push(symbol);
 	} else {
 		chordAnnotationsSoFar[annotationSet][notes[element.id].chordID] = [symbol];
@@ -567,7 +566,7 @@ export function replayAnnotations(annotations, targetSVG){
 				// ranged
 				var note1 =notes[target.start];
 				var staffNo = note1.staff;
-				var y = staffGaps[note.staff];
+				var y = staffGaps[note1.staff];
 				drawRangedSymbol(document.getElementById(target.start), target.startOff,
 												 document.getElementById(target.end), target.endOff,
 												 shortform(symbol), 0, annotation["@id"], y);
