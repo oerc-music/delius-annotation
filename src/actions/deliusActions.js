@@ -26,15 +26,16 @@ export function attachClickHandlerToNotes(scoreComponent) {
 	}
 };
 
-export function generateCursorBoxes(scoreComponent) { 
+export function generateCursorBoxes(scoreComponent, show, showThis) { 
 	// horrible hack -- see above
 	const scoreElement = ReactDOM.findDOMNode(scoreComponent);
 	return (dispatch) => { 
 		setTimeout(() => {	
 			const verovioSVG = scoreElement.querySelector("svg");
 			if(!verovioSVG) return;
-			const boxes = boxesForMeasures(verovioSVG, "hidden");
+			const boxes = boxesForMeasures(verovioSVG, show ? "" : "hidden");
 			Array.prototype.map.call(boxes, function(b) {
+				if(showThis && b.id===showThis) b.classList.remove("hidden");
 				// attach click handlers to boxes
 				b.onclick = function(e) { 
 					dispatch({
@@ -67,6 +68,7 @@ export function hideCursorBoxes(scoreComponent, exceptThisOne) {
 		const query = exceptThisOne ? ".barBox:not(#"+exceptThisOne+")" : ".barBox";
 		const boxes = ReactDOM.findDOMNode(scoreComponent).querySelectorAll(query);
 		console.log("~Hide: ", boxes);
+		if(!boxes.length) return generateCursorBoxes(scoreComponent, false, exceptThisOne);
 		Array.prototype.map.call(boxes, function(b) { 
 			b.classList.add("hidden");
 		});
@@ -85,6 +87,7 @@ export function showCursorBoxes(scoreComponent) {
 	if(scoreComponent) { 
 		const boxes = ReactDOM.findDOMNode(scoreComponent).querySelectorAll(".barBox");
 		console.log("CURSOR: SHOW", boxes)
+		if(!boxes) generateCursorBoxes(scoreComponent, true)
 		Array.prototype.map.call(boxes, function(b) { 
 			b.classList.remove("hidden") 
 		});

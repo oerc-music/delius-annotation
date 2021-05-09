@@ -87,7 +87,7 @@ class App extends Component {
 				this.setState({ displayCursorBoxes: true }, () => {
 					// callback: show cursor boxes once set state is done
 					// and switch to nothing mode
-					this.props.showCursorBoxes(this.scoreComponent);
+//					this.props.showCursorBoxes(this.scoreComponent);
 				});
 				nextDisplayCursorBoxes = true;
 			}
@@ -455,6 +455,11 @@ class App extends Component {
 		// attach click handlers to any annotation glyphs
 		this.props.attachClickHandlerToNotes(this.scoreComponent)
 		this.props.attachClickHandlerToAnnotationGlyphs(this.scoreComponent);
+		if(!document.getElementsByClassName("barBox").length && this.state.displayCursorBoxes) {
+		 	this.props.generateCursorBoxes(this.scoreComponent, this.state.displayCursorBoxes);
+		} else if (!document.getElementsByClassName("barBox").length && this.props.modalUI.mode==="activeCursorMode"){
+			this.props.generateCursorBoxes(this.scoreComponent, false, this.props.modalUI.elements.cursor);
+		}
 		console.log("after update: ", this.state.displayCursorBoxes);
 	}
 
