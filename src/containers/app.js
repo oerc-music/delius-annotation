@@ -87,7 +87,7 @@ class App extends Component {
 				this.setState({ displayCursorBoxes: true }, () => {
 					// callback: show cursor boxes once set state is done
 					// and switch to nothing mode
-//					this.props.showCursorBoxes(this.scoreComponent);
+					this.props.showCursorBoxes(this.scoreComponent);
 				});
 				nextDisplayCursorBoxes = true;
 			}
@@ -101,7 +101,8 @@ class App extends Component {
 			this.props.postAnnotation(
 				this.props.baseUri + "/sessions/deliusAnnotation",
 				"UnknownEtag", 
-				JSON.stringify({	
+				//				JSON.stringify({
+				{
 					"@id": annotId,
 					[pref.oa+"hasTarget"]: { 
 						"@type": { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag" }, 
@@ -109,7 +110,8 @@ class App extends Component {
 					},
 					[pref.oa+"motivatedBy"]: { "@id": "cursor" },
 					[pref.meld+"inAnnotationSet"]: this.state.currentAnnotationSet
-				})
+				}
+				//)
 			);
 			// hide cursor boxes, except the selected one
 			console.log("RESET: ", this.props.modalUI, nextProps.modalUI, this.state.displayCursorBoxes);
@@ -127,12 +129,13 @@ class App extends Component {
 			this.props.postAnnotation(
 				this.props.baseUri + "/sessions/deliusAnnotation", 
 				"UnknownEtag", 
-				JSON.stringify({	
+				//				JSON.stringify({
+				{
 					"@id": annotId,
 					[pref.oa+"hasTarget"]: { "@id": this.state.currentCursorAnnotation },
 					[pref.oa+"motivatedBy"]: { "@id": "important" },
 					[pref.meld+"inAnnotationSet"]: this.state.currentAnnotationSet
-				})
+				}//)
 			);
 			// and clear selections
 			this.props.clearConstituents();
@@ -203,11 +206,12 @@ class App extends Component {
 								// FIXME should really be a patch, not a post
 								this.props.baseUri + "/sessions/deliusAnnotation", 
 								"UnknownEtag", 
-								JSON.stringify({	
+//								JSON.stringify({
+									{
 									"@id": nextGlyphs[0],
 									"meld:state": "meld:Deleted",
 									"dct:modified": new Date().toISOString()
-								})
+								}//)
 							);
 						} else if(Array.from(nextProps.modalUI.constituents)[0]==="changeMind"){
 							console.log("RETRACT: ", this.props.modalUI.elements.annotationGlyph[0]);
@@ -216,11 +220,12 @@ class App extends Component {
 								// FIXME should really be a patch, not a post
 								this.props.baseUri + "/sessions/deliusAnnotation", 
 								"UnknownEtag", 
-								JSON.stringify({	
+								//								JSON.stringify({
+								{
 									"@id": nextGlyphs[0],
 									"meld:state": "meld:Retracted",
 									"dct:modified": new Date().toISOString()
-								})
+								}//)
 							);
 						} else if(Array.from(nextProps.modalUI.constituents)[0]==="nudgeStart"){
 							console.log("NUDGE START: ", this.props.modalUI.elements.annotationGlyph[0]);
@@ -230,11 +235,12 @@ class App extends Component {
 								// FIXME should really be a patch, not a post
 								this.props.baseUri + "/sessions/deliusAnnotation", 
 								"UnknownEtag", 
-								JSON.stringify({	
+//								JSON.stringify({	
+								{
 									"@id": nextGlyphs[0],
 									"meld:state": "meld:NudgeStart",
 									"dct:modified": new Date().toISOString()
-								})
+								}//)
 							);
 						} else if(Array.from(nextProps.modalUI.constituents)[0]==="nudgeEnd"){
 							console.log("NUDGE END: ", this.props.modalUI.elements.annotationGlyph[0]);
@@ -244,11 +250,12 @@ class App extends Component {
 								// FIXME should really be a patch, not a post
 								this.props.baseUri + "/sessions/deliusAnnotation", 
 								"UnknownEtag", 
-								JSON.stringify({	
+								//								JSON.stringify({
+								{
 									"@id": nextGlyphs[0],
 									"meld:state": "meld:NudgeEnd",
 									"dct:modified": new Date().toISOString()
-								})
+								}//)
 							);
 						}
 						// now reset to nothing mode
@@ -299,8 +306,9 @@ class App extends Component {
 							};
 							this.props.postAnnotation(
 								this.props.baseUri + "/sessions/deliusAnnotation", 
-								"UnknownEtag", 
-								JSON.stringify(annot)
+								"UnknownEtag",
+								annot
+								//JSON.stringify(annot)
 							);
 							console.log("Ready to draw?");
 //							drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0, this.state.currentAnnotationSet - 1, annotId);
@@ -335,12 +343,13 @@ class App extends Component {
 			this.props.postAnnotation(
 				this.props.baseUri + "/sessions/deliusAnnotation", 
 				"UnknownEtag", 
-				JSON.stringify({	
+				//				JSON.stringify({
+				{
 					"@id": annotId,
 					[pref.oa+"hasTarget"]: { "@id": this.state.currentCursorAnnotation },
 					[pref.oa+"motivatedBy"]: { "@id": "cursorCleared" },
 					[pref.meld+"inAnnotationSet"]: this.state.currentAnnotationSet
-				})
+				}//)
 			);
 			this.setState({ currentCursorAnnotation: "" });
 		}
@@ -359,7 +368,8 @@ class App extends Component {
 				this.props.postAnnotation(
 					this.props.baseUri + "/sessions/deliusAnnotation", 
 					"UnknownEtag", 
-					JSON.stringify({	
+					//					JSON.stringify({
+					{
 						"@id": annotId,
 						[pref.oa+"hasTarget"]: { 
 							"@type": { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag" }, 
@@ -368,7 +378,7 @@ class App extends Component {
 						},
 						[pref.oa+"motivatedBy"]: { "@id": Array.from(nextProps.modalUI.constituents)[0] },
 						[pref.meld+"inAnnotationSet"]: this.state.currentAnnotationSet
-					})
+					}//)
 				);
 			drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0, this.state.currentAnnotationSet - 1, annotId);
 				// now reset UI
@@ -392,7 +402,8 @@ class App extends Component {
 					this.props.postAnnotation(
 						this.props.baseUri + "/sessions/deliusAnnotation", 
 						"UnknownEtag", 
-						JSON.stringify({	
+						//						JSON.stringify({
+						{
 							"@id": annotId,
 							[pref.oa+"hasTarget"]: { 
 								"@type": { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag" },
@@ -402,7 +413,7 @@ class App extends Component {
 							},
 							[pref.oa+"motivatedBy"]: { "@id": Array.from(nextProps.modalUI.constituents)[0] },
 							[pref.meld+"inAnnotationSet"]: this.state.currentAnnotationSet
-						})
+						}//
 					);
 					drawSingleThingOnScore(document.getElementById(theseNotes[0]), Array.from(nextProps.modalUI.constituents)[0], 0, this.state.currentAnnotationSet - 1, annotId);
 					// now reset UI
@@ -430,8 +441,9 @@ class App extends Component {
 					}
 					this.props.postAnnotation(
 						this.props.baseUri + "/sessions/deliusAnnotation", 
-						"UnknownEtag", 
-						JSON.stringify(annot)
+						"UnknownEtag",
+						annot
+						//JSON.stringify(annot)
 					);
 					drawRangedThingOnScore(document.getElementById(theseNotes[0]),
 																 false, 
@@ -467,12 +479,13 @@ class App extends Component {
 		this.props.postAnnotation(
 			this.props.baseUri + "/sessions/deliusAnnotation", 
 			"UnknownEtag", 
-			JSON.stringify({	
+			//			JSON.stringify({
+			{
 				[pref.oa+"hasTarget"]: { "@id":
 														this.props.baseUri + "/sessions/deliusAnnotation"
 													},
 				[pref.oa+"motivatedBy"]: { "@id": "motivation:Sync" }
-			})
+			}//)
 		);
 	}
 

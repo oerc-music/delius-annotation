@@ -22,7 +22,7 @@
     "axios": "^0.19.0",
     "jsonld": "^1.0.0",
     "jsum": "^0.1.4",
-    "meld-clients-core": "oerc-music/meld-clients-core.git#dev-meld-2.0",
+    "meld-clients-core": "oerc-music/meld-clients-core.git#meld-2.0-RC1",
     "n3": "^1.0.3",
     "querystring": "^0.2.0",
     "react": "^16.0.0",
