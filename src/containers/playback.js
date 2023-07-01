@@ -16,7 +16,7 @@ const { PlayPause, CurrentTime, Progress, SeekBar, Duration, MuteUnmute, Volume,
 const { formatTime } = utils
 
 // const clockProvider = "http://127.0.0.1:8080/DELIUS_EVENT.mp3"
-const clockProvider = "http://127.0.0.1:8082/DELIUS_EVENT_SMALL_SHORT.mp4"
+const clockProvider = "https://meld.linkedmusic.org/delius-data/DELIUS_EVENT_SMALL_SHORT.mp4"
 
 class Playback extends Component { 
 	constructor(props) {
